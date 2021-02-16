@@ -2,8 +2,8 @@
 
 FASE 0
 Features and Team – 
-Team:   Daniel Lahera Esteban
-	Enrique Garrido González
+Team:   Daniel Lahera Esteban,
+	Enrique Garrido González,
 	Daniel Alexander Juan Moreno
 
 Features: it will be a web appabout e-sports tournaments and leagues management
