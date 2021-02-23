@@ -1,4 +1,4 @@
-# VERSUS
+# VICTORIOUS
 
 ## Team members
 
@@ -12,7 +12,7 @@
 
 ### Description
 
-Versus is a web app about e-sports tournaments and leagues management. You will be able to create and manage tornaments with your friends, and also watch the oficial league and tournaments with their rounds and winners.
+Victorious is a web app about e-sports tournaments and leagues management. You will be able to create and manage tornaments with your friends, and also watch the oficial league and tournaments with their rounds and winners.
 In addition to that, you can create your own team, apply for others or simply watch the pro existing teams.
 
 ### Entities
