@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Team HTML</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat%7COpen+Sans:700,400%7CRaleway:400,800,900" rel="stylesheet" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="css/library/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="dev-assets/preloader-default.css" rel="stylesheet" type="text/css" />
+    <link href="dev-assets/demo-switcher.css" rel="stylesheet" type="text/css" />
+
+    <!--
+
+    Enable one styles which the you want
+
+    <link href="css-min/soccer.min.css" rel="stylesheet" type="text/css" />
+    <link href="css-min/hockey.min.css" rel="stylesheet" type="text/css" />
+    <link href="css-min/basketball.min.css" rel="stylesheet" type="text/css" />
+    <link href="css-min/football.min.css" rel="stylesheet" type="text/css" />
+    <link href="css-min/baseball.min.css" rel="stylesheet" type="text/css" />
+    <link href="css-min/dota.min.css" rel="stylesheet" type="text/css" />
+    <link href="css-min/csgo.min.css" rel="stylesheet" type="text/css" />
+
+    All libraries included in this css, concating rules in /grunt/cssmin.js
+    Use grunt default task for creating this files
+
+    -->
+</head>
+
+<body>
+
+<div class="preloader-wrapper" id="preloader">
+    <div class="motion-line dark-big"></div>
+    <div class="motion-line yellow-big"></div>
+    <div class="motion-line dark-small"></div>
+    <div class="motion-line yellow-normal"></div>
+    <div class="motion-line yellow-small1"></div>
+    <div class="motion-line yellow-small2"></div>
+</div>
+
+<!--MAIN MENU WRAP BEGIN-->
+<div class="main-menu-wrap sticky-menu">
+    <div class="container">
+        <a href="home.html" class="custom-logo-link"><img src="images/soccer/logo.png" alt="logo" class="custom-logo"></a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#team-menu" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <nav class="navbar">
+            <div class="collapse navbar-collapse" id="team-menu">
+                <ul class="main-menu nav">
+                    <li class="active"><a href="home.html"><span>Home</span></a></li>
+                    <li><a href="tournaments.html"><span>Tournaments</span></a></li>
+                    <li><a href="teams.html"><span>Teams</span></a></li>
+                    <li><a href="users.html"><span>Users</span></a></li>
+                    <li><a href="contacts.html"><span>Contact</span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<!--MAIN MENU WRAP END-->
+<h1 style="text-align:center;">Welcome to Victorious</h1>
+<div class="main-slider-section">
+    <div class="main-slider">
+        <p style="text-align:center;">Last matches</p>
+        <div id="main-slider" class="carousel slide" data-ride="carousel" data-interval="4000">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <div class="main-slider-caption">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="match-date">22/10/2020</div>
+                                    <div class="team"> team 1
+                                        <div class="big-count">
+                                            3:0
+                                        </div>
+                                        team 2
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="main-slider-caption">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="match-date">23/10/2020</div>
+                                    <div class="team"> team 3
+                                        <div class="big-count">
+                                            1:2
+                                        </div>
+                                        team 5
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="main-slider-caption">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="match-date">25/10/2020</div>
+                                    <div class="team"> team 4
+                                        <div class="big-count">
+                                            2:0
+                                        </div>
+                                        team 6
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Controls -->
+            <a class="nav-arrow left-arrow" href="#main-slider" role="button" data-slide="prev">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                <span class="sr-only"></span>
+            </a>
+            <a class="nav-arrow right-arrow" href="#main-slider" role="button" data-slide="next">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                <span class="sr-only"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2 style="text-align:center;">Our website is divided into </h2>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="text-align:center;">Players</h3>
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-2">
+                    <img src="images/soccer/player-2.jpg" height="200" alt="person-slider">
+                </div>
+                <div class="col-md-5"></div>
+            </div>
+            <p style="text-align:center;">
+                Create your own avatar to participate in this website
+            </p>
+            <div class="row">
+                <div class="col-md-4">
+                    <p style="text-align:center;">Sign up to create your own avatar</p>
+                </div>
+                <div class="col-md-4">
+                    <a href="users.html">
+                        <img src="images/common/player-screenshot.png" alt="player-screenshot">
+                    </a>
+                    <p>aqui voy a meter una captura de la pagina users que tambien enlaza con la pagina</p>
+                </div>
+                <div class="col-md-4">
+                    <p style="text-align:center;">Use your avatar to participate in tournaments</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="text-align:center;"> Teams</h3>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <img src="images/common/team-logo1.png" alt="team-logo">
+                    <img src="images/common/team-logo2.png" alt="team-logo">
+                    <img src="images/common/team-logo3.png" alt="team-logo">
+                    <img src="images/common/team-logo4.png" alt="team-logo">
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <p style="text-align:center;">Join a team who fit your preferences</p>
+                </div>
+                <div class="col-md-4">
+                    <a href="teams.html">
+                        <img src="images/common/team-screenshot.png" alt="team-screenshot">
+                    </a>
+                    <p>aqui voy a meter una captura de la pagina teams que tambien enlaza con la pagina</p>
+                </div>
+                <div class="col-md-4">
+                    <p style="text-align:center;">Create a team with your friends</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="text-align:center;"> Tournaments</h3>
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                    <img src="images/soccer/broad-cup-img.jpg" height="250" alt="tournament">
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <p style="text-align:center;">Join an official tournament to obtain points</p>
+                </div>
+                <div class="col-md-4">
+                    <a href="tournaments.html">
+                        <img src="images/common/team-tournamet.png" alt="team-screenshot">
+                    </a>
+                    <p>aqui voy a meter una captura de la pagina tournament que tambien enlaza con la pagina</p>
+                </div>
+                <div class="col-md-4">
+                    <p style="text-align:center;">Create a tournament to play with your friends</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="text-align:center;"> Leagues</h3>
+            <p style="text-align:center;">The points you win in the official tournaments are added automatically to the classification, there is a league for each game
+            </p>
+            <div class="col-md-12 col-sm-12 col-xs-12 overflow-scroll standings-table">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="2017" role="tabpanel">
+                        <table class="standing-full">
+                            <tr>
+                                <th>team</th>
+                                <th>number of matches</th>
+                                <th>won</th>
+                                <th>drawn</th>
+                                <th>lost</th>
+                                <th>points</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    1<span class="team"><img src="images/soccer/team-logo1.png" width="30" height="30" alt="team-logo"> </span>Panthers
+                                </td>
+                                <td>20</td>
+                                <td>15</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td class="points"><span>13</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    2<span class="team"><img src="images/soccer/team-logo2.png" width="30" height="30" alt="team-logo"> </span>Piranhas
+                                </td>
+                                <td>15</td>
+                                <td>11</td>
+                                <td>0</td>
+                                <td>4</td>
+                                <td class="points"><span>7</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    3<span class="team"><img src="images/soccer/team-logo3.png" width="30" height="30" alt="team-logo"> </span>Eagles
+                                </td>
+                                <td>24</td>
+                                <td>13</td>
+                                <td>4</td>
+                                <td>7</td>
+                                <td class="points"><span>6</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align:center;">Click here to see the leagues</p>
+            <a href="league.html">Leagues</a>
+        </div>
+    </div>
+
+</div>
+<!--FOOTER BEGIN-->
+<footer class="footer">
+    <div class="wrapper-overfllow">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <div class="footer-left">
+                        <div class="wrap">
+                            <a href="home.html" class="foot-logo"><img src="images/soccer/footer-logo.png" alt="footer-logo"></a>
+                            <p>Activated charcoal trust fund ugh prism af, beard marfa air plant stumptown gastropub farm-to-table jianbing.</p>
+                            <ul class="foot-left-menu">
+                                <li><a href="staff.html">First team</a></li>
+                                <li><a href="staff.html">Second team</a></li>
+                                <li><a href="amateurs.html">Amateurs</a></li>
+                                <li><a href="donations.html">Donation</a></li>
+                                <li><a href="trophies.html">trophies</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-lg-offset-1">
+                    <div class="foot-news">
+                        <h4>Recent news</h4>
+                        <div class="item">
+                            <a href="news.html" class="image"><img class="img-responsive" src="images/soccer/foot-news-img.jpg" alt="news-image"></a>
+                            <a href="news.html" class="name">When somersaulting Sanchez shouldered Mexico’s hopes</a>
+                            <a href="news.html" class="date">25 Sep 2016</a>
+                            <span class="separator">in</span>
+                            <a href="news.html" class="category">Highlights</a>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-lg-3 col-md-4 col-sm-12">
+                    <div class="foot-contact">
+                        <h4>Contact us</h4>
+                        <ul class="contact-list">
+                            <li><i class="fa fa-flag" aria-hidden="true"></i><span>276 Upper Parliament Street, Liverpool L8, Great Britain</span></li>
+                            <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:team@email.com">team@email.com</a></li>
+                            <li class="phone"><i class="fa fa-phone" aria-hidden="true"></i><span>+61 3 8376 6284</span></li>
+                        </ul>
+                        <ul class="socials">
+                            <li><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-menu-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="footer-menu">
+                        <li class="active"><a href="home.html"><span>Home</span></a></li>
+                        <li><a href="matches.html"><span>Matches</span></a></li>
+                        <li><a href="staff.html"><span>Team</span></a></li>
+                        <li><a href="news.html"><span>News</span></a></li>
+                        <li><a href="store.html"><span>Store</span></a></li>
+                        <li><a href="contacts.html"><span>Contact</span></a></li>
+                    </ul>
+                    <a href="#top" class="foot-up"><span>up <i class="fa fa-caret-up" aria-hidden="true"></i></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="copyrights">
+                        <a target="_blank" href="https://www.templateshub.net">Templates Hub</a>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="created">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--FOOTER END-->
+
+<script type="text/javascript" src="js/library/jquery.js"></script>
+<script type="text/javascript" src="js/library/jquery-ui.js"></script>
+<script type="text/javascript" src="js/library/bootstrap.js"></script>
+<script type="text/javascript" src="js/library/jquery.sticky.js"></script>
+<script type="text/javascript" src="js/library/jquery.jcarousel.js"></script>
+<script type="text/javascript" src="js/library/jcarousel.connected-carousels.js"></script>
+<script type="text/javascript" src="js/library/owl.carousel.js"></script>
+<script type="text/javascript" src="js/library/progressbar.js"></script>
+<script type="text/javascript" src="js/library/jquery.bracket.min.js"></script>
+<script type="text/javascript" src="js/library/chartist.js"></script>
+<script type="text/javascript" src="js/library/Chart.js"></script>
+<script type="text/javascript" src="js/library/fancySelect.js"></script>
+<script type="text/javascript" src="js/library/isotope.pkgd.js"></script>
+<script type="text/javascript" src="js/library/imagesloaded.pkgd.js"></script>
+
+<script type="text/javascript" src="js/jquery.team-coundown.js"></script>
+<script type="text/javascript" src="js/matches-slider.js"></script>
+<script type="text/javascript" src="js/header.js"></script>
+<script type="text/javascript" src="js/matches_broadcast_listing.js"></script>
+<script type="text/javascript" src="js/news-line.js"></script>
+<script type="text/javascript" src="js/match_galery.js"></script>
+<script type="text/javascript" src="js/main-club-gallery.js"></script>
+<script type="text/javascript" src="js/product-slider.js"></script>
+<script type="text/javascript" src="js/circle-bar.js"></script>
+<script type="text/javascript" src="js/standings.js"></script>
+<script type="text/javascript" src="js/shop-price-filter.js"></script>
+<script type="text/javascript" src="js/timeseries.js"></script>
+<script type="text/javascript" src="js/radar.js"></script>
+<script type="text/javascript" src="js/slider.js"></script>
+<script type="text/javascript" src="js/preloader.js"></script>
+<script type="text/javascript" src="js/diagram.js"></script>
+<script type="text/javascript" src="js/bi-polar-diagram.js"></script>
+<script type="text/javascript" src="js/label-placement-diagram.js"></script>
+<script type="text/javascript" src="js/donut-chart.js"></script>
+<script type="text/javascript" src="js/animate-donut.js"></script>
+<script type="text/javascript" src="js/advanced-smil.js"></script>
+<script type="text/javascript" src="js/svg-path.js"></script>
+<script type="text/javascript" src="js/pick-circle.js"></script>
+<script type="text/javascript" src="js/horizontal-bar.js"></script>
+<script type="text/javascript" src="js/gauge-chart.js"></script>
+<script type="text/javascript" src="js/stacked-bar.js"></script>
+
+<script type="text/javascript" src="js/library/chartist-plugin-legend.js"></script>
+<script type="text/javascript" src="js/library/chartist-plugin-threshold.js"></script>
+<script type="text/javascript" src="js/library/chartist-plugin-pointlabels.js"></script>
+
+<script type="text/javascript" src="js/treshold.js"></script>
+<script type="text/javascript" src="js/visible.js"></script>
+<script type="text/javascript" src="js/anchor.js"></script>
+<script type="text/javascript" src="js/landing_carousel.js"></script>
+<script type="text/javascript" src="js/landing_sport_standings.js"></script>
+<script type="text/javascript" src="js/twitterslider.js"></script>
+<script type="text/javascript" src="js/champions.js"></script>
+<script type="text/javascript" src="js/landing_mainnews_slider.js"></script>
+<script type="text/javascript" src="js/carousel.js"></script>
+<script type="text/javascript" src="js/video_slider.js"></script>
+<script type="text/javascript" src="js/footer_slides.js"></script>
+<script type="text/javascript" src="js/player_test.js"></script>
+
+<script type="text/javascript" src="js/main.js"></script>
+
+<script type="text/javascript" src="dev-assets/demo-switcher.js"></script>
+</body>
+
+
+</html>
