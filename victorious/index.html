@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Team HTML</title>
+    <title>Home</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat%7COpen+Sans:700,400%7CRaleway:400,800,900" rel="stylesheet" />
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="css/library/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="dev-assets/preloader-default.css" rel="stylesheet" type="text/css" />
     <link href="dev-assets/demo-switcher.css" rel="stylesheet" type="text/css" />
-
-    <!--
-
+    
+    <!-- 
+    
     Enable one styles which the you want
-
+    
     <link href="css-min/soccer.min.css" rel="stylesheet" type="text/css" />
     <link href="css-min/hockey.min.css" rel="stylesheet" type="text/css" />
     <link href="css-min/basketball.min.css" rel="stylesheet" type="text/css" />
@@ -24,16 +25,15 @@
     <link href="css-min/baseball.min.css" rel="stylesheet" type="text/css" />
     <link href="css-min/dota.min.css" rel="stylesheet" type="text/css" />
     <link href="css-min/csgo.min.css" rel="stylesheet" type="text/css" />
-
+    
     All libraries included in this css, concating rules in /grunt/cssmin.js
     Use grunt default task for creating this files
-
+    
     -->
 </head>
 
 <body>
-
-<div class="preloader-wrapper" id="preloader">
+	<div class="preloader-wrapper" id="preloader">
     <div class="motion-line dark-big"></div>
     <div class="motion-line yellow-big"></div>
     <div class="motion-line dark-small"></div>
@@ -45,7 +45,7 @@
 <!--MAIN MENU WRAP BEGIN-->
 <div class="main-menu-wrap sticky-menu">
     <div class="container">
-        <a href="home.html" class="custom-logo-link"><img src="images/soccer/logo.png" alt="logo" class="custom-logo"></a>
+        <a href="index-2.html" class="custom-logo-link"><img src="images/soccer/logo.png" alt="logo" class="custom-logo"></a>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#team-menu" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -55,54 +55,234 @@
         <nav class="navbar">
             <div class="collapse navbar-collapse" id="team-menu">
                 <ul class="main-menu nav">
-                    <li class="active"><a href="home.html"><span>Home</span></a></li>
+                    <li class="active"><a href="index.html"><span>Home</span></a></li>
                     <li><a href="tournaments.html"><span>Tournaments</span></a></li>
                     <li><a href="teams.html"><span>Teams</span></a></li>
-                    <li><a href="users.html"><span>Users</span></a></li>
-                    <li><a href="contacts.html"><span>Contact</span></a></li>
+                    <li><a href="league.html"><span>League</span></a></li>
+                    <li><a href="contact.html"><span>Contact</span></a></li>
+                    <li><a href="login.html"><span>Log In</span></a></li>
                 </ul>
-            </div>
+            </div>       
         </nav>
     </div>
 </div>
+<!--MAIN MENU WRAP END-->
+<h1 style="text-align:center;">Welcome to Victorious</h1>
+<div class="main-slider-section">
+    <div class="main-slider">
+        <p style="text-align:center;">Last matches</p>
+        <div id="main-slider" class="carousel slide" data-ride="carousel" data-interval="4000">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <div class="main-slider-caption">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="match-date">22/10/2020</div>
+                                    <div class="team"> team 1
+                                        <div class="big-count">
+                                            3:0
+                                        </div>
+                                        team 2
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="main-slider-caption">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="match-date">23/10/2020</div>
+                                    <div class="team"> team 3
+                                        <div class="big-count">
+                                            1:2
+                                        </div>
+                                        team 5
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="main-slider-caption">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="match-date">25/10/2020</div>
+                                    <div class="team"> team 4
+                                        <div class="big-count">
+                                            2:0
+                                        </div>
+                                        team 6
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Controls -->
+            <a class="nav-arrow left-arrow" href="#main-slider" role="button" data-slide="prev">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                <span class="sr-only"></span>
+            </a>
+            <a class="nav-arrow right-arrow" href="#main-slider" role="button" data-slide="next">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                <span class="sr-only"></span>
+            </a>
+        </div>
+    </div>
+</div>
 
-<table class="standing-full">
-    <tr>
-        <th>avatar</th>
-        <th>name</th>
-        <th>team</th>
-        <th>e-mail</th>
-        <th>rol</th>
-    </tr>
-    <tr>
-        <td><img src="images/soccer/player-hockey.jpg" alt="player"></td>
-        <td>Carlos</td>
-        <td>Eagles</td>
-        <td>carlos.victorious@hotmail.com</td>
-        <td>team member</td>
-    </tr>
-    <tr>
-        <td><img src="images/soccer/player-2.jpg" alt="player"></td>
-        <td>Mario</td>
-        <td>Rhinos</td>
-        <td>mario.victorious@hotmail.com</td>
-        <td>team member</td>
-    </tr>
-    <tr>
-        <td><img src="images/soccer/player-3.jpg" alt="player"></td>
-        <td>Javier</td>
-        <td>Eagles</td>
-        <td>javier.victorious@hotmail.com</td>
-        <td>team captain</td>
-    </tr>
-    <tr>
-        <td><img src="" alt="administrator"></td>
-        <td>Micael</td>
-        <td>None</td>
-        <td>mica.victorious@hotmail.com</td>
-        <td>administratorr</td>
-    </tr>
-</table>
+<div class="container">
+    <h2 style="text-align:center;">Our website is divided into </h2>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="text-align:center;">Players</h3>
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-2">
+                    <img src="images/soccer/player-2.jpg" height="200" alt="person-slider">
+                </div>
+                <div class="col-md-5"></div>
+            </div>
+            <p style="text-align:center;">
+                Create your own avatar to participate in this website
+            </p>
+            <div class="row">
+                <div class="col-md-4">
+                    <p style="text-align:center;">Sign up to create your own avatar</p>
+                </div>
+                <div class="col-md-4">
+                    <a href="users.html">
+                        <img src="images/common/player-screenshot.png" alt="player-screenshot">
+                    </a>
+                    <p>aqui voy a meter una captura de la pagina users que tambien enlaza con la pagina</p>
+                </div>
+                <div class="col-md-4">
+                    <p style="text-align:center;">Use your avatar to participate in tournaments</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="text-align:center;"> Teams</h3>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <img src="images/common/team-logo1.png" alt="team-logo">
+                    <img src="images/common/team-logo2.png" alt="team-logo">
+                    <img src="images/common/team-logo3.png" alt="team-logo">
+                    <img src="images/common/team-logo4.png" alt="team-logo">
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <p style="text-align:center;">Join a team who fit your preferences</p>
+                </div>
+                <div class="col-md-4">
+                    <a href="teams.html">
+                        <img src="images/common/team-screenshot.png" alt="team-screenshot">
+                    </a>
+                    <p>aqui voy a meter una captura de la pagina teams que tambien enlaza con la pagina</p>
+                </div>
+                <div class="col-md-4">
+                    <p style="text-align:center;">Create a team with your friends</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="text-align:center;"> Tournaments</h3>
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                    <img src="images/soccer/broad-cup-img.jpg" height="250" alt="tournament">
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <p style="text-align:center;">Join an official tournament to obtain points</p>
+                </div>
+                <div class="col-md-4">
+                    <a href="tournaments.html">
+                        <img src="images/common/team-tournamet.png" alt="team-screenshot">
+                    </a>
+                    <p>aqui voy a meter una captura de la pagina tournament que tambien enlaza con la pagina</p>
+                </div>
+                <div class="col-md-4">
+                    <p style="text-align:center;">Create a tournament to play with your friends</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="text-align:center;"> Leagues</h3>
+            <p style="text-align:center;">The points you win in the official tournaments are added automatically to the classification, there is a league for each game
+            </p>
+            <div class="col-md-12 col-sm-12 col-xs-12 overflow-scroll standings-table">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="2017" role="tabpanel">
+                        <table class="standing-full">
+                            <tr>
+                                <th>team</th>
+                                <th>number of matches</th>
+                                <th>won</th>
+                                <th>drawn</th>
+                                <th>lost</th>
+                                <th>points</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    1<span class="team"><img src="images/soccer/team-logo1.png" width="30" height="30" alt="team-logo"> </span>Panthers
+                                </td>
+                                <td>20</td>
+                                <td>15</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td class="points"><span>13</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    2<span class="team"><img src="images/soccer/team-logo2.png" width="30" height="30" alt="team-logo"> </span>Piranhas
+                                </td>
+                                <td>15</td>
+                                <td>11</td>
+                                <td>0</td>
+                                <td>4</td>
+                                <td class="points"><span>7</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    3<span class="team"><img src="images/soccer/team-logo3.png" width="30" height="30" alt="team-logo"> </span>Eagles
+                                </td>
+                                <td>24</td>
+                                <td>13</td>
+                                <td>4</td>
+                                <td>7</td>
+                                <td class="points"><span>6</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align:center;">Click here to see the leagues</p>
+            <a href="league.html">Leagues</a>
+        </div>
+    </div>
+
+</div>
 <!--FOOTER BEGIN-->
 <footer class="footer">
     <div class="wrapper-overfllow">
