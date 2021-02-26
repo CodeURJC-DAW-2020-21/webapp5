@@ -7,7 +7,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Teams</title>
+    <title>New Team</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat%7COpen+Sans:700,400%7CRaleway:400,800,900" rel="stylesheet" />
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="css/library/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -33,7 +33,6 @@
 </head>
 
 <body>
-
 	<div class="preloader-wrapper" id="preloader">
     <div class="motion-line dark-big"></div>
     <div class="motion-line yellow-big"></div>
@@ -58,7 +57,7 @@
                 <ul class="main-menu nav">
                     <li><a href="index.html"><span>Home</span></a></li>
                     <li><a href="tournaments.html"><span>Tournaments</span></a></li>
-                    <li class="active"><a href="teams.html"><span>Teams</span></a></li>
+                    <li><a href="teams.html"><span>Teams</span></a></li>
                     <li><a href="league.html"><span>League</span></a></li>
                     <li><a href="contact.html"><span>Contact</span></a></li>
                     <li><a href="login.html"><span>Log In</span></a></li>
@@ -76,7 +75,7 @@
             <div class="col-md-6">
                 <div class="info">
                     <div class="wrap">
-                        <h1>Teams</h1>
+                        <h1>Create a Team</h1>
                     </div>
                 </div>
             </div>	
@@ -85,102 +84,55 @@
 </section>
 <!--BREADCRUMBS END-->
 
-<!--ESPORT CHAMPIONSHIP PARTICIPANTS BEGIN-->
-<div class="esport_championship_participants">
-    <div class="container">
-        <div class="row no-guters">
-            <div class="col-md-12">
-                <h5>Teams</h5>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6">
-                <a href="team.html">
-                    <img src="images/common/esport-participants-background.jpg" class="background-team" alt="background">
-                    <img src="images/common/team-logo4.png" alt="team-logo">
-                    <span>Boars team</span>
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6">
-                <a href="team.html">
-                    <img src="images/common/esport-participants-background.jpg" class="background-team" alt="background">
-                    <img src="images/common/team-logo4.png" alt="team-logo">
-                    <span>Boars team</span>
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6">
-                <a href="team.html">
-                    <img src="images/common/esport-participants-background.jpg" class="background-team" alt="background">
-                    <img src="images/common/team-logo4.png" alt="team-logo">
-                    <span>Boars team</span>
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6">
-                <a href="team.html">
-                    <img src="images/common/esport-participants-background.jpg" class="background-team" alt="background">
-                    <img src="images/common/team-logo4.png" alt="team-logo">
-                    <span>Boars team</span>
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6">
-                <a href="team.html">
-                    <img src="images/common/esport-participants-background.jpg" class="background-team" alt="background">
-                    <img src="images/common/team-logo4.png" alt="team-logo">
-                    <span>Boars team</span>
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6">
-                <a href="team.html">
-                    <img src="images/common/esport-participants-background.jpg" class="background-team" alt="background">
-                    <img src="images/common/team-logo4.png" alt="team-logo">
-                    <span>Boars team</span>
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6">
-                <a href="team.html">
-                    <img src="images/common/esport-participants-background.jpg" class="background-team" alt="background">
-                    <img src="images/common/team-logo4.png" alt="team-logo">
-                    <span>Boars team</span>
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6">
-                <a href="team.html">
-                    <img src="images/common/esport-participants-background.jpg" class="background-team" alt="background">
-                    <img src="images/common/team-logo4.png" alt="team-logo">
-                    <span>Boars team</span>
-                </a>
-            </div>
-
-            <div class="pagination-wrap">
-                <ul class="pagination">
-                    <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
-                    <li><a href="#">1</a></li>
-                    <li class="active"><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>  
-</div>
-<!--ESPORT CHAMPIONSHIP PARTICIPANTS END-->
-
 <div class="container">
-    <div class="row">
-        <div class="store-banner position-relative">
-            <div class="store-banner-info">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="title">Create <span>Your Team</span></div>
-                            <a href="newTeam.html" class="btn">Start</a>
-                        </div>	
+    <br>
+    <form class="forml" method="post">
+        <input type="hidden" name="_csrf" value="{{token}}" />               
+        <div class="panel-body">
+            <div class="col-lg-12">
+
+                <br>
+
+                <form action="newTeam.html" method="post">
+                    <input type="hidden" name="_csrf" value="{{token}}" />
+                    <div class="row top-buffer">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">
+                            <p class="options">Team name:</p>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="name" placeholder="Default Team" required> </div>
                     </div>
-                </div>
+
+                    <br>
+
+                    <div class="row top-buffer">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">
+                            <p class="options">Description:</p>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="5" name="description" style="max-width: 100%" placeholder="Your team's description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="text-center">
+                        <div>
+                            <input type="submit" class="btn small" value="create"> </div>
+                    </div>
+                </form>
+
+                <br> 
+
             </div>
         </div>
     </div>
 </div>
+
 
 <!--FOOTER BEGIN-->
 <footer class="footer">
