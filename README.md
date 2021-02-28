@@ -51,32 +51,31 @@ The web aplication will also generate new rounds with their matchups every time 
 
 ### Screenshots
 
-![contact](https://github.com/CodeURJC-DAW-2020-21/webapp5/tree/readme/Screenshots/Contact.JPG)
+![contact](Screenshots/Contact.jpg)
 - Contact: Screen that shows information about the web app in general, also it allow users to send us some feedback via short message.
 
-![home](https://github.com/CodeURJC-DAW-2020-21/webapp5/tree/readme/Screenshots/Home.JPG)
+![home](Screenshots/Home.jpg)
 - Home: Homescreen from where you land when you enter the app, it gives you a general view of everything the apps offers.
 
-![league](https://github.com/CodeURJC-DAW-2020-21/webapp5/tree/readme/Screenshots/League.JPG)
+![league](Screenshots/League.jpg)
 - League: It shows the general clasification for the games that the teams played, it will be automatically updated once the matches end.
 
-![settings](https://github.com/CodeURJC-DAW-2020-21/webapp5/tree/readme/Screenshots/Settings.JPG)
+![settings](Screenshots/Settings.jpg)
 - Settings: Form here a user can change its user attributes: avatar, accounts, nick, email and password. This is only avilable for normal users.
 
-![team](https://github.com/CodeURJC-DAW-2020-21/webapp5/tree/readme/Screenshots/Team.JPG)
+![team](Screenshots/Team.jpg)
 - Team: Shows general info about an individual team, you can see from here statistics from their games, tournaments where they are participating and you can also check its members.
 
-![teams](https://github.com/CodeURJC-DAW-2020-21/webapp5/tree/readme/Screenshots/Teams.JPG)
+![teams](Screenshots/Teams.jpg)
 - Teams: This screen shows a list of all the teams managed in our database. From here also you can create a new team.
 
-![turnament](https://github.com/CodeURJC-DAW-2020-21/webapp5/tree/readme/Screenshots/Tournament.JPG)
-- Tournament: From this screen you can check the information from an tournament, you can see team that are participating in, the results from the current round, and also admins can
-	manage the tournament from an special tab where they can pass to the next round and start the tournament.
+![tournament](Screenshots/Tournament.jpg)
+- Tournament: From this screen you can check the information from an tournament, you can see team that are participating in, the results from the current round, and also admins can manage the tournament from an special tab where they can pass to the next round and start the tournament.
 
-![teurnaments](https://github.com/CodeURJC-DAW-2020-21/webapp5/tree/readme/Screenshots/Tournaments.JPG)
+![tournaments](Screenshots/Tournaments.jpg)
 - Tournaments: From here you can see a list of the created tournaments and if possible you can join one of them to participate. Also you can create a new tournament to be played.
 
-![user](https://github.com/CodeURJC-DAW-2020-21/webapp5/tree/readme/Screenshots/User.JPG)
+![user](Screenshots/User.jpg)
 - User: It shows public information about a user but only its user can change the info.
 
 ### Navigation Diagram
