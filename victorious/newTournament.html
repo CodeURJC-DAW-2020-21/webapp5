@@ -61,6 +61,22 @@
                     <li><a href="league.html"><span>League</span></a></li>
                     <li><a href="contact.html"><span>Contact</span></a></li>
                     <li><a href="login.html"><span>Log In</span></a></li>
+                    <li><a href="settings.html"><span>Settings</span></a></li>
+                    <li><img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="images/common/author-avatar.jpg" height="50" width="50"/>
+                        <ul>
+                            <li>
+                                <a href="user.html"> <strong>User Name</strong>
+                                    <p class="small">Profile</p>
+                                </a>
+                            </li>
+                            <li>
+                                <form action="/logout" method="post">
+                                    <input type="hidden" name="_csrf" value="{{token}}" />
+                                    <button type="submit" class="btn-link">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>       
         </nav>
