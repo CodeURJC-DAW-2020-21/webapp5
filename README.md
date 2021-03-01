@@ -75,8 +75,11 @@ The web aplication will also generate new rounds with their matchups every time 
 ![tournaments](Screenshots/Tournaments.jpg)
 - Tournaments: From here you can see a list of the created tournaments and if possible you can join one of them to participate. Also you can create a new tournament to be played.
 
-![user](Screenshots/User.jpg)
-- User: It shows public information about a user but only its user can change the info.
+![login](Screenshots/Login.jpg)
+- Login: Screen that checks if the user exist in the database and if the password match, grants permission to edit user, participate in tournaments,etc.
+
+![sign-up](Screenshots/Sign-up.jpg)
+- Sign-up: This screen uses the data introduced to create a new user in the database.
 
 ### Navigation Diagram
 
