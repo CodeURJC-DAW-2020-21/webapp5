@@ -7,6 +7,7 @@
 |Daniel Lahera Esteban| d.lahera@alumnos.urjc.es | DaniL97 |
 |Enrique Garrido Gónzalez | e.garridogon@alumnos.urjc.es | kikegg |
 |Daniel Alexander Juan Moreno | da.juan@alumnos.urjc.es | dajm92 |
+|Jacobo Miguel Blanzaco Barreiro  | jm.blanzaco.2016@alumnos.urjc.es | jacobobbm |
 
 ## FASE 0
 
@@ -45,4 +46,63 @@ Login with third parties IDP
 
 - Every tournament have users or teams participating in them. When the admin or the creator of the tournament proceed to start the tournament. The web aplication will automatically generate the matchups.
 The web aplication will also generate new rounds with their matchups every time the admin or the creator of the tournament validates the round to advance into the next, until the tournament have a winner.
-- The web application has a classification that will be updated automatically based on the official tournaments and the points achieved by the teams that participate in them.  
+- The web application has a classification that will be updated automatically based on the official tournaments and the points achieved by the teams that participate in them. 
+
+## FASE 1
+
+### Screenshots
+
+**Home:**
+
+![home](Screenshots/Home.jpg)
+Homescreen from where you land when you enter the app, it gives you a general view of everything the apps offers.
+
+**League:**
+
+![league](Screenshots/League.jpg)
+It shows the general clasification for the games that the teams played, it will be automatically updated once the matches end.
+
+**Team:**
+
+![team](Screenshots/Team.jpg)
+Shows general info about an individual team, you can see from here statistics from their games, tournaments where they are participating and you can also check its members.
+
+**Teams:**
+
+![teams](Screenshots/Teams.jpg)
+This screen shows a list of all the teams managed in our database. From here also you can create a new team.
+
+**Tournament:**
+
+![tournament](Screenshots/Tournament.jpg)
+From this screen you can check the information from an tournament, you can see team that are participating in, the results from the current round, and also admins can manage the tournament from an special tab where they can pass to the next round and start the tournament.
+
+**Tournaments:**
+
+![tournaments](Screenshots/Tournaments.jpg)
+From here you can see a list of the created tournaments and if possible you can join one of them to participate. Also you can create a new tournament to be played.
+
+**Login:**
+
+![login](Screenshots/Login.jpg)
+- Login: Screen that checks if the user exist in the database and if the password match, grants permission to edit user, participate in tournaments,etc.
+
+**Sign Up:**
+
+![sign-up](Screenshots/Sign-up.jpg)
+This screen uses the data introduced to create a new user in the database.
+
+**Settings:**
+
+![settings](Screenshots/Settings.jpg)
+Form here a user can change its user attributes: avatar, accounts, nick, email and password. This is only avilable for normal users.
+
+**Contact:**
+
+![contact](Screenshots/Contact.jpg)
+Screen that shows information about the web app in general, also it allow users to send us some feedback via short message.
+
+### Navigation Diagram
+![Navigation Diagram](Screenshots/NavigationDiagram.jpg)
+
+![Nav](Screenshots/Nav.jpg)
