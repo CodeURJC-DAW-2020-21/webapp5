@@ -7,6 +7,7 @@
 |Daniel Lahera Esteban| d.lahera@alumnos.urjc.es | DaniL97 |
 |Enrique Garrido Gónzalez | e.garridogon@alumnos.urjc.es | kikegg |
 |Daniel Alexander Juan Moreno | da.juan@alumnos.urjc.es | dajm92 |
+|Jacobo Miguel Blanzaco Barreiro  | jm.blanzaco.2016@alumnos.urjc.es | jacobobbm |
 
 ## FASE 0
 
@@ -51,35 +52,57 @@ The web aplication will also generate new rounds with their matchups every time 
 
 ### Screenshots
 
-![contact](Screenshots/Contact.jpg)
-- Contact: Screen that shows information about the web app in general, also it allow users to send us some feedback via short message.
+**Home:**
 
 ![home](Screenshots/Home.jpg)
-- Home: Homescreen from where you land when you enter the app, it gives you a general view of everything the apps offers.
+Homescreen from where you land when you enter the app, it gives you a general view of everything the apps offers.
+
+**League:**
 
 ![league](Screenshots/League.jpg)
-- League: It shows the general clasification for the games that the teams played, it will be automatically updated once the matches end.
+It shows the general clasification for the games that the teams played, it will be automatically updated once the matches end.
 
-![settings](Screenshots/Settings.jpg)
-- Settings: Form here a user can change its user attributes: avatar, accounts, nick, email and password. This is only avilable for normal users.
+**Team:**
 
 ![team](Screenshots/Team.jpg)
-- Team: Shows general info about an individual team, you can see from here statistics from their games, tournaments where they are participating and you can also check its members.
+Shows general info about an individual team, you can see from here statistics from their games, tournaments where they are participating and you can also check its members.
+
+**Teams:**
 
 ![teams](Screenshots/Teams.jpg)
-- Teams: This screen shows a list of all the teams managed in our database. From here also you can create a new team.
+This screen shows a list of all the teams managed in our database. From here also you can create a new team.
+
+**Tournament:**
 
 ![tournament](Screenshots/Tournament.jpg)
-- Tournament: From this screen you can check the information from an tournament, you can see team that are participating in, the results from the current round, and also admins can manage the tournament from an special tab where they can pass to the next round and start the tournament.
+From this screen you can check the information from an tournament, you can see team that are participating in, the results from the current round, and also admins can manage the tournament from an special tab where they can pass to the next round and start the tournament.
+
+**Tournaments:**
 
 ![tournaments](Screenshots/Tournaments.jpg)
-- Tournaments: From here you can see a list of the created tournaments and if possible you can join one of them to participate. Also you can create a new tournament to be played.
+From here you can see a list of the created tournaments and if possible you can join one of them to participate. Also you can create a new tournament to be played.
+
+**Login:**
 
 ![login](Screenshots/Login.jpg)
 - Login: Screen that checks if the user exist in the database and if the password match, grants permission to edit user, participate in tournaments,etc.
 
+**Sign Up:**
+
 ![sign-up](Screenshots/Sign-up.jpg)
-- Sign-up: This screen uses the data introduced to create a new user in the database.
+This screen uses the data introduced to create a new user in the database.
+
+**Settings:**
+
+![settings](Screenshots/Settings.jpg)
+Form here a user can change its user attributes: avatar, accounts, nick, email and password. This is only avilable for normal users.
+
+**Contact:**
+
+![contact](Screenshots/Contact.jpg)
+Screen that shows information about the web app in general, also it allow users to send us some feedback via short message.
 
 ### Navigation Diagram
+![Navigation Diagram](Screenshots/NavigationDiagram.jpg)
 
+![Nav](Screenshots/Nav.jpg)
