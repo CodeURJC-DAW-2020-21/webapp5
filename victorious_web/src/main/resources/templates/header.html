@@ -13,6 +13,7 @@
     <link href="css/library/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="dev-assets/preloader-default.css" rel="stylesheet" type="text/css" />
     <link href="dev-assets/demo-switcher.css" rel="stylesheet" type="text/css" />
+    <link href="css/access.css" rel="stylesheet" type="text/css" />
     
     <!-- 
     
@@ -55,26 +56,21 @@
         <nav class="navbar">
             <div class="collapse navbar-collapse" id="team-menu">
                 <ul class="main-menu nav">
-                    <li class="active"><a href="index.html"><span>Home</span></a></li>
-                    <li><a href="tournaments.html"><span>Tournaments</span></a></li>
-                    <li><a href="teams.html"><span>Teams</span></a></li>
-                    <li><a href="league.html"><span>League</span></a></li>
-                    <li><a href="contact.html"><span>Contact</span></a></li>
-                    <li><a href="login.html"><span>Log In</span></a></li>
-                    <li><a href="settings.html"><span>Settings</span></a></li>
+                    <li><a href="/index"><span>Home</span></a></li>
+                    <li><a href="/tournaments"><span>Tournaments</span></a></li>
+                    <li><a href="/teams"><span>Teams</span></a></li>
+                    <li><a href="/league"><span>League</span></a></li>
+                    <li><a href="/contact"><span>Contact</span></a></li>
+                    <li><a href="/login"><span>Log In</span></a></li>
+                    <li><a href="/settings"><span>Settings</span></a></li>
                     <li><img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="images/common/author-avatar.jpg" height="50" width="50"/>
                         <ul>
                             <li>
-                                <a href="user.html"> <strong>User Name</strong>
+                                <a href="/user"> <strong>User Name</strong>
                                     <p class="small">Profile</p>
                                 </a>
                             </li>
-							<li>
-                                <form action="/logout" method="post">
-                                    <input type="hidden" name="_csrf" value="{{token}}" />
-                                    <button type="submit" class="btn-link">Logout</button>
-                                </form>
-                            </li>
+
                         </ul>
                     </li>
                 </ul>
