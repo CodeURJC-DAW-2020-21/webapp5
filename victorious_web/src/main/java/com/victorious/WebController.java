@@ -27,19 +27,7 @@ public class WebController {
 		
 		return "tournament";
 	}	
-	
-	@RequestMapping("/teams")
-	public String teams(Model model){
-		
-		return "teams";
-	}	
-	
-	@RequestMapping("/teams/team")
-	public String team(Model model){
-		
-		return "team";
-	}
-	
+
 	@RequestMapping("/league")
 	public String league(Model model){
 		

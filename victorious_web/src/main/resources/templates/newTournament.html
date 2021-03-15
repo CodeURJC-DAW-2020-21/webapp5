@@ -19,7 +19,7 @@
 <div class="container">
     <br>
     <form class="forml" method="post">
-        <input type="hidden" name="_csrf" value="{{token}}" />               
+        <input type="hidden" name="_csrf" value="" />               
             <div class="panel-body">
                 <div class="col-lg-12">
 
@@ -103,8 +103,8 @@
                         <div class="col-lg-8">
                             <div class="form-group">
                                 <label for="gameSelect">Select Tournament's Game</label> <select
-                                    class="form-control" name="gameName"> {{#games}}
-                                    <option>{{name}}</option> {{/games}}
+                                    class="form-control" name="gameName"> 
+                                    <option>gameName</option> 
                                 </select>
                             </div>
 
