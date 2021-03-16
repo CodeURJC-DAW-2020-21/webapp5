@@ -76,6 +76,38 @@
 
 <script type="text/javascript" src="../dev-assets/demo-switcher.js"></script>
 
+<script type="text/javascript">
+$(document).ready(function () {
+	
+	$("#loadMore").click(function(){
+	var nextPage = $(this).attr("nextPage");
+	var teamPageId = nextPage - 1;
+
+	var url = new String("/teams?page=" + nextPage.toString());
+   	var loadUrl = new String(url + "#teamList");
+    
+	$.ajax({
+   		url: "/teams/teamPages?pageId=" + teamPageId.toString(),
+   		success: function(data) { 
+   			if(data != "nomore"){   	        	
+   	       		$("<div>").load(loadUrl, function() {
+   	       			$("#teamList").append($(this).find("#teamList").html());
+   	       		});
+   	       		$("#loadMore").attr("nextPage", Number(nextPage) + 1);
+   			} else {
+   				$("#loadMore").prop("disabled", true);
+           		$("#loadMore").text("No More Results");
+   			}
+   		},
+   		error: function() {
+   	        console.log("No se ha podido obtener la información");
+   	    }
+    });
+	
+	})
+})
+</script>
+
 
 </body>
 

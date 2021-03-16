@@ -23,15 +23,17 @@
             <div class="col-md-12">
                 <h5>Teams</h5>
             </div>
-            {{#teams}}
-            <div class="col-md-3 col-sm-4 col-xs-6">
-                <a href="/teams/{{id}}">
-                    <img src="images/common/esport-participants-background.jpg" class="background-team" alt="background">
-                    <img src="images/common/team-logo4.png" alt="team-logo">
-                    <span>{{name}}</span>
-                </a>
-            </div>
-            {{/teams}}
+            <div id="teamList">
+	            {{#teams}}
+	            <div class="col-md-3 col-sm-4 col-xs-6">
+	                <a href="/teams/{{id}}">
+	                    <img src="images/common/esport-participants-background.jpg" class="background-team" alt="background">
+	                    <img src="images/common/team-logo4.png" alt="team-logo">
+	                    <span>{{name}}</span>
+	                </a>
+	            </div>
+	            {{/teams}}
+          	</div>
         </div>
     </div>  
 </div>
@@ -39,8 +41,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-              <button class="" style="margin-bottom:40px">LOAD MORE</a>
+        <div class="col-md-12" style="text-align:center">
+              <button class="btn small" id="loadMore" nextPage ="1" style="margin-bottom:40px">LOAD MORE</button>
           </div>
     </div>
 </div>

@@ -5,7 +5,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,12 +30,25 @@ public class TeamController {
 		Page<Team> teamPages = teamService.findAll(pageable);
 		model.addAttribute("teams", teamPages);
 		
-		model.addAttribute("Next", teamPages.getNumber() + 1);
-        model.addAttribute("Last", teamPages.getNumber() - 1);
+		model.addAttribute("nextPage", teamPages.getNumber() + 1);
+        model.addAttribute("prevPage", teamPages.getNumber() - 1);
+        model.addAttribute("numPage", teamPages.getNumber());
         model.addAttribute("showNext", !teamPages.isLast());
         model.addAttribute("showPrev", !teamPages.isFirst());
+        model.addAttribute("hasNext", teamPages.hasNext());
+        model.addAttribute("hasPrevious", teamPages.hasPrevious());
         
 		return "teams";
+	}
+	
+	@GetMapping("teams/teamPages")
+	public ResponseEntity<String> getPagesList(@RequestParam() int pageId){
+		String result = "";
+		Page<Team> pageTeam = teamService.findAll(PageRequest.of(pageId, 4)) ;
+		if(pageTeam.isLast()) 
+			result += "nomore";
+		
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
 	@GetMapping("/teams/{id}")
