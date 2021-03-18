@@ -40,30 +40,6 @@ public class WebController {
 		return "contact";
 	}
 	
-	@RequestMapping("/login")
-	public String login(Model model){
-		
-		return "login";
-	}
-	
-	@RequestMapping("/settings")
-	public String settings(Model model){
-		
-		return "settings";
-	}
-	
-	@RequestMapping("/sign-up")
-	public String signUp(Model model){
-		
-		return "sign-up";
-	}
-	
-	@RequestMapping("/user")
-	public String user(Model model){
-		
-		return "user";
-	}
-	
 	@RequestMapping("/newTournament")
 	public String newTournament(Model model){
 		

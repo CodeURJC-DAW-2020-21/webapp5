@@ -7,12 +7,17 @@ import org.springframework.stereotype.Component;
 
 import com.victorious.team.Team;
 import com.victorious.team.TeamRepository;
+import com.victorious.user.User;
+import com.victorious.user.UserRepository;
 
 @Component
 public class DataBaseInitializer {
 	
 	@Autowired
 	private TeamRepository teamRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@PostConstruct
 	public void init() {
@@ -26,6 +31,14 @@ public class DataBaseInitializer {
 			Team team = new Team("TEAM " + i, "Description of team " + i);
 			teamRepository.save(team);
 		}
+		
+		//Sample Users
+		
+		User user1 = new User("nUser", "nUser@gmail.com", "1111"/*, "ROLE_USER"*/);
+        User user2 = new User("aUser", "aUser@gmail.com", "2222"/*, "ROLE_USER", "ROLE_ADMIN"*/);
+
+        userRepository.save(user1);
+        userRepository.save(user2);
 	}
 
 }

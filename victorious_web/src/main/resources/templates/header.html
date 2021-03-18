@@ -70,9 +70,11 @@
                     <li><img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="../images/common/author-avatar.jpg" height="50" width="50"/>
                         <ul>
                             <li>
-                                <a href="/user"> <strong>User Name</strong>
+                            {{#user}}
+                                <a href="/user/{{name}}"> <strong>{{name}}</strong>
                                     <p class="small">Profile</p>
                                 </a>
+                            {{/user}}
                             </li>
 							<li>
                                 <form action="/logout" method="post">

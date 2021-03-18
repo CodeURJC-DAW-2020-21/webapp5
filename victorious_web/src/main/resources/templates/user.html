@@ -19,26 +19,45 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h4 class="player-name">user's name</h4>
+                <h4 class="player-name">{{actualUser.name}}</h4>
             </div>
             <div class="col-md-3">
                 <div class="player-photo">
-                    <img class="img-responsive" src="images/soccer/player-hockey.jpg" alt="player">
+                    <img class="img-responsive" src="../images/soccer/player-hockey.jpg" alt="player">
                 </div>
             </div>
             <div class="col-md-12">
                 <h6>Tournaments</h6>
-                <div class="list-group"><a class="list-group-item"><span><img src="images/common/sport-championship-logo.png"> Tournament's Name</span></a></div>
+                {{#actualUser.tournaments}}
+                <div class="list-group"><a class="list-group-item"><span><img src="images/soccer/champ-logo.png"> {{actualUser.tournaments.name}}</span></a></div>
+                {{/actualUser.tournaments}}
             </div>
             <div class="col-md-12">
                 <h6>Teams</h6>
-                <div class="list-group"><a class="list-group-item"><span><img src="images/common/team-logo1.png" height="50px"> Team's name</span></a></div>
+                {{#actualUser.teams}}
+                <div class="list-group"><a class="list-group-item"><span><img src="images/common/team-logo1.png" height="50px"> {{actualUser.teams.name}}</span></a></div>
+                {{/actualUser.teams}}
+                {{^actualUser.teams}}
+                <div class="list-group"><a class="list-group-item"><span>NO TEAM</span></a></div>
+                {{/actualUser.teams}}
             </div>
             <div class="col-md-12">
                 <h6>Accounts</h6>
-                <div class="list-group"><a class="list-group-item"><span>Account 1</span></a></div>
-                <div class="list-group"><a class="list-group-item"><span>Account 2</span></a></div>
-                <div class="list-group"><a class="list-group-item"><span>Account 3</span></a></div>
+                {{#actualUser.riot}}
+                <div class="list-group"><a class="list-group-item"><span>{{.}}</span></a></div>
+                {{/actualUser.riot}}
+                {{#actualUser.blizzard}}
+                <div class="list-group"><a class="list-group-item"><span>{{.}}</span></a></div>
+                {{/actualUser.blizzard}}
+                {{#actualUser.psn}}
+                <div class="list-group"><a class="list-group-item"><span>{{.}}</span></a></div>
+                {{/actualUser.psn}}
+                {{#actualUser.xbox}}
+                <div class="list-group"><a class="list-group-item"><span>{{.}}</span></a></div>
+                {{/actualUser.xbox}}
+                {{#actualUser.steam}}
+                <div class="list-group"><a class="list-group-item"><span>{{.}}</span></a></div>
+                {{/actualUser.steam}}
             </div>
         </div>
     </div>
