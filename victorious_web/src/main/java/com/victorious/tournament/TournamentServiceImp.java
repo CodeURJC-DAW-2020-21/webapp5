@@ -44,5 +44,10 @@ public class TournamentServiceImp implements TournamentService{
         return tournamentRepository.save(tournament);
     }
     
+    @Override
+    public Tournament saveTournament(Tournament tournament) {
+    	return tournamentRepository.save(tournament);
+    }
+    
 
 }

@@ -4,7 +4,7 @@ package com.victorious.tournament;
 import java.util.Optional;
 
 import com.victorious.game.Game;
-import com.victorious.game.GameRepository;
+import com.victorious.game.GameService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,7 +30,7 @@ public class TournamentController {
     TournamentService tournamentService;
 
 	@Autowired
-	GameRepository gameRepository;
+	GameService gameService;
 
     @RequestMapping("/tournaments")
 	public String Tournaments(Model model, @PageableDefault(size = 4) Pageable pageable) {
@@ -45,7 +45,6 @@ public class TournamentController {
         model.addAttribute("hasNext", tournamentPages.hasNext());
         model.addAttribute("hasPrevious", tournamentPages.hasPrevious());
         
-		
 		return "tournaments";
 	}	
 	
@@ -80,6 +79,7 @@ public class TournamentController {
 	@GetMapping("/newTournament")
 	public String newTournament(Model model, @RequestParam(required = false) boolean error) {
 		model.addAttribute("error", error);
+        model.addAttribute("games", gameService.findAll());
 		return "newTournament";
 	}
 
@@ -87,7 +87,7 @@ public class TournamentController {
 	public View createTournament(Model model, @RequestParam String name, @RequestParam String description, @RequestParam int maxPlayers, @RequestParam String iniDate, @RequestParam String endDate, @RequestParam String gameName) {
 		RedirectView rv;
 		if (!tournamentService.findByName(name).isPresent()) {
-			Game game = gameRepository.findByName(gameName).get();
+			Game game = gameService.findByName(gameName).get();
 			Tournament tournament = new Tournament(name, description, maxPlayers, iniDate, endDate, game);
 			tournamentService.createTournament(tournament);
 			rv = new RedirectView("tournaments");

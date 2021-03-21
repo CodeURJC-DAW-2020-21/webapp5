@@ -44,6 +44,11 @@ public class TeamServiceImp implements TeamService{
 		return teamRepository.save(team);
 	}
 	
+	@Override
+	public Team saveTeam(Team team) {
+		return teamRepository.save(team);
+	}
+	
 	/*@Override
 	public void deleteById(Long id) {
 		teamRepository.deleteById(id);	

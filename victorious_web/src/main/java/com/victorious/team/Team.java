@@ -9,8 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.victorious.game.Game;
 import com.victorious.tournament.Tournament;
 
 @Entity
@@ -29,6 +31,9 @@ public class Team {
 	
 	@ManyToMany
 	private List<Tournament> tournaments;
+	
+	@OneToMany
+	private List<Game> games;
 
 	public Team() {}
 	
@@ -72,6 +77,14 @@ public class Team {
 
 	public void addTournament(Tournament tournament){
 		this.tournaments.add(tournament);
+	}
+	
+	public List<Game> getGames() {
+		return games;
+	}
+
+	public void setGames(List<Game> games) {
+		this.games = games;
 	}
 
 	@Override

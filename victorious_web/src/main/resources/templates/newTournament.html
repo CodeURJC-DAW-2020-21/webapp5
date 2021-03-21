@@ -89,9 +89,9 @@
                             <div class="form-group">
                                 <label for="gameSelect">Select Tournament's Game</label> <select
                                     class="form-control" name="gameName"> 
-                                    
-                                    <option>League of Legends</option> 
-
+                                    {{#games}}
+										<option>{{name}}</option> 
+									{{/games}}
                                 </select>
                             </div>
 

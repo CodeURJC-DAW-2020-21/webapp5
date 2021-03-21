@@ -1,5 +1,6 @@
 package com.victorious.team;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.victorious.game.Game;
+import com.victorious.game.GameService;
+
 @Controller
 public class TeamController {
 	
 	@Autowired
 	TeamService teamService;
+	
+	@Autowired
+	GameService gameService;
 	
 	@RequestMapping("/teams")
 	public String Teams(Model model, @PageableDefault(size = 4) Pageable pageable) {
@@ -59,6 +66,12 @@ public class TeamController {
 		if(team.isPresent()) {
 			model.addAttribute("actualTeam", team.get());
 		}
+		
+		List<Game> games = gameService.findAll();
+		for (Game g : team.get().getGames()) {
+			games.remove(g);
+		}
+		model.addAttribute("games", games);
 
 		return "team";
 	}

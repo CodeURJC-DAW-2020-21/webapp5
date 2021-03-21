@@ -14,4 +14,5 @@ public interface TournamentService {
     public Optional<Tournament> findByName(String name);
     public Tournament createTournament(Tournament tournament);
     public Tournament updateTournament(Tournament tournament);
+    public Tournament saveTournament(Tournament tournament);
 }

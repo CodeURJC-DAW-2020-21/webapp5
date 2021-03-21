@@ -37,11 +37,13 @@
                         <h4 class="modal-title" id="myModalLabel">Select the game</h4> </div>
                     <div class="modal-body"> Select game:
                         <select class="form-control" name="name">
-                            <option>gameName</option></select>
+                        {{#games}}
+							<option>{{name}}</option> 
+						{{/games}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn small" data-dismiss="modal">Close</button>
-                        <input type="submit" class="btn small" value="Add"> </div>
+                        <input type="submit" class="btn small" style= "margin-top: 10px;"value="Add"> </div>
                 </div>
             </form>
         </div>

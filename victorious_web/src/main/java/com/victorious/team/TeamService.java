@@ -14,6 +14,7 @@ public interface TeamService{
 	public Optional<Team> findByName(String name);
 	public Team createTeam(Team team);
 	public Team updateTeam(Team team);
+	public Team saveTeam(Team team);
 	//public void deleteById(Long id);
 
 }
