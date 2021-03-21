@@ -22,8 +22,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-                <h4>Tournament 001 </h4>
-                <div class="champ-date"><i class="fa fa-calendar" aria-hidden="true"></i>20 February 2021 - 16 March 2021</div>
+                <h4>{{actualTournament.name}} </h4>
+                <div class="champ-date"><i class="fa fa-calendar" aria-hidden="true"></i>{{actualTournament.iniDate}}</div>
             </div>
             <div class="col-md-3">
                 <!-- BOTON DE JOIN PARA HACER SOLICITUD PARA UNIRSE A TORNEO -->
@@ -37,19 +37,19 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="club-logo">
-                        <img src="images/soccer/champ-logo.png" class="img-responsive" alt="champ image">                
+                        <img src="../images/soccer/champ-logo.png" class="img-responsive" alt="champ image">                
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="club-info">
-                        <div class="item"><span>Tournament Capacity:</span> 10/32</div>
-                        <div class="item"><span>Tournament Game:</span> League of Legends</div>
+                        <div class="item"><span>Tournament Capacity:</span> {{actualTournament.currentPlayers}}/{{actualTournament.maxPlayers}}</div>
+                        <div class="item"><span>Tournament Game:</span> {{actualTournament.game.name}}</div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="club-info">
                         <div class="item">About tornament</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue est a sollicitudin ultricies. Pellentesque tristique ante sit amet turpis posuere, vitae aliquam quam pharetra. Praesent fringilla sollicitudin nisi a auctor. Pellentesque vitae erat gravida risus efficitur mollis in sit amet augue. Fusce mattis tincidunt enim. Proin rhoncus, tortor id.</p>
+                        <p>{{actualTournament.description}}</p>
                     </div>	
                 </div>
             </div>	
@@ -85,64 +85,12 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3">
-                            <a href="team.html" class="item">
-                                <span class="logo"><img src="images/soccer/team-logo1.png" width="80" height="80" alt="team-logo"></span>
-                                <span class="name">Team 1</span>
+                            {{#actualTournament.participants}}
+                            <a href="/teams/{{id}}" class="item">
+                                <span class="logo"><img src="../images/soccer/team-logo1.png" width="80" height="80" alt="team-logo"></span>
+                                <span class="name">{{name}}</span>
                             </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="team.html" class="item">
-                                <span class="logo"><img src="images/soccer/team-logo2.png" width="80" height="80" alt="team-logo"></span>
-                                <span class="name">Team 2</span>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="team.html" class="item">
-                                <span class="logo"><img src="images/soccer/team-logo3.png" width="80" height="80" alt="team-logo"></span>
-                                <span class="name">Team 3</span>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="team.html" class="item">
-                                <span class="logo"><img src="images/soccer/team-logo4.png" width="80" height="80" alt="team-logo"></span>
-                                <span class="name">Team 4</span>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="team.html" class="item">
-                                <span class="logo"><img src="images/soccer/team-logo5.png" width="80" height="80" alt="team-logo"></span>
-                                <span class="name">Team 5</span>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="team.html" class="item">
-                                <span class="logo"><img src="images/soccer/team-logo1.png" width="80" height="80" alt="team-logo"></span>
-                                <span class="name">Team 6</span>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="team.html" class="item">
-                                <span class="logo"><img src="images/soccer/team-logo2.png" width="80" height="80" alt="team-logo"></span>
-                                <span class="name">Team 7</span>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="team.html" class="item">
-                                <span class="logo"><img src="images/soccer/team-logo3.png" width="80" height="80" alt="team-logo"></span>
-                                <span class="name">Team 8</span>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="team.html" class="item">
-                                <span class="logo"><img src="images/soccer/team-logo4.png" width="80" height="80" alt="team-logo"></span>
-                                <span class="name">Team 9</span>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="team.html" class="item">
-                                <span class="logo"><img src="images/soccer/team-logo5.png" width="80" height="80" alt="team-logo"></span>
-                                <span class="name">Team 10</span>
-                            </a>
+                            {{/actualTournament.participants}}
                         </div>
                     </div>
                 </div>
@@ -156,52 +104,17 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="main-lates-matches">
-                            <a href="team.html" class="item">
+                            <!-- ROUNDS-->
+                            <a href="/teams/{{id}}" class="item">
                                 <span class="championship">National cup - quarterfinal</span>
                                 <span class="teams-wrap">
-                                    <span class="team"><span><img src="images/soccer/team-logo1.png" alt="team-logo"></span><span>Valencia Valencia</span></span>
+                                    <span class="team"><span><img src="../images/soccer/team-logo1.png" alt="team-logo"></span><span>Valencia Valencia</span></span>
                                     <span class="score"><span>3:2</span></span>
-                                    <span class="team1"><span>Internacional Internacional</span><span><img src="images/soccer/team-logo2.png" alt="team-logo"></span></span>
+                                    <span class="team1"><span>Internacional Internacional</span><span><img src="../images/soccer/team-logo2.png" alt="team-logo"></span></span>
                                 </span>
                                 <span class="game-result">(5-4) penalties</span>
                             </a>
-                            <a href="trophies.html" class="btn small club-top-btn">Join</a>
-                            <a href="team.html" class="item">
-                                <span class="championship">National cup - quarterfinal</span>
-                                <span class="teams-wrap">
-                                    <span class="team"><span><img src="images/soccer/team-logo3.png" alt="team-logo"></span><span>Valencia Valencia</span></span>
-                                    <span class="score"><span>3:2</span></span>
-                                    <span class="team1"><span>Internacional Internacional</span><span><img src="images/soccer/team-logo4.png" alt=""></span></span>
-                                </span>
-                                <span class="game-result">(5-4) penalties</span>
-                            </a>
-                            <a href="team.html" class="item">
-                                <span class="championship">National cup - quarterfinal</span>
-                                <span class="teams-wrap">
-                                    <span class="team"><span><img src="images/soccer/team-logo5.png" alt="team-logo"></span><span>Valencia Valencia</span></span>
-                                    <span class="score"><span>3:2</span></span>
-                                    <span class="team1"><span>Internacional Internacional</span><span><img src="images/soccer/team-logo1.png" alt=""></span></span>
-                                </span>
-                                <span class="game-result">(5-4) penalties</span>
-                            </a>
-                            <a href="team.html" class="item">
-                                <span class="championship">National cup - quarterfinal</span>
-                                <span class="teams-wrap">
-                                    <span class="team"><span><img src="images/soccer/team-logo1.png" alt="team-logo"></span><span>Valencia Valencia</span></span>
-                                    <span class="score"><span>3:2</span></span>
-                                    <span class="team1"><span>Internacional Internacional</span><span><img src="images/soccer/team-logo2.png" alt="team-logo"></span></span>
-                                </span>
-                                <span class="game-result">(5-4) penalties</span>
-                            </a>
-                            <a href="team.html" class="item">
-                                <span class="championship">National cup - quarterfinal</span>
-                                <span class="teams-wrap">
-                                    <span class="team"><span><img src="images/soccer/team-logo3.png" alt="team-logo"></span><span>Valencia Valencia</span></span>
-                                    <span class="score"><span>3:2</span></span>
-                                    <span class="team1"><span>Internacional Internacional</span><span><img src="images/soccer/team-logo4.png" alt="team-logo"></span></span>
-                                </span>
-                                <span class="game-result">(5-4) penalties</span>
-                            </a>
+                            <!-- ROUNDS-->
                         </div>
                     </div>
                 </div>

@@ -14,18 +14,6 @@ public class WebController {
 	public String index(Model model){
 		
 		return "index";
-	}
-	
-	@RequestMapping("/tournaments")
-	public String tournaments(){
-		
-		return "tournaments";
-	}	
-	
-	@RequestMapping("/tournaments/tournament")
-	public String tournament(Model model){
-		
-		return "tournament";
 	}	
 
 	@RequestMapping("/league")

@@ -57,7 +57,7 @@ public class UserController {
 	public View signUp(Model model, @RequestParam String name, @RequestParam String email, @RequestParam String password) {
 		RedirectView rv;
 		if (!userService.findByName(name).isPresent()) {
-			User user = new User(name, email, password/*, "ROLE_USER"*/);
+			User user = new User(name, email, password, "ROLE_USER");
 			userService.saveUser(user);
 			rv = new RedirectView("index");
 		} else {

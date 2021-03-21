@@ -21,296 +21,55 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h4>Current Tournaments</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultricies lectus ac nisi lobortis feugiat. Vivamus porttitor fringilla tincidunt. Suspendisse potenti. Orci varius natoque penatibus et magnis dis parturient montes.</p>                
+                <h4>Tournaments</h4>
             </div>
             <div class="col-md-12">
+                {{#tournaments}}
                 <div class="broadcast-list" id="accordion" role="tablist" aria-multiselectable="true">
                     <div class="broadcast-item">
                         <div class="item-header" id="headingOne">
                             <div class="row">
                                 <div class="col-md-1 col-sm-2">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="arrow"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#{{id}}" class="arrow"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
                                 </div>
                                 <div class="col-md-11">
                                     <div class="item-head-body">
-                                        <a href="team.html"><img src="images/soccer/team-logo1.png" width="40" height="40" alt="main-match-icon"></a>
+                                        <a href="/team/{id}"><img src="images/soccer/team-logo1.png" width="40" height="40" alt="main-match-icon"></a>
                                         <span class="info">
-                                            <span class="what">Febrero, 23 - 28</span>
-                                            <span class="then">LOL tournament</span>
+                                            <span class="what">{{iniDate}}</span>
+                                            <span class="then">{{name}}</span>
                                         </span>
                                         <span class="marker">Join</span>
                                     </div>
                                 </div>
                             </div>	
                         </div>
-                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div id="{{id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                             <div class="img-wrap"><img src="images/soccer/broad-cup-img.jpg" alt="main-match-icon"></div>
                             <div class="item-body">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p>Selvage mixtape coloring book, street art swag sriracha activated charcoal vegan hammock selfies distillery wayfarers dreamcatcher lyft beard. At first, for some time, I was not able to answer him one word; but as he had taken me in his arms.	</p>
+                                        <p>{{description}}</p>
                                         <div class="part-list">
                                             <div class="row">
+                                                {{#participants}}
                                                 <div class="col-md-3">
-                                                    <a href="team.html" class="item">
+                                                    <a href="/teams/{{id}}" class="item">
                                                         <span class="logo"><img src="images/soccer/team-logo5.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
+                                                        <span class="name">{{name}}</span>
                                                     </a>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo1.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo2.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo3.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo4.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo5.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo2.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo3.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo4.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo5.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
+                                                {{/participants}}
                                             </div>
                                         </div>
-                                        <a href="tournament.html" class="btn">View tournament page</a>
+                                        <a href="/tournaments/{{id}}" class="btn">View tournament page</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="broadcast-item">
-                        <div class="item-header" id="headingTwo">
-                            <div class="row">
-                                <div class="col-md-1 col-sm-2">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="arrow"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="col-md-11">
-                                    <div class="item-head-body">
-                                        <a href="team.html"><img src="images/soccer/team-logo1.png" width="40" height="40" alt="main-match-icon"></a>
-                                        <span class="info">
-                                            <span class="what">Febrero, 23 - 28</span>
-                                            <span class="then">LOL tournament</span>
-                                        </span>
-                                        <span class="marker">Join</span>
-                                    </div>
-                                </div>
-                            </div>	
-                        </div>
-                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                            <div class="img-wrap"><img src="images/soccer/broad-cup-img.jpg" alt="main-match-icon"></div>
-                            <div class="item-body">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <p>Selvage mixtape coloring book, street art swag sriracha activated charcoal vegan hammock selfies distillery wayfarers dreamcatcher lyft beard. At first, for some time, I was not able to answer him one word; but as he had taken me in his arms.	</p>
-                                        <div class="part-list">
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo5.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo1.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo2.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo3.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo4.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo5.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo2.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo3.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo4.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo5.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a href="tournament.html" class="btn">View tournament page</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="broadcast-item">
-                        <div class="item-header" id="headingThree">
-                            <div class="row">
-                                <div class="col-md-1 col-sm-2">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="arrow"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="col-md-11">
-                                    <div class="item-head-body">
-                                        <a href="team.html"><img src="images/soccer/team-logo1.png" width="40" height="40" alt="main-match-icon"></a>
-                                        <span class="info">
-                                            <span class="what">Febrero, 23 - 28</span>
-                                            <span class="then">LOL tournament</span>
-                                        </span>
-                                        <span class="marker">Join</span>
-                                    </div>
-                                </div>
-                            </div>	
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                            <div class="img-wrap"><img src="images/soccer/broad-cup-img.jpg" alt="main-match-icon"></div>
-                            <div class="item-body">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <p>Selvage mixtape coloring book, street art swag sriracha activated charcoal vegan hammock selfies distillery wayfarers dreamcatcher lyft beard. At first, for some time, I was not able to answer him one word; but as he had taken me in his arms.	</p>
-                                        <div class="part-list">
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo5.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo1.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo2.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo3.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo4.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo5.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo2.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo3.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo4.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="team.html" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo5.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">Djurgardens IF</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a href="tournament.html" class="btn">View tournament page</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>					
+                </div>
+                {{/tournaments}}					
             </div>
 			<div class="container">
 				<div class="row">

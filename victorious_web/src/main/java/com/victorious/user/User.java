@@ -42,10 +42,10 @@ public class User {
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Tournament> tournaments; 
-	
+	*/
 	@ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles;
-	*/
+	
 	//Game Accounts 
 	private String riot;
 	private String blizzard;
@@ -55,12 +55,12 @@ public class User {
 	
 	public User() {}
 	
-	public User(String name, String email, String password/*, String... roles*/) {
+	public User(String name, String email, String password, String... roles) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		//this.avatar = "default";
-		//this.roles = List.of(roles);
+		this.roles = List.of(roles);
 		//this.setTeams(new ArrayList<Team>());
 		//this.setTournaments(new ArrayList<Team>());
 	}
@@ -120,7 +120,7 @@ public class User {
 	public void setTournaments(List<Tournament> tournaments) {
 		this.tournaments = tournaments;
 	}
-
+*/
 	public List<String> getRoles() {
 		return roles;
 	}
@@ -128,7 +128,7 @@ public class User {
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
-*/	
+	
 	public String getRiot() {
 		return riot;
 	}
@@ -171,6 +171,6 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + /*", roles=" + roles + */"]";
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", roles=" + roles + "]";
 	}
 }
