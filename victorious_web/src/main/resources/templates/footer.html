@@ -100,15 +100,24 @@ $(document).ready(function () {
    			}
    		},
    		error: function() {
-   	        console.log("No se ha podido obtener la información");
+   	        console.log("No se ha podido obtener la informaciï¿½n");
    	    }
     });
 	
 	})
 })
 </script>
+ 
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="512455545742-d24qi4bku033qgg0pt4kglnpf4sprb95.apps.googleusercontent.com">
 
-
+<script>
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  document.getElementById('gname').value = profile.getName();
+  document.getElementById('gemail').value = profile.getEmail();
+}
+</script>
 </body>
 
 

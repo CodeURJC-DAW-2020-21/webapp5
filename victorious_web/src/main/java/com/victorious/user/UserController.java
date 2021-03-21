@@ -53,7 +53,7 @@ public class UserController {
 		return "sign-up";
 	}
 	
-	@PostMapping("/sign.up")
+	@PostMapping("/sign-up")
 	public View signUp(Model model, @RequestParam String name, @RequestParam String email, @RequestParam String password) {
 		RedirectView rv;
 		if (!userService.findByName(name).isPresent()) {
@@ -61,7 +61,7 @@ public class UserController {
 			userService.saveUser(user);
 			rv = new RedirectView("index");
 		} else {
-			rv = new RedirectView("/sign-up?error=true");
+			rv = new RedirectView("/sign-up?signUpError=true");
 		}
 		return rv;
 	}

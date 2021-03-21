@@ -3,23 +3,23 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                <form class="md-float-material form-material" action="#" method="POST">
+                  <form class="forml" method="post">     
+                	{{#signUpError}}
+                	<div class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a> <strong>Invalid credentials</strong> </div>
+                	{{/signUpError}} 
                     <div class="auth-box card">
                         <div class="card-block">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h3 class="text-center heading">SIGN UP FORM</h3>
-                                    {{#signUpError}}
-                        			<div class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a> <strong>Invalid credentials</strong> </div>
-                        			{{/signUpError}} 
+                                    <h3 class="text-center heading">SIGN UP FORM</h3>                            
                                 </div>
                             </div>
-                            <div class="form-group form-primary"> <input type="text" class="form-control" name="name" value="" placeholder="Display name" id="name"></div>
-                            <div class="form-group form-primary"> <input type="text" class="form-control" name="email" value="" placeholder="Email" id="email"></div>
-                            <div class="form-group form-primary"> <input type="password" class="form-control" name="password" placeholder="Password" value="" id="password"> </div>
-                            <!--<div class="form-group form-primary"> <input type="password" class="form-control" name="password_confirm" placeholder="Repeat password" value="" id="password_confirm"> </div>-->
+                            <div class="form-group form-primary"> <input type="text" id="gname" class="form-control" name="name"  placeholder="Display name" ></div>
+                            <div class="form-group form-primary"> <input type="text" id="gemail" class="form-control" name="email"  placeholder="Email" ></div>
+                            <div class="form-group form-primary"> <input type="password" id="gpassword" class="form-control" name="password" placeholder="Password"  > </div>
+                            <!--<div class="form-group form-primary"> <input type="password" class="form-control" name="password_confirm" placeholder="Repeat password" value="" id="password_confirm"> -->
                             <div class="row">
-                                <div class="col-md-12"> <input type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" name="submit" value="signUp">
+                                <div class="col-md-12"> <input type="submit" id="gsubmit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" name="submit" value="sign-up">
                                 </div>
                             </div>
                             <div class="or-container">
@@ -28,7 +28,7 @@
                                 <div class="line-separator"></div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12"> <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline" data-onsuccess="onSignIn"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Signup Using Google</a> </div>                            	 
+                                <div class="col-md-12"> <a class="g-signin2" style="text-align:center" data-onsuccess="onSignIn"><img src="https://img.icons8.com/color/16/000000/google-logo.png"></a> </div>                                                 	 
                             </div> <br>
                             <p class="text-inverse text-center">Already have an account? <a href="/login" data-abc="true">Login</a></p>
                         </div>
