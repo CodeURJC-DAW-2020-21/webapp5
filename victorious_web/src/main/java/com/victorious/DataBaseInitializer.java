@@ -63,7 +63,7 @@ public class DataBaseInitializer {
 		tournament1.addTeam(team2);
 		tournamentService.saveTournament(tournament1);
 		
-		for(int i=0; i<8; i++) {
+		for(int i=0; i<10; i++) {
 			Tournament tournament = new Tournament("Tournament " + i, "Description of Tournament " + i, 32, "12-20-20 at 13:00", "12-20-20 at 14:00", LeagueOfLegends );
 			tournament.addTeam(team1);
 			tournamentService.saveTournament(tournament);

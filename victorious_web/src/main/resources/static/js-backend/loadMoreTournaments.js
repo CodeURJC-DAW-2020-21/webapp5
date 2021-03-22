@@ -2,13 +2,13 @@ $(document).ready(function () {
 	
 	$("#loadMoreTournaments").click(function(){
 	var nextPage = $(this).attr("nextPage");
-	var teamPageId = nextPage - 1;
+	var tournamentPageId = nextPage - 1;
 
 	var url = new String("/tournaments?page=" + nextPage.toString());
    	var loadUrl = new String(url + "#tournamentList");
     
 	$.ajax({
-   		url: "/tournaments/tournamentPages?pageId=" + teamPageId.toString(),
+   		url: "/tournaments/tournamentPages?pageId=" + tournamentPageId.toString(),
    		success: function(data) { 
    			if(data != "nomore"){   	        	
    	       		$("<div>").load(loadUrl, function() {
