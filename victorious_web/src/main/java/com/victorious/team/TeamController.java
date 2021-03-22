@@ -45,6 +45,11 @@ public class TeamController {
         model.addAttribute("hasNext", teamPages.hasNext());
         model.addAttribute("hasPrevious", teamPages.hasPrevious());
         
+		//examples for stats are in teams/{id} 
+		model.addAttribute("victories", "");
+		model.addAttribute("loses",     "");
+		model.addAttribute("matches",   "");
+        
 		return "teams";
 	}
 	
@@ -72,10 +77,12 @@ public class TeamController {
 			games.remove(g);
 		}
 		model.addAttribute("games", games);
-		//examples for stats
-		model.addAttribute("victories", "0,1,2,2,3,4");
-		model.addAttribute("loses",     "1,1,1,2,2,2");
-		model.addAttribute("matches",   "1,2,3,4,5,6");
+		
+		//examples for stats 
+				model.addAttribute("victories", "0,1,2,2,3,4");
+				model.addAttribute("loses",     "1,1,1,2,2,2");
+				model.addAttribute("matches",   "1,2,3,4,5,6");
+
 		return "team";
 	}
 	
