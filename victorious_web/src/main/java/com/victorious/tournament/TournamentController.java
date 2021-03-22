@@ -48,13 +48,7 @@ public class TournamentController {
 		return "tournaments";
 	}	
 	
-	@RequestMapping("/tournaments/tournament")
-	public String tournament(Model model){
-		
-		return "tournament";
-	}
-	
-	@GetMapping("tournament/tournamentPages")
+	@GetMapping("tournaments/tournamentPages")
 	public ResponseEntity<String> getPagesList(@RequestParam() int pageId){
 		String result = "";
 		Page<Tournament> pageTournament = tournamentService.findAll(PageRequest.of(pageId, 4)) ;

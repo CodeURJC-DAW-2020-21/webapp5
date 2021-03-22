@@ -63,10 +63,11 @@ public class DataBaseInitializer {
 		tournament1.addTeam(team2);
 		tournamentService.saveTournament(tournament1);
 		
-		
-		Tournament tournament2 = new Tournament("League of Legends Seasonal", "League of Legends (LoL) is a multiplayer online battle arena video game developed and published by Riot Games. The goal is usually to destroy the opposing team's \"Nexus\", a structure that lies at the heart of a base protected by defensive structures.", 32, "12-09-20 at 13:00", "12-09-20 at 14:00", LeagueOfLegends);
-		tournament2.addTeam(team1);
-		tournamentService.saveTournament(tournament2);
+		for(int i=0; i<8; i++) {
+			Tournament tournament = new Tournament("Tournament " + i, "Description of Tournament " + i, 32, "12-20-20 at 13:00", "12-20-20 at 14:00", LeagueOfLegends );
+			tournament.addTeam(team1);
+			tournamentService.saveTournament(tournament);
+		}
 		
 	}
 

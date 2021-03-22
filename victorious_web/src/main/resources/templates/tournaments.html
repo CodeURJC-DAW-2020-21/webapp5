@@ -24,58 +24,60 @@
                 <h4>Tournaments</h4>
             </div>
             <div class="col-md-12">
-                {{#tournaments}}
-                <div class="broadcast-list" id="accordion" role="tablist" aria-multiselectable="true">
-                    <div class="broadcast-item">
-                        <div class="item-header" id="headingOne">
-                            <div class="row">
-                                <div class="col-md-1 col-sm-2">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#{{id}}" class="arrow"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="col-md-11">
-                                    <div class="item-head-body">
-                                        <a href="/team/{id}"><img src="images/soccer/team-logo1.png" width="40" height="40" alt="main-match-icon"></a>
-                                        <span class="info">
-                                            <span class="what">{{iniDate}}</span>
-                                            <span class="then">{{name}}</span>
-                                        </span>
-                                        <span class="marker">Join</span>
-                                    </div>
-                                </div>
-                            </div>	
-                        </div>
-                        <div id="{{id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                            <div class="img-wrap"><img src="images/soccer/broad-cup-img.jpg" alt="main-match-icon"></div>
-                            <div class="item-body">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <p>{{description}}</p>
-                                        <div class="part-list">
-                                            <div class="row">
-                                                {{#participants}}
-                                                <div class="col-md-3">
-                                                    <a href="/teams/{{id}}" class="item">
-                                                        <span class="logo"><img src="images/soccer/team-logo5.png" width="80" height="80" alt="club-image"></span>
-                                                        <span class="name">{{name}}</span>
-                                                    </a>
-                                                </div>
-                                                {{/participants}}
-                                            </div>
-                                        </div>
-                                        <a href="/tournaments/{{id}}" class="btn">View tournament page</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{/tournaments}}					
+            	<div id="tournamentList">
+	                {{#tournaments}}
+	                <div class="broadcast-list" id="accordion" role="tablist" aria-multiselectable="true">
+	                    <div class="broadcast-item">
+	                        <div class="item-header" id="headingOne">
+	                            <div class="row">
+	                                <div class="col-md-1 col-sm-2">
+	                                    <a data-toggle="collapse" data-parent="#accordion" href="#{{id}}" class="arrow"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+	                                </div>
+	                                <div class="col-md-11">
+	                                    <div class="item-head-body">
+	                                        <a href="/team/{id}"><img src="images/soccer/team-logo1.png" width="40" height="40" alt="main-match-icon"></a>
+	                                        <span class="info">
+	                                            <span class="what">{{iniDate}}</span>
+	                                            <span class="then">{{name}}</span>
+	                                        </span>
+	                                        <span class="marker">Join</span>
+	                                    </div>
+	                                </div>
+	                            </div>	
+	                        </div>
+	                        <div id="{{id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+	                            <div class="img-wrap"><img src="images/soccer/broad-cup-img.jpg" alt="main-match-icon"></div>
+	                            <div class="item-body">
+	                                <div class="row">
+	                                    <div class="col-md-12">
+	                                        <p>{{description}}</p>
+	                                        <div class="part-list">
+	                                            <div class="row">
+	                                                {{#participants}}
+	                                                <div class="col-md-3">
+	                                                    <a href="/teams/{{id}}" class="item">
+	                                                        <span class="logo"><img src="images/soccer/team-logo5.png" width="80" height="80" alt="club-image"></span>
+	                                                        <span class="name">{{name}}</span>
+	                                                    </a>
+	                                                </div>
+	                                                {{/participants}}
+	                                            </div>
+	                                        </div>
+	                                        <a href="/tournaments/{{id}}" class="btn">View tournament page</a>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	                {{/tournaments}}	
+                </div>				
             </div>
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12" style="text-align:center">
-			 			<a href="" class="btn small" style="margin-bottom:40px">LOAD MORE</a>
-			  		</div>
+              			<button class="btn small" id="loadMoreTournaments" nextPage ="1" style="margin-bottom:40px">LOAD MORE</button>
+          			</div>
 				</div>
 			</div>
             <div class="store-banner position-relative">
