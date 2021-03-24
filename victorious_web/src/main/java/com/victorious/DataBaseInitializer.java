@@ -5,7 +5,10 @@ import java.net.URISyntaxException;
 
 import javax.annotation.PostConstruct;
 
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,7 @@ import com.victorious.tournament.Tournament;
 import com.victorious.tournament.TournamentService;
 import com.victorious.user.User;
 import com.victorious.user.UserService;
+
 import com.victorious.game.Game;
 import com.victorious.game.GameService;
 
@@ -56,13 +60,6 @@ public class DataBaseInitializer {
 			teamService.saveTeam(team);
 		}
 		
-		//Sample Users
-		
-		User user1 = new User("nUser", "nUser@gmail.com", passwordEncoder.encode("pass"), "USER");
-        User user2 = new User("aUser", "aUser@gmail.com", passwordEncoder.encode("adminpass"), "USER", "ADMIN");
-
-        userService.saveUser(user1);
-        userService.saveUser(user2);
 
 		//Sample Tournamnets
 		Tournament tournament1 = new Tournament("League of Legends Champioship", "League of Legends (LoL) is a multiplayer online battle arena video game developed and published by Riot Games. The goal is usually to destroy the opposing team's \"Nexus\", a structure that lies at the heart of a base protected by defensive structures.", 32, "12-13-20 at 13:00", "12-13-20 at 14:00", LeagueOfLegends);
@@ -76,6 +73,23 @@ public class DataBaseInitializer {
 			tournamentService.saveTournament(tournament);
 		}
 		
+		//Sample Users
+		
+		User user1 = new User("nUser", "nUser@gmail.com", passwordEncoder.encode("pass"), "USER");
+        User user2 = new User("aUser", "aUser@gmail.com", passwordEncoder.encode("adminpass"), "USER", "ADMIN");
+        
+        setUserImage(user1,"/sample_images/user_default.jpg");
+        setUserImage(user2,"/sample_images/user_default.jpg");
+
+        userService.saveUser(user1);
+        userService.saveUser(user2);
+		
+	}
+	
+	public void setUserImage(User user, String classpathResource) throws IOException {
+		user.setImage(true);
+		Resource image = (Resource) new ClassPathResource(classpathResource);
+		user.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
 	}
 	
 }

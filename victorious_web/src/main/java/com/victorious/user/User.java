@@ -1,5 +1,6 @@
 package com.victorious.user;
 
+import java.sql.Blob;
 import java.util.List;
 
 //import javax.persistence.CascadeType;
@@ -10,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 //import javax.persistence.ManyToMany;
 //import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -34,7 +36,10 @@ public class User {
 	@Column(nullable = false)
 	private String encodedPassword;
 	
-	private String avatar;
+	@Lob
+	private Blob imageFile;
+	
+	private boolean image;
 	/*
 	@ManyToOne(cascade = CascadeType.ALL)
 	private List<Team> teams; 
@@ -96,12 +101,20 @@ public class User {
 		this.encodedPassword = encodedPassword;
 	}
 
-	public String getAvatar() {
-		return avatar;
+	public Blob getImageFile() {
+		return imageFile;
 	}
 
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
+	public void setImageFile(Blob image) {
+		this.imageFile = image;
+	}
+	
+	public boolean hasImage(){
+		return this.image;
+	}
+
+	public void setImage(boolean image){
+		this.image = image;
 	}
 /*
 	public List<Team> getTeams() {
