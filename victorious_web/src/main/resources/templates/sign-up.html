@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                  <form class="forml" method="post">     
+                  <form class="forml" action="/sign-up" method="post">     
                 	{{#signUpError}}
                 	<div class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a> <strong>Invalid credentials</strong> </div>
                 	{{/signUpError}} 
@@ -19,7 +19,9 @@
                             <div class="form-group form-primary"> <input type="password" id="gpassword" class="form-control" name="password" placeholder="Password"  > </div>
                             <!--<div class="form-group form-primary"> <input type="password" class="form-control" name="password_confirm" placeholder="Repeat password" value="" id="password_confirm"> -->
                             <div class="row">
-                                <div class="col-md-12"> <input type="submit" id="gsubmit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" name="submit" value="sign-up">
+                                <div class="col-md-12"> 
+                                	<input type="submit" id="gsubmit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" name="submit" value="sign-up">
+                                	<input type="hidden" name="_csrf" value="{{token}}"/>
                                 </div>
                             </div>
                             <div class="or-container">

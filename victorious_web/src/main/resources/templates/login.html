@@ -3,7 +3,7 @@
     <div class="container-fluid" >
         <div class="row">
             <div class="col-sm-6">
-                <form class="md-float-material form-material" action="#" method="POST">
+                <form class="md-float-material form-material" action="/login" method="POST">
                     <div class="auth-box card">
                         <div class="card-block">
                             <div class="row">
@@ -14,10 +14,12 @@
                         			{{/loginError}}
                                 </div>
                             </div>
-                            <div class="form-group form-primary"> <input type="text" class="form-control" name="name" value="" placeholder="Display name" id="name"> </div>
+                            <div class="form-group form-primary"> <input type="text" class="form-control" name="username" placeholder="Display name" id="username"> </div>
                             <div class="form-group form-primary"> <input type="password" class="form-control" name="password" placeholder="Password" value="" id="password"> </div>
                             <div class="row">
-                                <div class="col-md-12"> <input type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" name="submit" value="login">
+                                <div class="col-md-12"> 
+                                	<input type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" name="submit" value="login"/>
+                                	<input type="hidden" name="_csrf" value="{{token}}"/>
                                 </div>    
                             </div><br>
                             <p class="text-inverse text-center">Don't have an account? <a href="/sign-up">Sign Up</a></p>

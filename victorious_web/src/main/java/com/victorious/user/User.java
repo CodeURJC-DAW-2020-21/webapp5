@@ -2,7 +2,7 @@ package com.victorious.user;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
+//import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -10,12 +10,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+//import javax.persistence.ManyToMany;
+//import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.victorious.team.Team;
-import com.victorious.tournament.Tournament;
+//import com.victorious.team.Team;
+//import com.victorious.tournament.Tournament;
 
 @Entity
 @Table(name = "users")
@@ -32,9 +32,8 @@ public class User {
 	private String email;
 	
 	@Column(nullable = false)
-	private String password;
+	private String encodedPassword;
 	
-	//@Column(nullable = false)
 	private String avatar;
 	/*
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -55,10 +54,10 @@ public class User {
 	
 	public User() {}
 	
-	public User(String name, String email, String password, String... roles) {
+	public User(String name, String email, String encodedPassword, String... roles) {
 		this.name = name;
 		this.email = email;
-		this.password = password;
+		this.encodedPassword = encodedPassword;
 		//this.avatar = "default";
 		this.roles = List.of(roles);
 		//this.setTeams(new ArrayList<Team>());
@@ -89,12 +88,12 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getEncodedPassword() {
+		return encodedPassword;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setEncodedPassword(String encodedPassword) {
+		this.encodedPassword = encodedPassword;
 	}
 
 	public String getAvatar() {
@@ -171,6 +170,6 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", roles=" + roles + "]";
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", encodedPassword=" + encodedPassword + ", roles=" + roles + "]";
 	}
 }

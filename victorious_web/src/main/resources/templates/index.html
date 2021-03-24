@@ -1,7 +1,25 @@
 {{>header}}
 
 <h1 style="text-align:center;">Welcome to Victorious</h1>
-    <h2 style="text-align:center;">Our website is divided into </h2>
+{{#settingsError}}
+<div class="row">
+	<div class="container" style="text-align:center;">
+		<div class="col-md-12">
+			<div class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a> <strong>Error in settings</strong> </div>
+		</div>
+	</div>
+</div>
+{{/settingsError}}
+{{#settingsSuccess}}
+<div class="row">
+	<div class="container" style="text-align:center;">
+		<div class="col-md-12">
+			<div class="alert alert-success alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a> <strong>You change your profile correctly, session was closed to prevent errors</strong> </div>
+		</div>
+	</div>
+</div>
+{{/settingsSuccess}}
+<h2 style="text-align:center;">Our website is divided into </h2>
 <div class="main-slider-section">
     <div class="main-slider">
         <div id="main-slider" class="carousel slide" data-ride="carousel" data-interval="4000">
@@ -14,7 +32,7 @@
                             </div>
                             <div class="row" style="padding-bottom:2pc">
                                 <div class="col-md-6" style="text-align:right">
-                                    <img src="images/soccer/player-3.jpg" height="250px" alt="person-slider">
+                                    <img src="../images/soccer/player-3.jpg" height="250px" alt="person-slider">
                                 </div>
                                 <div class="col-md-6" style="text-align:left">
                                     <p style="color:white;padding-top:15px;padding-bottom:25px">
@@ -26,9 +44,11 @@
                                     <p style="color:white;padding-bottom:25px">
                                         Modify your avatar whenever you want
                                     </p>
-                                    <p style="color:white">Register here <a href="sign-up.html">
+                                    {{^logged}}
+                                    <p style="color:white">Register here <a href="/sign-up">
                                         <button style="border-radius:12px;background:#fc0;color:black">Sign up</button></a>
                                     </p>
+                                    {{/logged}}
                                 </div>
                             </div>
                         </div>
@@ -41,7 +61,7 @@
                         </div>
                         <div class="row" style="padding-bottom:3pc;text-align:right">
                             <div class="col-md-6">
-                                <img src="images/common/team-logo4.png" height="250px" alt="team-logo">
+                                <img src="../images/common/team-logo4.png" height="250px" alt="team-logo">
                             </div>
                             <div class="col-md-6" style="text-align:left">
                                 <p style="color:white;padding-top:15px;padding-bottom:25px">
@@ -53,7 +73,7 @@
                                 <p style="color:white;padding-bottom:25px">
                                     The team leader can modify the team avatar
                                 </p>
-                                <p style="color:white;">Go to <a href="teams.html">
+                                <p style="color:white;">Go to <a href="/teams">
                                     <button style="border-radius:12px;background:#fc0;color:black">Teams</button></a>
                                 </p>
                             </div>
@@ -67,7 +87,7 @@
                         </div>
                         <div class="row" style="padding-bottom:2pc">
                             <div class="col-md-6" style="text-align:right">
-                                <img src="images/soccer/champ-logo.png" height="250px" alt="tournament">
+                                <img src="../images/soccer/champ-logo.png" height="250px" alt="tournament">
                             </div>
                             <div class="col-md-6" style="text-align:left">
                                 <p style="color:white;padding-top:25px;padding-bottom:50px">
@@ -76,7 +96,7 @@
                                 <p style="color:white;padding-bottom:50px">
                                     Join an official tournament to obtain points
                                 </p>
-                                <p style="color:white;padding-bottom:10px">Go to <a href="tournaments.html">
+                                <p style="color:white;padding-bottom:10px">Go to <a href="/tournaments">
                                     <button style="border-radius:12px;background:#fc0;color:black">Tournaments</button></a>
                                 </p>
                             </div>
@@ -91,7 +111,7 @@
                             </div>
                             <div class="row" style="padding-bottom:2pc">
                                 <div class="col-md-6" style="text-align:right;padding-right:2pc">
-                                    <img src="images/soccer/league.png" height="250px">
+                                    <img src="../images/soccer/league.png" height="250px">
                                 </div>
                                 <div class="col-md-6" style="text-align:left">
                                     <p style="color:white;padding-top:15px;padding-bottom:25px">
@@ -103,7 +123,7 @@
                                     <p style="color:white;padding-bottom:25px">
                                         The league will refresh automatically after a tournament
                                     </p>
-                                    <p style="color:white;">Go to <a href="League.html">
+                                    <p style="color:white;">Go to <a href="/league">
                                         <button style="border-radius:12px;background:#fc0;color:black">League</button></a>
                                     </p>
                                 </div>

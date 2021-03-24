@@ -18,7 +18,6 @@ import com.victorious.team.Team;
 
 @Entity
 @Table(name="tournaments")
-
 public class Tournament {
 
 //ATTRIBUTES

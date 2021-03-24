@@ -45,11 +45,6 @@ public class TeamController {
         model.addAttribute("hasNext", teamPages.hasNext());
         model.addAttribute("hasPrevious", teamPages.hasPrevious());
         
-		//examples for stats are in teams/{id} 
-		model.addAttribute("victories", "");
-		model.addAttribute("loses",     "");
-		model.addAttribute("matches",   "");
-        
 		return "teams";
 	}
 	

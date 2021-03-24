@@ -145,14 +145,14 @@
                                     <div class="col-md-6"> <a href="">userName</a> </div>
                                     <div class="col-md-4 text-right">
                                         <form action="" method="post">
-                                            <input type="hidden" name="_csrf" value="" />
+                                            <input type="hidden" name="_csrf" value="{{token}}" />
                                             <input type="hidden" name="userId" value="" />
                                             <input type="hidden" name="accept" value="true" />
                                             <input type="submit" class="btn small" value="Accept"> </form>
                                     </div>
                                     <div class="col-md-2 text-right">
                                         <form action="" method="post">
-                                            <input type="hidden" name="_csrf" value="" />
+                                            <input type="hidden" name="_csrf" value="{{token}}" />
                                             <input type="hidden" name="userId" value="" />
                                             <input type="hidden" name="accept" value="false" />
                                             <input type="submit" class="btn small" value="Refuse"> </form>
@@ -167,14 +167,14 @@
                                     <div class="col-md-6"> <a href="">userName</a> </div>
                                     <div class="col-md-4 text-right">
                                         <form action="addAdmin" method="post">
-                                            <input type="hidden" name="_csrf" value="" />
+                                            <input type="hidden" name="_csrf" value="{{token}}" />
                                             <input type="hidden" name="teamId" value="" />
                                             <input type="hidden" name="userId" value="" />
                                             <input type="submit" class="btn small btn-info" value="Add as admin"> </form>
                                     </div>
                                     <div class="col-md-2 text-right">
                                         <form action="kickUser" method="post" onsubmit="">
-                                            <input type="hidden" name="_csrf" value="" />
+                                            <input type="hidden" name="_csrf" value="{{token}}" />
                                             <input type="hidden" name="teamId" value="" />
                                             <input type="hidden" name="userId" value="" />
                                             <input type="submit" class="btn small btn-danger" value="Kick"> </form>
@@ -184,7 +184,7 @@
                         </ul>
                         <h6>Change team's avatar</h6>
                         <form action="{{actualTeam.name}}/changeAvatar" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="_csrf" value="" />
+                            <input type="hidden" name="_csrf" value="{{token}}" />
                             <input type="file" name="pic" style="color: black;" />
                             <div class="text-right">
                             <input class="btn small" type="submit" value="Change"> </div>

@@ -1,8 +1,12 @@
 package com.victorious;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.victorious.team.Team;
@@ -28,9 +32,12 @@ public class DataBaseInitializer {
 	
 	@Autowired
 	private GameService gameService;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@PostConstruct
-	public void init() {
+	public void init() throws IOException, URISyntaxException{
 		
 		//Sample Games
 		Game LeagueOfLegends = new Game("League of Legends", "LOL");
@@ -51,8 +58,8 @@ public class DataBaseInitializer {
 		
 		//Sample Users
 		
-		User user1 = new User("nUser", "nUser@gmail.com", "1111", "ROLE_USER");
-        User user2 = new User("aUser", "aUser@gmail.com", "2222", "ROLE_USER", "ROLE_ADMIN");
+		User user1 = new User("nUser", "nUser@gmail.com", passwordEncoder.encode("pass"), "USER");
+        User user2 = new User("aUser", "aUser@gmail.com", passwordEncoder.encode("adminpass"), "USER", "ADMIN");
 
         userService.saveUser(user1);
         userService.saveUser(user2);
@@ -70,5 +77,5 @@ public class DataBaseInitializer {
 		}
 		
 	}
-
+	
 }
