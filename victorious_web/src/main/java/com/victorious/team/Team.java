@@ -1,5 +1,6 @@
 package com.victorious.team;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -34,6 +36,11 @@ public class Team {
 	
 	@OneToMany
 	private List<Game> games;
+	
+	@Lob
+	private Blob imageFile;
+	
+	private boolean image;
 
 	public Team() {}
 	
@@ -85,6 +92,22 @@ public class Team {
 
 	public void setGames(List<Game> games) {
 		this.games = games;
+	}
+	
+	public Blob getImageFile() {
+		return imageFile;
+	}
+
+	public void setImageFile(Blob image) {
+		this.imageFile = image;
+	}
+	
+	public boolean hasImage(){
+		return this.image;
+	}
+
+	public void setImage(boolean image){
+		this.image = image;
 	}
 
 	@Override

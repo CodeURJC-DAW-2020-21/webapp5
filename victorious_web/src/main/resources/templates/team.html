@@ -43,7 +43,9 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="club-logo  wpb_animate_when_almost_visible wpb_zoomInLeft zoomInLeft wpb_start_animation animated">
-                                    <img src="../images/common/esport-team-landing-next-event-logo.png" alt="organisation logo" height="340px">                
+                                    {{#actualTeam.image}}
+                                    <img src="/teams/{{actualTeam.id}}/image" alt="team logo" height="340px" width="320px">                
+                                	{{/actualTeam.image}}
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -183,11 +185,12 @@
                             </li>
                         </ul>
                         <h6>Change team's avatar</h6>
-                        <form action="{{actualTeam.name}}/changeAvatar" method="POST" enctype="multipart/form-data">
+                        <form action="/teams/{{actualTeam.id}}/changeImage" method="POST" enctype="multipart/form-data">
+                            <input type='file' name='imageField' accept=".jpg, .jpeg" />
                             <input type="hidden" name="_csrf" value="{{token}}" />
-                            <input type="file" name="pic" style="color: black;" />
                             <div class="text-right">
-                            <input class="btn small" type="submit" value="Change"> </div>
+                            	<input class="btn small" type="submit" value="Change"> 
+                            </div>
                         </form>
                         <p></p>
                     </div>

@@ -1,14 +1,21 @@
 package com.victorious.team;
 
+import java.io.IOException;
 import java.security.Principal;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.data.domain.Page;
@@ -21,6 +28,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -101,6 +109,31 @@ public class TeamController {
 		return "team";
 	}
 	
+	@GetMapping("/teams/{id}/image")
+	public ResponseEntity<Object> downloadImage(@PathVariable Long id) throws SQLException {
+
+		Optional<Team> team = teamService.findById(id);
+		if (team.isPresent() && team.get().getImageFile() != null) {
+
+			Resource file = new InputStreamResource(team.get().getImageFile().getBinaryStream());
+
+			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+					.contentLength(team.get().getImageFile().length()).body(file);
+
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+	
+	@PostMapping("/teams/{id}/changeImage")
+	public String changeImage(Model model, @PathVariable Long id, MultipartFile imageField) throws IOException, SQLException {
+		Optional<Team> team = teamService.findById(id);
+		updateImage(team.get(), imageField);
+		teamService.saveTeam(team.get());
+		model.addAttribute("actualTeam", team.get());
+		return "redirect:/teams/"+ team.get().getId();
+	}
+	
 	@GetMapping("/newTeam")
 	public String newTeam(Model model, @RequestParam(required = false) boolean error) {
 		model.addAttribute("error", error);
@@ -108,15 +141,36 @@ public class TeamController {
 	}
 	
 	@PostMapping("/newTeam")
-	public View createTeam(Model model, @RequestParam String name, @RequestParam String description) {
+	public View createTeam(Model model, @RequestParam String name, @RequestParam String description) throws IOException {
 		RedirectView rv;
 		if (!teamService.findByName(name).isPresent()) {
 			Team team = new Team(name, description);
+			setTeamImage(team, "/sample_images/team_default.jpg");
 			teamService.createTeam(team);
 			rv = new RedirectView("teams");
 		} else {
 			rv = new RedirectView("/newTeam?error=true");
 		}
 		return rv;
+	}
+	
+	private void setTeamImage(Team team, String classPathResource) throws IOException {
+		team.setImage(true);
+		Resource image = new ClassPathResource(classPathResource);
+		team.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
+	}
+	
+private void updateImage(Team team, MultipartFile imageField) throws IOException, SQLException {
+		
+		team.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+		team.setImage(true);
+	
+		// Maintain the same image loading it before updating the book
+		Team dbTeam = teamService.findById(team.getId()).orElseThrow();
+		if (dbTeam.hasImage()) {
+			team.setImageFile(BlobProxy.generateProxy(dbTeam.getImageFile().getBinaryStream(),
+					dbTeam.getImageFile().length()));
+			team.setImage(true);
+		}
 	}
 }

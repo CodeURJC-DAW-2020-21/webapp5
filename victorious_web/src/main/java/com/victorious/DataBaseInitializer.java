@@ -50,13 +50,16 @@ public class DataBaseInitializer {
 		//Sample Teams
 		
 		Team team1 = new Team("FNATIC", "Fnatic, occasionally stylized as fnatic and abbreviated as FNC, is a professional gaming organization with registered offices in the United Kingdom, Australia and the Netherlands. Fnatic is considered as a European team. Founded by Sam Mathews with Joris Van Laerhoven and Anne Mathews in 2004, and mainly operating out of their London offices, Fnatic has fielded numerous well known professional gamers in a variety of esports titles.");
+		setTeamImage(team1,"/sample_images/fnatic.jpg");
 		teamService.saveTeam(team1);
 
-		Team team2 = new Team("Moscow5", "Moscow5, occasionally stylized as fnatic and abbreviated as M5, is a professional gaming organization with registered offices in the United Russia, Australia and the Netherlands. Fnatic is considered as a russian team. Founded by Putin with Joris Van Laerhoven and Anne Mathews in 2004, and mainly operating out of their URRSS offices, Moscow5 has fielded numerous well known professional gamers in a variety of esports titles.");
+		Team team2 = new Team("G2 ESPORTS", "G2esports, occasionally stylized and abreviated as G2,  formerly known as Gamers2, is a Spanish professional esports organization currently located in Berlin, Germany and founded in November 2013 by Carlos \"ocelote\" Rodriguez.");
+		setTeamImage(team2,"/sample_images/G2.jpg");
 		teamService.saveTeam(team2);
 		
 		for(int i=0; i<8; i++){
 			Team team = new Team("TEAM " + i, "Description of team " + i);
+			setTeamImage(team,"/sample_images/team_default.jpg");
 			teamService.saveTeam(team);
 		}
 		
@@ -90,6 +93,12 @@ public class DataBaseInitializer {
 		user.setImage(true);
 		Resource image = (Resource) new ClassPathResource(classpathResource);
 		user.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
+	}
+	
+	public void setTeamImage(Team team, String classpathResource) throws IOException {
+		team.setImage(true);
+		Resource image = (Resource) new ClassPathResource(classpathResource);
+		team.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
 	}
 	
 }

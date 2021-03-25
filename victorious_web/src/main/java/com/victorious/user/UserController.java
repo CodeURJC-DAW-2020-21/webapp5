@@ -118,7 +118,6 @@ public class UserController {
 		user.setImage(true);
 		Resource image = new ClassPathResource(classPathResource);
 		user.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
-		
 	}
 
 	@GetMapping("/user/{name}/settings")
