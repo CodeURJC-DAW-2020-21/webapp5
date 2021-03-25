@@ -105,15 +105,31 @@
                     <div class="col-sm-12">
                         <div class="main-lates-matches">
                             <!-- ROUNDS-->
-                            <a href="/teams/{{id}}" class="item">
-                                <span class="championship">National cup - quarterfinal</span>
+                            {{#actualTournament.rounds}}
+                            <a class="item">
+                                <span class="championship">{{id}}</span>
                                 <span class="teams-wrap">
-                                    <span class="team"><span><img src="../images/soccer/team-logo1.png" alt="team-logo"></span><span>Valencia Valencia</span></span>
-                                    <span class="score"><span>3:2</span></span>
-                                    <span class="team1"><span>Internacional Internacional</span><span><img src="../images/soccer/team-logo2.png" alt="team-logo"></span></span>
+                                    <span class="team">
+                                        <span>
+                                            <img src="../images/soccer/team-logo1.png" alt="team-logo">
+                                        </span>
+                                        <span>{{matches.team1}}</span>
+                                    </span>
+                                    <div class="col-md-offset-5 col-md-5"></div>
+                                    <span class="score">
+                                        <input>
+                                        <span>3:2</span>
+                                        <input>
+                                    </span>
+                                    <span class="team1">
+                                        <span>{{matches.team2}}</span>
+                                        <span>
+                                            <img src="../images/soccer/team-logo2.png" alt="team-logo">
+                                        </span>
+                                    </span>
                                 </span>
-                                <span class="game-result">(5-4) penalties</span>
                             </a>
+                            {{/actualTournament.rounds}}
                             <!-- ROUNDS-->
                         </div>
                     </div>
@@ -128,7 +144,7 @@
                         <div class="col-md-6">
                             <div class="item img-top">
                                 <div class="img-wrap">
-                                    <a href="news-single.html"><img src="images/soccer/news-list-img.jpg" alt="news-list-img"></a>
+                                    <a href="news-single.html"><img src="../images/soccer/news-list-img.jpg" alt="news-list-img"></a>
                                 </div>
                                 <div class="info">
                                     <a href="news-single.html" class="name">Start Tournamnet</a>	
@@ -139,7 +155,7 @@
                         <div class="col-md-6">
                             <div class="item img-top">
                                 <div class="img-wrap">
-                                    <a href="news-single.html"><img src="images/soccer/news-list-img.jpg" alt="news-list-img"></a>
+                                    <a href="news-single.html"><img src="../images/soccer/news-list-img.jpg" alt="news-list-img"></a>
                                 </div>
                                 <div class="info">
                                     <a href="news-single.html" class="name">Next Round</a>	

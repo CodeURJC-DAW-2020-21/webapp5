@@ -66,8 +66,8 @@ public class Tournament {
         this.iniDate=iniDate;
         this.endDate=endDate;
         this.participants= new ArrayList<Team>();
-        //initialize rounds?
-         this.game=game;
+        this.rounds= new ArrayList<Rounds>();
+        this.game=game;
     }
 
 //FUNCTIONS
