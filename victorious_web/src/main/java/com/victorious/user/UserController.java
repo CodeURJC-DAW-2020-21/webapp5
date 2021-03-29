@@ -111,6 +111,7 @@ public class UserController {
 		} else {
 			rv = new RedirectView("/sign-up?signUpError=true");
 		}
+		rv.setExposeModelAttributes(false);
 		return rv;
 	}
 	
@@ -182,7 +183,7 @@ public class UserController {
 		} else {
 			rv = new RedirectView("/index?settingsSuccess=false");
 		}
-	    
+		rv.setExposeModelAttributes(false);
 		return rv;
 	}
 

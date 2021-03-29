@@ -1,9 +1,12 @@
 package com.victorious.game;
 
+import java.sql.Blob;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 
 @Entity
@@ -15,13 +18,15 @@ public class Game {
 	
 	private String name;
 	
-	private String img;
+	@Lob
+	private Blob imageFile;
+	
+	private boolean image;
 	
 	protected Game(){}
 	
-	public Game(String name, String img){
+	public Game(String name){
 		this.name = name;
-		this.img = img;
 	}
 
 	public String getName() {
@@ -30,15 +35,21 @@ public class Game {
 
 	public void setName(String name) {
 		this.name = name;
+	}		
+	
+	public Blob getImageFile() {
+		return imageFile;
 	}
 
-	public String getImg() {
-		return img;
+	public void setImageFile(Blob image) {
+		this.imageFile = image;
+	}
+	
+	public boolean hasImage(){
+		return this.image;
 	}
 
-	public void setImg(String img) {
-		this.img = img;
+	public void setImage(boolean image){
+		this.image = image;
 	}
-	
-	
 }

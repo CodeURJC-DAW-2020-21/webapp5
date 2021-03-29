@@ -11,13 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 import com.victorious.game.Game;
 import com.victorious.team.Team;
 
 @Entity
-@Table(name="tournaments")
 public class Tournament {
 
 //ATTRIBUTES
@@ -39,7 +37,7 @@ public class Tournament {
 
     private String endDate;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "tournaments")
     private List<Team> participants;
 
     @OneToMany

@@ -3,7 +3,6 @@ package com.victorious.user;
 import java.sql.Blob;
 import java.util.List;
 
-//import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -13,14 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 //import javax.persistence.ManyToMany;
-//import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.ManyToOne;
 
-//import com.victorious.team.Team;
+import com.victorious.team.Team;
 //import com.victorious.tournament.Tournament;
 
 @Entity
-@Table(name = "users")
 public class User {
 	
 	@Id
@@ -40,10 +37,11 @@ public class User {
 	private Blob imageFile;
 	
 	private boolean image;
-	/*
-	@ManyToOne(cascade = CascadeType.ALL)
-	private List<Team> teams; 
 	
+	@ManyToOne
+	private Team team; 
+	
+	/*
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Tournament> tournaments; 
 	*/
@@ -65,7 +63,6 @@ public class User {
 		this.encodedPassword = encodedPassword;
 		//this.avatar = "default";
 		this.roles = List.of(roles);
-		//this.setTeams(new ArrayList<Team>());
 		//this.setTournaments(new ArrayList<Team>());
 	}
 	
@@ -116,15 +113,15 @@ public class User {
 	public void setImage(boolean image){
 		this.image = image;
 	}
+
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
 /*
-	public List<Team> getTeams() {
-		return teams;
-	}
-
-	public void setTeams(List<Team> teams) {
-		this.teams = teams;
-	}
-
 	public List<Tournament> getTournaments() {
 		return tournaments;
 	}

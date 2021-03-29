@@ -3,6 +3,7 @@ package com.victorious.team;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +35,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.victorious.game.Game;
 import com.victorious.game.GameService;
+import com.victorious.user.User;
+import com.victorious.user.UserService;
 
 @Controller
 public class TeamController {
@@ -43,6 +46,9 @@ public class TeamController {
 	
 	@Autowired
 	GameService gameService;
+	
+	@Autowired
+	UserService userService;
 	
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -87,9 +93,14 @@ public class TeamController {
 	}
 	
 	@GetMapping("/teams/{id}")
-	public String showTeam(Model model, @PathVariable Long id) {
+	public String showTeam(Model model, HttpServletRequest request, @PathVariable Long id, @RequestParam(required = false) boolean teamError, 
+			@RequestParam(required = false) boolean teamRequest) {
 		
 		Optional<Team> team = teamService.findById(id);
+		Principal principal = request.getUserPrincipal();
+		
+		model.addAttribute("teamError", teamError);
+		model.addAttribute("teamRequest", teamRequest);
 
 		if(team.isPresent()) {
 			model.addAttribute("actualTeam", team.get());
@@ -105,6 +116,23 @@ public class TeamController {
 				model.addAttribute("victories", "0,1,2,2,3,4");
 				model.addAttribute("loses",     "1,1,1,2,2,2");
 				model.addAttribute("matches",   "1,2,3,4,5,6");
+				
+		if (principal != null) {
+			User user = userService.findByName(principal.getName()).get();
+			model.addAttribute("teamAdmin", team.get().isAdmin(user) || user.getRoles().contains("ADMIN"));
+			List<User> requests = new ArrayList<>();
+			for (Long userId : team.get().getRequests()) {
+				requests.add(userService.findById(userId).get());
+			}
+			if (user.getTeam() == null && !team.get().getRequests().contains(user.getId())) {
+				model.addAttribute("doRequest", true);
+			} else {
+				if (team.get().getUsers().contains(user)) {
+					model.addAttribute("leaveTeam", true);
+				}
+			}
+			model.addAttribute("requests", requests);
+		}
 
 		return "team";
 	}
@@ -143,16 +171,163 @@ public class TeamController {
 	@PostMapping("/newTeam")
 	public View createTeam(Model model, @RequestParam String name, @RequestParam String description) throws IOException {
 		RedirectView rv;
+		String userCreatorName = (String) model.getAttribute("userName");
+		User user = userService.findByName(userCreatorName).get();
 		if (!teamService.findByName(name).isPresent()) {
 			Team team = new Team(name, description);
 			setTeamImage(team, "/sample_images/team_default.jpg");
+			team.getAdmins().add(user);
+			team.setCreator(user);
 			teamService.createTeam(team);
 			rv = new RedirectView("teams");
 		} else {
 			rv = new RedirectView("/newTeam?error=true");
 		}
+		rv.setExposeModelAttributes(false);
 		return rv;
 	}
+	
+	@PostMapping("/teams/{id}/newRequest")
+	public View newRequest(Model model, @PathVariable Long id, @RequestParam String userName) {
+
+		Team team = teamService.findById(id).get();
+		User user = userService.findByName(userName).get();
+		Long userId = user.getId();
+
+		RedirectView rv;
+		if (!team.getRequests().contains(userId)) {
+			team.getRequests().add(userId);
+			rv = new RedirectView("/teams/" + id + "?teamRequest=true");
+		} else {
+			rv = new RedirectView("/teams/" + id + "?teamError=true");
+		}
+		teamService.saveTeam(team);
+		rv.setExposeModelAttributes(false);
+		return rv;
+	}
+	
+	@PostMapping("teams/{id}/leaveTeam")
+	public View leaveTeam(Model model, @PathVariable Long id, @RequestParam String userName) {
+		User user = userService.findByName(userName).get();
+		Team team = teamService.findById(id).get();
+		RedirectView rv;
+		if (user.getTeam() != null && user.getTeam().equals(team)) {
+			if (team.isAdmin(user)) {
+				team.getAdmins().remove(user);
+			}
+			user.setTeam(null);
+			rv = new RedirectView("/teams/" + team.getId());
+		} else {
+			rv = new RedirectView("/teams/" + team.getId() + "?teamError=true");
+		}
+		userService.saveUser(user);
+		rv.setExposeModelAttributes(false);
+		return rv;
+	}
+
+	
+	@PostMapping("teams/{id}/kickUser")
+	public View kickUser(Model model, @PathVariable Long id, @RequestParam Long userId) {
+
+		String userName = (String) model.getAttribute("userName");
+		User loggedUser = userService.findByName(userName).get();
+		User user = userService.findById(userId).get();
+		Team team = teamService.findById(id).get();
+		boolean isAdmin = team.isAdmin(loggedUser) || loggedUser.getRoles().contains("ADMIN") || user.equals(loggedUser);
+		RedirectView rv;
+		if (user.getTeam() != null && user.getTeam().equals(team) && isAdmin) {
+			if (team.isAdmin(user)) {
+				team.getAdmins().remove(user);
+			}
+			user.setTeam(null);
+			rv = new RedirectView("/teams/" + team.getId());
+		} else {
+			rv = new RedirectView("/teams/" + team.getId() + "?teamError=true");
+		}
+		userService.saveUser(user);
+		rv.setExposeModelAttributes(false);
+		return rv;
+	}
+	
+	@PostMapping("/teams/{id}/addAdmin")
+	public View addAdmin(Model model, @PathVariable Long id, @RequestParam Long userId) {
+
+		String userName = (String) model.getAttribute("userName");
+		User loggedUser = userService.findByName(userName).get();
+		User user = userService.findById(userId).get();
+		Team team = teamService.findById(id).get();
+		boolean isAdmin = team.isAdmin(loggedUser) || loggedUser.getRoles().contains("ADMIN");
+		RedirectView rv;
+		if (!team.isAdmin(user) && user.getTeam().equals(team) && isAdmin) {
+			team.addAdmin(user);
+			rv = new RedirectView("/teams/" + team.getId());
+		} else {
+			rv = new RedirectView("/teams/" + team.getId() + "?teamError=true");
+		}
+		teamService.saveTeam(team);
+		rv.setExposeModelAttributes(false);
+		return rv;
+	}
+	
+	@PostMapping("/teams/{id}/acceptRequest")
+	public View addUser(Model model, @PathVariable Long id, @RequestParam Long userId,
+			@RequestParam boolean accept) {
+
+		String userName = (String) model.getAttribute("userName");
+		User loggedUser = userService.findByName(userName).get();
+		Team team = teamService.findById(id).get();
+		User user = userService.findById(userId).get();
+		boolean isAdmin = team.isAdmin(loggedUser) || loggedUser.getRoles().contains("ADMIN");
+		RedirectView rv;
+
+		if (isAdmin) {
+			if (accept) {
+				if (team.getRequests().contains(userId) && user.getTeam() == null) {
+					team.getRequests().remove(userId);
+					user.setTeam(team);
+					userService.saveUser(user);
+					teamService.saveTeam(team);
+					rv = new RedirectView("/teams/" + id);
+				} else {
+					team.getRequests().remove(userId);
+					rv = new RedirectView("/teams/" + id + "?teamError=true");
+				}
+			} else {
+				if (team.getRequests().contains(userId)) {
+					team.getRequests().remove(userId);
+					teamService.saveTeam(team);
+					rv = new RedirectView("/teams/" + id);
+				} else {
+					team.getRequests().remove(userId);
+					rv = new RedirectView("/teams/" + id + "?teamError=true");
+				}
+			}
+		} else {
+			rv = new RedirectView("/teams/" + id + "?teamError=true");
+		}
+		rv.setExposeModelAttributes(false);
+		return rv;
+	}
+
+	@PostMapping("/teams/{id}/addGame")
+	public View addGame(Model model, @PathVariable Long id, @RequestParam String name) {
+		String userName = (String) model.getAttribute("userName");
+		User loggedUser = userService.findByName(userName).get();
+		Team team = teamService.findById(id).get();
+		boolean isAdmin = team.isAdmin(loggedUser) || loggedUser.getRoles().contains("ADMIN");
+		RedirectView rv;
+		if (isAdmin) {
+			Game game = gameService.findByName(name).get();
+			team.getGames().add(game);
+			teamService.saveTeam(team);
+			rv = new RedirectView("/teams/" + id);
+		} else {
+			rv = new RedirectView("/teams/" + id + "?teamError=true");
+		}
+		rv.setExposeModelAttributes(false);
+		return (rv);
+	}
+	
 	
 	private void setTeamImage(Team team, String classPathResource) throws IOException {
 		team.setImage(true);
@@ -160,7 +335,7 @@ public class TeamController {
 		team.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
 	}
 	
-private void updateImage(Team team, MultipartFile imageField) throws IOException, SQLException {
+	private void updateImage(Team team, MultipartFile imageField) throws IOException, SQLException {
 		
 		team.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
 		team.setImage(true);
