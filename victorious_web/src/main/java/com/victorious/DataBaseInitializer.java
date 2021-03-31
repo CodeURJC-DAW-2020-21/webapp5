@@ -80,6 +80,9 @@ public class DataBaseInitializer {
 		for(int i=0; i<8; i++){
 			Team team = new Team("TEAM " + i, "Description of team " + i);
 			setTeamImage(team,"/sample_images/team_default.jpg");
+			//
+			team.getTournaments().add(tournament1);
+			//
 			teamService.saveTeam(team);
 		}
 		

@@ -4,32 +4,40 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.ManyToOne;
 
 import com.victorious.team.Team;
 
 @Entity
-@Table(name = "matches")
-public class Match {
+public class MatchUp {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
-    private Team team1, team2, winner;
-
+    @ManyToOne
+    private Team team1, team2;
+    
     private int score1,score2;
 
-    public Match(){ }
+    private boolean isPlayed;
 
-    public void setMatchWinner(){
+    public MatchUp(){ }
+
+    public MatchUp(Team team1, Team team2){
+        this.team1=team1;
+        this.team2=team2;
+        this.isPlayed=false;
+        this.score1=0;
+        this.score2=0;
+    }
+
+    public Team getWinner(){
 
         if (score1>score2){
-            winner=team1;
+            return team1;
         }else{
-            winner=team2;
+            return team2;
         }
     }
 
@@ -49,14 +57,6 @@ public class Match {
         this.team2 = team2;
     }
 
-    public Team getWinner() {
-        return winner;
-    }
-
-    public void setWinner(Team winner) {
-        this.winner = winner;
-    }
-
     public int getScore1() {
         return score1;
     }
@@ -71,5 +71,21 @@ public class Match {
 
     public void setScore2(int score2) {
         this.score2 = score2;
+    }
+
+    public boolean isPlayed() {
+        return isPlayed;
+    }
+
+    public void setPlayed(boolean isPlayed) {
+        this.isPlayed = isPlayed;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

@@ -1,7 +1,10 @@
 package com.victorious.tournament;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import com.victorious.team.Team;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,4 +25,17 @@ public class RoundsServiceImp implements RoundsService{
         return roundRepository.findById(id);
     }
     
+    public Rounds saveRounds(Rounds round){
+        
+        return roundRepository.save(round);
+    }
+
+    public List<Team> getWinners(Rounds round){
+        List<Team> winners= new ArrayList<Team>();
+        int i=0;
+        while(i<round.getMatches().size()){
+            winners.add(round.getMatches().get(i).getWinner());
+        }
+        return winners;
+    }
 }

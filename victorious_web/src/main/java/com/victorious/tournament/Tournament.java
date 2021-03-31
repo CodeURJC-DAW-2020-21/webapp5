@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -40,13 +41,16 @@ public class Tournament {
     @ManyToMany(mappedBy = "tournaments")
     private List<Team> participants;
 
+    @ManyToOne
+    private Team winner;
+
     @OneToMany
     private List<Rounds> rounds;
 
     @OneToOne
     private Game game;
 
-    private int roundNumber = 0;
+    private int roundNumber;
 	
 	private boolean started;
 	
@@ -66,6 +70,9 @@ public class Tournament {
         this.participants= new ArrayList<Team>();
         this.rounds= new ArrayList<Rounds>();
         this.game=game;
+        this.roundNumber= 0;
+        this.started= false;
+        this.finished= false;
     }
 
 //FUNCTIONS
@@ -74,6 +81,11 @@ public class Tournament {
 			participants.add(participant);
         }
         currentPlayers = currentPlayers +1;
+    }
+
+    public void addRound( Rounds round){
+        this.rounds.add(round);
+        this.roundNumber= this.roundNumber +1;
     }
 
 //GETTERS AND SETTERS
@@ -172,5 +184,20 @@ public class Tournament {
     public void setFinished(boolean finished) {
         this.finished = finished;
     }
-    
+
+    public int getCurrentPlayers() {
+        return currentPlayers;
+    }
+
+    public void setCurrentPlayers(int currentPlayers) {
+        this.currentPlayers = currentPlayers;
+    }
+
+    public Team getWinner() {
+        return winner;
+    }
+
+    public void setWinner(Team winner) {
+        this.winner = winner;
+    }
 }

@@ -14,8 +14,9 @@ public class Roundcontroller {
     @Autowired
     RoundsService roundService;
 
-    @PostMapping("/tournament/{id}")
+    @PostMapping("/tournament/{id}/{round}")
     public View updateRounds(Model model, @RequestParam String score1, @RequestParam String score2){
+        
         
         return null;
     }

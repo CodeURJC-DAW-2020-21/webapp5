@@ -68,8 +68,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul class="champ-nav-list">
-                        <li class="active"><a href="#participants">Participants</a></li>
-                        <li><a href="#matches">Rounds</a></li>
+                        <li class="active"><a href="#Participants">Participants</a></li>
+                        {{#actualTournament.rounds}}
+                        <li><a href="#Round{{id}}">Round {{numRound}}</a></li>
+                        {{/actualTournament.rounds}}
+                        {{#actualTournament.finished}}
+                        <li><a href="#Winner">Winner</a></li>
+                        {{/actualTournament.finished}}
                         <li><a href="#Admin">Admin</a></li>
                     </ul>		
                 </div>
@@ -80,14 +85,18 @@
     <div class="champ-tab-wrap tab-content">
 
         <!--CHAMPIONSHIP PART WRAP BEGIN -->
-        <div class="tab-item part-wrap tab-pane active" id="participants">
+        <div class="tab-item part-wrap tab-pane active" id="Participants">
             <div class="part-list">
                 <div class="container">
                     <div class="row">
                         {{#actualTournament.participants}}
                         <div class="col-md-3">
                             <a href="/teams/{{id}}" class="item">
-                                <span class="logo"><img src="../images/soccer/team-logo1.png" width="80" height="80" alt="team-logo"></span>
+                                <span class="logo">
+                                    {{#image}}
+                                    <img src="/teams/{{id}}/image" width="80" height="80" alt="team-logo">
+                                    {{/image}}
+                                </span>
                                 <span class="name">{{name}}</span>
                             </a>
                         </div>
@@ -99,70 +108,140 @@
         <!--CHAMPIONSHIP PART WRAP END -->
 
         <!--CHAMPIONSHIP MATCH WRAP BEGIN -->
-        <div class="tab-item match-wrap tab-pane" id="matches">
+        {{#actualTournament.rounds}}
+        <div class="tab-item match-wrap tab-pane" id="Round{{id}}">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="main-lates-matches">
                             <!-- ROUNDS-->
-                            {{#actualTournament.rounds}}
-                            <a class="item">
-                                <span class="championship">{{id}}</span>
-                                <span class="teams-wrap">
-                                    <span class="team">
-                                        <span>
-                                            <img src="../images/soccer/team-logo1.png" alt="team-logo">
+                                <a class="item">
+                                    {{#matches}}                                    
+                                    <form action="/tournament/{{actualTournament.id}}/submitScore" method="post">
+                                        <input type="hidden" name="_csrf" value="{{token}}" /> 
+                                        <input type="hidden" name="idMatch" value="{{id}}" />
+                                        <!-- <input type="hidden" name="idTournament" value="{{actualTournament.Id}}" />-->
+                                        <span class="teams-wrap">
+                                            <span class="team" href="/teams/{{team1.id}}">
+                                                {{#team1.image}}
+                                                <span>
+                                                    <img src="/teams/{{team1.id}}/image" alt="team logo" height="340px" width="320px">
+                                                </span>
+                                                {{/team1.image}}
+                                                <span>{{team1.name}}</span>
+                                            </span>
+                                            <div class="col-md-offset-5 col-md-5"></div>
+                                            <span class="score">
+                                                {{^isPlayed}}
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <input type="number" name="score1" min="0" max="3" value="0" style="width:50px">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <span>:</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input type="number" name="score2" min="0" max="3" value="0" style="width:50px">
+                                                    </div>
+                                                </div>
+                                                {{/isPlayed}}
+                                                {{#isPlayed}}
+                                                <span>{{score1}}:{{score2}}</span>
+                                                {{/isPlayed}}
+                                            </span>
+                                            <span class="team1" href="/teams/{{team2.id}}">
+                                                <span>{{team2.name}}</span>
+                                                {{#team2.image}}
+                                                <span>
+                                                    <img src="/teams/{{team2.id}}/image" alt="team logo" height="340px" width="320px">
+                                                </span>
+                                                {{/team2.image}}
+                                            </span>
+                                            {{^isPlayed}}
+                                                <input type="submit" class="btn btn-large btn-block btn-success" value="Submit">
+                                            {{/isPlayed}}
                                         </span>
-                                        <span>{{matches.team1}}</span>
-                                    </span>
-                                    <div class="col-md-offset-5 col-md-5"></div>
-                                    <span class="score">
-                                        <input>
-                                        <span>3:2</span>
-                                        <input>
-                                    </span>
-                                    <span class="team1">
-                                        <span>{{matches.team2}}</span>
-                                        <span>
-                                            <img src="../images/soccer/team-logo2.png" alt="team-logo">
-                                        </span>
-                                    </span>
-                                </span>
-                            </a>
-                            {{/actualTournament.rounds}}
+                                    </form>
+                                    {{/matches}}
+                                </a>
+                                <!--{{#restTeam}}
+                                    <span>{{name}} rests</span>
+                                {{/restTeam}}-->
+
                             <!-- ROUNDS-->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        {{/actualTournament.rounds}}
+
+        <!--WINNER-->
+        {{#actualTournament.finished}}
+        <div class="tab-item match-wrap tab-pane" id="Winner">
+            <div class="part-list">
+                <div class="container">
+                    <div class="row">
+                        {{#actualTournament.winner}}
+                        <div class="col-md-3">
+                            <a href="/teams/{{id}}" class="item">
+                                <span class="logo">
+                                    {{#image}}
+                                    <img src="/teams/{{id}}/image" width="80" height="80" alt="team-logo">
+                                    {{/image}}
+                                </span>
+                                <span class="name">{{name}} </span>
+                                <br>
+                                <span> IS THE aaaaaaaaaaaaaaaaaaaaaaaaaaaWINNER</span>
+                            </a>
+                        </div>
+                        {{/actualTournament.winner}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/actualTournament.finished}}
+        <!--WINNER-->
+
         <!--ADMIN-->
         <div class="tab-item news-tab tab-pane" id="Admin">
             <div class="news-list">
                 <div class="container">
                     <div class="row">
+                        {{^actualTournament.started}}
                         <div class="col-md-6">
                             <div class="item img-top">
                                 <div class="img-wrap">
-                                    <a href="news-single.html"><img src="../images/soccer/news-list-img.jpg" alt="news-list-img"></a>
-                                </div>
+                                    <a><img src="../images/soccer/news-list-img.jpg" alt="news-list-img"></a>
+                                </div>                               
                                 <div class="info">
-                                    <a href="news-single.html" class="name">Start Tournamnet</a>	
-                                    <div class="clear"></div>
+                                    <form action="/tournaments/{{actualTournament.id}}/start" method="post">                                      
+                                        <input type="submit" class="btn btn-large btn-block btn-success" class="name" value="START">
+                                        <div class="clear"></div>
+                                        <input type="hidden" name="_csrf" value="{{token}}" />                                       
+                                    </form>                              
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="item img-top">
-                                <div class="img-wrap">
-                                    <a href="news-single.html"><img src="../images/soccer/news-list-img.jpg" alt="news-list-img"></a>
-                                </div>
-                                <div class="info">
-                                    <a href="news-single.html" class="name">Next Round</a>	
-                                    <div class="clear"></div>
+                        {{/actualTournament.started}}
+                        {{#actualTournament.started}}
+                            {{^actualTournament.finished}}
+                            <div class="col-md-6">
+                                <div class="item img-top">
+                                    <div class="img-wrap">
+                                        <a><img src="../images/soccer/news-list-img.jpg" alt="news-list-img"></a>
+                                    </div>
+                                    <div class="info">
+                                        <form action="/tournament/{{actualTournament.id}}/nextRound" method="post">                                      
+                                            <input type="submit" class="btn btn-large btn-block btn-success" class="name" value="NEXT ROUND">
+                                            <div class="clear"></div>
+                                            <input type="hidden" name="_csrf" value="{{token}}" />
+                                        </form> 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            {{/actualTournament.finished}}
+                        {{/actualTournament.started}}
                     </div>
                 </div>
             </div>	

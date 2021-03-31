@@ -7,48 +7,64 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import com.victorious.team.Team;
 
 @Entity
-@Table(name = "rounds")
 public class Rounds {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @OneToMany
+    @ManyToMany
     private List<Team> participants;
 
+    @ManyToMany
+    List<Team> winners;
+
+    //@ManyToOne
+    //private Team restTeam;
+
     @OneToMany
-    private List<Match> matches;
+    private List<MatchUp> matches;
+
+    private int numRound;
+
+    public Rounds(){ }
 
     public Rounds(List<Team> participants){
         this.participants=participants;
-        this.matches=new ArrayList<>();
+        this.matches=new ArrayList<MatchUp>();
+        this.numRound=0;
+        this.winners=new ArrayList<Team>();
+        //this.restTeam=new Team();
     }
 
-    public void iniRound(){
+    public List<Team> getWinners(){
         int i=0;
-        while(i<participants.size()){
-        Match match = new Match();
-        match.setTeam1(participants.get(i));
-        match.setTeam2(participants.get(i+1));
-        matches.add(match);
-        i=i+2;
+        while(i<this.matches.size()){
+            this.winners.add(matches.get(i).getWinner());
+            i++;
         }
+        return winners;
     }
 
-    public void endRound(Rounds round){
-        List<Team> winners= new ArrayList<Team>();
-        int i=0;
-        while(i<matches.size()){
-            winners.add(matches.get(i).getWinner());
-        }
-        participants=winners;
+    //FUNCTIONS
+    public void addMatch(MatchUp match){
+        this.matches.add(match);
+    }
+
+    public boolean isEvenRound(){
+        return this.participants.size()%2==0;
+    }
+
+    public void setOddRound(){
+        this.winners.add(this.participants.get(0));
+        //this.restTeam=this.participants.get(0);
+        this.participants.remove(0);
     }
 
     //GETTERS AND SETTERS
@@ -68,12 +84,23 @@ public class Rounds {
         this.participants = participants;
     }
 
-    public List<Match> getMatches() {
+    public List<MatchUp> getMatches() {
         return matches;
     }
 
-    public void setMatches(List<Match> matches) {
+    public void setMatches(List<MatchUp> matches) {
         this.matches = matches;
     }
 
+    public int getNumRound() {
+        return numRound;
+    }
+
+    public void setNumRound(int numRound) {
+        this.numRound = numRound;
+    }
+
+    public void setWinners(List<Team> winners) {
+        this.winners = winners;
+    }
 }

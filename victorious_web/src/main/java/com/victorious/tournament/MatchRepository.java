@@ -3,8 +3,10 @@ package com.victorious.tournament;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface MatchRepository extends JpaRepository<Match, Long>{
+@Repository
+public interface MatchRepository extends JpaRepository<MatchUp, Long>{
     
-    Optional<Match> findById(Long id);
+    Optional<MatchUp> findById(Long id);
 }
