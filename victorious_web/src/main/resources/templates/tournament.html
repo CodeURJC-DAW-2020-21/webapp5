@@ -178,12 +178,14 @@
 
         <!--WINNER-->
         {{#actualTournament.finished}}
-        <div class="tab-item match-wrap tab-pane" id="Winner">
+        <div class="tab-item part-wrap tab-pane" id="Winner">
             <div class="part-list">
                 <div class="container">
                     <div class="row">
+                    	<div class="col-md-3"></div>
                         {{#actualTournament.winner}}
                         <div class="col-md-3">
+                        	<h3 style="text-align:center;"><strong>THE WINNER IS</strong></h3> 
                             <a href="/teams/{{id}}" class="item">
                                 <span class="logo">
                                     {{#image}}
@@ -191,11 +193,10 @@
                                     {{/image}}
                                 </span>
                                 <span class="name">{{name}} </span>
-                                <br>
-                                <span> IS THE aaaaaaaaaaaaaaaaaaaaaaaaaaaWINNER</span>
                             </a>
                         </div>
                         {{/actualTournament.winner}}
+                        <div class="col-md-3"></div>
                     </div>
                 </div>
             </div>
