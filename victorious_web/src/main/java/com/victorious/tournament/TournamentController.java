@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import com.victorious.game.Game;
 import com.victorious.game.GameService;
 import com.victorious.team.Team;
+import com.victorious.user.User;
+import com.victorious.user.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,6 +47,9 @@ public class TournamentController {
 
 	@Autowired
 	MatchService matchService;
+
+	@Autowired
+	UserService userService;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -89,14 +94,22 @@ public class TournamentController {
 	}
 
 	@GetMapping("/tournaments/{id}")
-	public String showTournament(Model model, @PathVariable Long id) {
+	public String showTournament(Model model, @PathVariable Long id, HttpServletRequest request, @RequestParam(required = false) boolean tournamentError) {
 		
 		Optional<Tournament> tournament = tournamentService.findById(id);
+		Principal principal = request.getUserPrincipal();
+
+		model.addAttribute("tournamentError", tournamentError);
 
 		if(tournament.isPresent()) {
 			model.addAttribute("actualTournament", tournament.get());
 		}
-
+		if (principal != null ) {
+			User user = userService.findByName(principal.getName()).get();
+			if(((tournament.get().getAdmin() != null) && (tournament.get().getAdmin().equals(user))) || (user.getRoles().contains("ADMIN"))){
+				model.addAttribute("tournamentAdmin", true);
+			}
+		}
 		return "tournament";
 	}
 
@@ -110,9 +123,12 @@ public class TournamentController {
 	@PostMapping("/newTournament")
 	public View createTournament(Model model, @RequestParam String name, @RequestParam String description, @RequestParam int maxPlayers, @RequestParam String iniDate, @RequestParam String endDate, @RequestParam String gameName) {
 		RedirectView rv;
+		String userCreatorName = (String) model.getAttribute("userName");
+		User user = userService.findByName(userCreatorName).get();
 		if (!tournamentService.findByName(name).isPresent()) {
 			Game game = gameService.findByName(gameName).get();
 			Tournament tournament = new Tournament(name, description, maxPlayers, iniDate, endDate, game);
+			tournament.setAdmin(user);
 			tournamentService.createTournament(tournament);
 			rv = new RedirectView("tournaments");
 		} else {
@@ -125,7 +141,10 @@ public class TournamentController {
 	public View startTournament(Model model, @PathVariable Long id) {
 		RedirectView rv;
 		Tournament tournament = tournamentService.findById(id).get();
-		if (!tournament.isStarted() && tournament.getParticipants().size()>1){
+		String userName = (String) model.getAttribute("userName");
+		User loggedUser = userService.findByName(userName).get();
+		boolean isAdmin = tournament.getAdmin().equals(loggedUser) || loggedUser.getRoles().contains("ADMIN");
+		if (!tournament.isStarted() && tournament.getParticipants().size()>1 && isAdmin){
 			List<Team> participants = new ArrayList<Team>(tournament.getParticipants());
 			Collections.shuffle(participants);
 			Rounds round = new Rounds(participants);
@@ -147,9 +166,11 @@ public class TournamentController {
 			roundService.saveRounds(round);
 			tournament.setStarted(true);
 			tournamentService.saveTournament(tournament);
-			//model.addAttribute("actualTournament", tournament);
+
+			rv= new RedirectView("/tournaments/" + tournament.getId());
+		}else{
+			rv= new RedirectView("/tournaments/" + tournament.getId() + "?tournamentError=true");
 		}
-		rv= new RedirectView("/tournaments/" + tournament.getId());
 		rv.setExposeModelAttributes(false);
 		return rv;
 	}
@@ -159,14 +180,19 @@ public class TournamentController {
 		RedirectView rv;
 		Tournament tournament = tournamentService.findById(id).get();
 		MatchUp matchUp = matchService.findById(idMatch).get();
-		matchUp.setScore1(score1);
-		matchUp.setScore2(score2);
-		matchUp.setPlayed(true);
-		matchService.saveMatch(matchUp);
-		//NO ENCUENTRA EL TORNEO CON ID id
-		tournamentService.saveTournament(tournament);
-		//model.addAttribute("actualTournament", tournament);
-		rv= new RedirectView("/tournaments/" + tournament.getId());
+		String userName = (String) model.getAttribute("userName");
+		User loggedUser = userService.findByName(userName).get();
+		boolean isAdmin = tournament.getAdmin().equals(loggedUser) || loggedUser.getRoles().contains("ADMIN");
+		if(isAdmin){
+			matchUp.setScore1(score1);
+			matchUp.setScore2(score2);
+			matchUp.setPlayed(true);
+			matchService.saveMatch(matchUp);
+			tournamentService.saveTournament(tournament);
+			rv= new RedirectView("/tournaments/" + tournament.getId());
+		}else{
+			rv= new RedirectView("/tournaments/" + tournament.getId() + "?tournamentError=true");
+		}
 		rv.setExposeModelAttributes(false);
 		return rv;
 	}
@@ -175,40 +201,46 @@ public class TournamentController {
 	public View nextRound(Model model, @PathVariable Long id){
 		RedirectView rv;
 		Tournament tournament = tournamentService.findById(id).get();
+		String userName = (String) model.getAttribute("userName");
+		User loggedUser = userService.findByName(userName).get();
+		boolean isAdmin = tournament.getAdmin().equals(loggedUser) || loggedUser.getRoles().contains("ADMIN");
 		int j=0;
-		while(j<tournament.getRounds().get(tournament.getRoundNumber()-1).getMatches().size()){
-			tournament.getRounds().get(tournament.getRoundNumber()-1).getMatches().get(j).setPlayed(true);
-			j++;
-		}
-		List<Team> participants = new ArrayList<Team>(tournament.getRounds().get(tournament.getRoundNumber()-1).getWinners());
-		if(participants.size()>1){
-			Collections.shuffle(participants);
-			Rounds round = new Rounds(participants);
-			if(!round.isEvenRound()){
-				round.setOddRound();
+		if(isAdmin){
+			while(j<tournament.getRounds().get(tournament.getRoundNumber()-1).getMatches().size()){
+				tournament.getRounds().get(tournament.getRoundNumber()-1).getMatches().get(j).setPlayed(true);
+				j++;
 			}
-			//
-			int i=0;
-			while(i<round.getParticipants().size()){
-				MatchUp matchUp = new MatchUp(round.getParticipants().get(i), round.getParticipants().get(i+1));
-				matchService.saveMatch(matchUp);
-				round.addMatch(matchUp);
-				i=i+2;
-			}
-			//
-			roundService.saveRounds(round);
-			tournament.addRound(round);
-			round.setNumRound(tournament.getRoundNumber());
-			roundService.saveRounds(round);
-			tournamentService.saveTournament(tournament);
-		}else{
-			tournament.setFinished(true);
-			tournament.setWinner(participants.get(0));
-			tournamentService.saveTournament(tournament);
+			List<Team> participants = new ArrayList<Team>(tournament.getRounds().get(tournament.getRoundNumber()-1).getWinners());
+			if(participants.size()>1){
+				Collections.shuffle(participants);
+				Rounds round = new Rounds(participants);
+				if(!round.isEvenRound()){
+					round.setOddRound();
+				}
+				//
+				int i=0;
+				while(i<round.getParticipants().size()){
+					MatchUp matchUp = new MatchUp(round.getParticipants().get(i), round.getParticipants().get(i+1));
+					matchService.saveMatch(matchUp);
+					round.addMatch(matchUp);
+					i=i+2;
+				}
+				//
+				roundService.saveRounds(round);
+				tournament.addRound(round);
+				round.setNumRound(tournament.getRoundNumber());
+				roundService.saveRounds(round);
+				tournamentService.saveTournament(tournament);
+			}else{
+				tournament.setFinished(true);
+				tournament.setWinner(participants.get(0));
+				tournamentService.saveTournament(tournament);
 
+			}
+			rv= new RedirectView("/tournaments/" + tournament.getId());
+		}else{
+			rv= new RedirectView("/tournaments/" + tournament.getId() + "?tournamentError=true");
 		}
-		//model.addAttribute("actualTournament", tournament);
-		rv= new RedirectView("/tournaments/" + tournament.getId());
 		rv.setExposeModelAttributes(false);
 		return rv;
 	}

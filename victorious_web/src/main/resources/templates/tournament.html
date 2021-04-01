@@ -25,10 +25,12 @@
                 <h4>{{actualTournament.name}} </h4>
                 <div class="champ-date"><i class="fa fa-calendar" aria-hidden="true"></i>{{actualTournament.iniDate}}</div>
             </div>
+            {{#logged}}
             <div class="col-md-3">
                 <!-- BOTON DE JOIN PARA HACER SOLICITUD PARA UNIRSE A TORNEO -->
-                <a href="trophies.html" class="btn small club-top-btn">Join</a>
+                <a href="" class="btn small club-top-btn">Join</a>
             </div>
+            {{/logged}} 
         </div>
     </div>
         
@@ -37,7 +39,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="club-logo">
-                        <img src="../images/soccer/champ-logo.png" class="img-responsive" alt="champ image">                
+                        <img src="/images/soccer/champ-logo.png" class="img-responsive" alt="champ image">                
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -48,7 +50,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="club-info">
-                        <div class="item">About tornament</div>
+                        <div class="item"><span>Tournament description:</span></div>
                         <p>{{actualTournament.description}}</p>
                     </div>	
                 </div>
@@ -75,7 +77,9 @@
                         {{#actualTournament.finished}}
                         <li><a href="#Winner">Winner</a></li>
                         {{/actualTournament.finished}}
+                        {{#tournamentAdmin}}
                         <li><a href="#Admin">Admin</a></li>
+                        {{/tournamentAdmin}}
                     </ul>		
                 </div>
             </div>
@@ -133,6 +137,7 @@
                                             <div class="col-md-offset-5 col-md-5"></div>
                                             <span class="score">
                                                 {{^isPlayed}}
+                                                {{#tournamentAdmin}}
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <input type="number" name="score1" min="0" max="3" value="0" style="width:50px">
@@ -144,6 +149,10 @@
                                                         <input type="number" name="score2" min="0" max="3" value="0" style="width:50px">
                                                     </div>
                                                 </div>
+                                                {{/tournamentAdmin}}
+                                                {{^tournamentAdmin}}
+                                                <span>VS</span>
+                                                {{/tournamentAdmin}}
                                                 {{/isPlayed}}
                                                 {{#isPlayed}}
                                                 <span>{{score1}}:{{score2}}</span>
@@ -158,15 +167,37 @@
                                                 {{/team2.image}}
                                             </span>
                                             {{^isPlayed}}
-                                                <input type="submit" class="btn btn-large btn-block btn-success" value="Submit">
+                                            <div class="col-md-offset-5 col-md-5"></div>
+                                            {{#tournamentAdmin}}
+                                            <span>
+                                                <div calss="row">
+                                                    <div class="col-md-4"></div>
+                                                    <div class="col-md-4" style="text-align: center">
+                                                        <input type="submit" class="btn small" value="Submit Score">
+                                                    </div>
+                                                    <div class="col-md-4"></div>
+                                                </div> 
+                                            </span>
+                                            {{/tournamentAdmin}}
                                             {{/isPlayed}}
                                         </span>
                                     </form>
+                                    <br>
                                     {{/matches}}
+                                    {{#oddTeam}}
+                                    <span class="teams-wrap">
+                                        <span class="team" href="/teams/{{id}}">
+                                            {{#image}}
+                                            <span>
+                                                <img src="/teams/{{id}}/image" alt="team logo" height="340px" width="320px">
+                                            </span>
+                                            {{/image}}
+                                            <span><strong>{{name}} goes to the next round</strong></span>
+                                        </span>
+                                    </span>
+                                    {{/oddTeam}}
                                 </a>
-                                <!--{{#restTeam}}
-                                    <span>{{name}} rests</span>
-                                {{/restTeam}}-->
+                                
 
                             <!-- ROUNDS-->
                         </div>
@@ -205,6 +236,7 @@
         <!--WINNER-->
 
         <!--ADMIN-->
+        {{#tournamentAdmin}}
         <div class="tab-item news-tab tab-pane" id="Admin">
             <div class="news-list">
                 <div class="container">
@@ -247,6 +279,7 @@
                 </div>
             </div>	
         </div>
+        {{/tournamentAdmin}}
         <!--ADMIN-->
     </div>
 </div>

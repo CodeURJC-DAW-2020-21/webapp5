@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 
 import com.victorious.game.Game;
 import com.victorious.team.Team;
+import com.victorious.user.User;
 
 @Entity
 public class Tournament {
@@ -55,6 +56,9 @@ public class Tournament {
 	private boolean started;
 	
 	private boolean finished;
+
+    @ManyToOne
+	private User admin;
 
 //CONSTRUCTORS
     public Tournament(){ }
@@ -199,5 +203,13 @@ public class Tournament {
 
     public void setWinner(Team winner) {
         this.winner = winner;
+    }
+
+    public User getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(User admin) {
+        this.admin = admin;
     }
 }

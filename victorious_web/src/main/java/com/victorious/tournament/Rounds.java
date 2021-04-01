@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.victorious.team.Team;
@@ -25,8 +26,8 @@ public class Rounds {
     @ManyToMany
     List<Team> winners;
 
-    //@ManyToOne
-    //private Team restTeam;
+    @ManyToOne
+    private Team oddTeam;
 
     @OneToMany
     private List<MatchUp> matches;
@@ -39,8 +40,7 @@ public class Rounds {
         this.participants=participants;
         this.matches=new ArrayList<MatchUp>();
         this.numRound=0;
-        this.winners=new ArrayList<Team>();
-        //this.restTeam=new Team();
+        this.winners=new ArrayList<Team>();;
     }
 
     public List<Team> getWinners(){
@@ -63,7 +63,7 @@ public class Rounds {
 
     public void setOddRound(){
         this.winners.add(this.participants.get(0));
-        //this.restTeam=this.participants.get(0);
+        this.oddTeam=this.participants.get(0);
         this.participants.remove(0);
     }
 

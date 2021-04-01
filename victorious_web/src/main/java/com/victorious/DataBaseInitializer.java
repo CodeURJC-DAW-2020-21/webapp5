@@ -54,13 +54,11 @@ public class DataBaseInitializer {
 
 		//Sample Tournamnets
 		Tournament tournament1 = new Tournament("League of Legends Champioship", "League of Legends (LoL) is a multiplayer online battle arena video game developed and published by Riot Games. The goal is usually to destroy the opposing team's \"Nexus\", a structure that lies at the heart of a base protected by defensive structures.", 32, "12-13-20 at 13:00", "12-13-20 at 14:00", LeagueOfLegends);
-		//tournament1.addTeam(team1);
-		//tournament1.addTeam(team2);
+		//tournament1.setCurrentPlayers(10);
 		tournamentService.saveTournament(tournament1);
 		
 		for(int i=0; i<10; i++) {
 			Tournament tournament = new Tournament("Tournament " + i, "Description of Tournament " + i, 32, "12-20-20 at 13:00", "12-20-20 at 14:00", LeagueOfLegends );
-			//tournament.addTeam(team1);
 			tournamentService.saveTournament(tournament);
 		}
 		
@@ -68,20 +66,26 @@ public class DataBaseInitializer {
 		Team team1 = new Team("FNATIC", "Fnatic, occasionally stylized as fnatic and abbreviated as FNC, is a professional gaming organization with registered offices in the United Kingdom, Australia and the Netherlands. Fnatic is considered as a European team. Founded by Sam Mathews with Joris Van Laerhoven and Anne Mathews in 2004, and mainly operating out of their London offices, Fnatic has fielded numerous well known professional gamers in a variety of esports titles.");
 		setTeamImage(team1,"/sample_images/fnatic.jpg");
 		team1.addGame(LeagueOfLegends);
-		team1.getTournaments().add(tournament1);
+		team1.addTournament(tournament1);
+		tournament1.setCurrentPlayers(tournament1.getCurrentPlayers()+1);
+		tournamentService.saveTournament(tournament1);
 		teamService.saveTeam(team1);
 
 		Team team2 = new Team("G2 ESPORTS", "G2esports, occasionally stylized and abreviated as G2,  formerly known as Gamers2, is a Spanish professional esports organization currently located in Berlin, Germany and founded in November 2013 by Carlos \"ocelote\" Rodriguez.");
 		setTeamImage(team2,"/sample_images/G2.jpg");
 		team2.addGame(LeagueOfLegends);
-		team2.getTournaments().add(tournament1);
+		team2.addTournament(tournament1);
+		tournament1.setCurrentPlayers(tournament1.getCurrentPlayers()+1);
+		tournamentService.saveTournament(tournament1);
 		teamService.saveTeam(team2);
 		
 		for(int i=0; i<8; i++){
 			Team team = new Team("TEAM " + i, "Description of team " + i);
 			setTeamImage(team,"/sample_images/team_default.jpg");
 			//
-			team.getTournaments().add(tournament1);
+			team.addTournament(tournament1);
+			tournament1.setCurrentPlayers(tournament1.getCurrentPlayers()+1);
+			tournamentService.saveTournament(tournament1);
 			//
 			teamService.saveTeam(team);
 		}
