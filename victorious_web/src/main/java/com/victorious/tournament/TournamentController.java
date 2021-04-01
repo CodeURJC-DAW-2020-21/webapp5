@@ -143,7 +143,7 @@ public class TournamentController {
 		Tournament tournament = tournamentService.findById(id).get();
 		String userName = (String) model.getAttribute("userName");
 		User loggedUser = userService.findByName(userName).get();
-		boolean isAdmin = tournament.getAdmin().equals(loggedUser) || loggedUser.getRoles().contains("ADMIN");
+		boolean isAdmin = (((tournament.getAdmin() != null) && (tournament.getAdmin().equals(loggedUser))) || (loggedUser.getRoles().contains("ADMIN")));
 		if (!tournament.isStarted() && tournament.getParticipants().size()>1 && isAdmin){
 			List<Team> participants = new ArrayList<Team>(tournament.getParticipants());
 			Collections.shuffle(participants);
@@ -182,7 +182,7 @@ public class TournamentController {
 		MatchUp matchUp = matchService.findById(idMatch).get();
 		String userName = (String) model.getAttribute("userName");
 		User loggedUser = userService.findByName(userName).get();
-		boolean isAdmin = tournament.getAdmin().equals(loggedUser) || loggedUser.getRoles().contains("ADMIN");
+		boolean isAdmin = (((tournament.getAdmin() != null) && (tournament.getAdmin().equals(loggedUser))) || (loggedUser.getRoles().contains("ADMIN")));
 		if(isAdmin){
 			matchUp.setScore1(score1);
 			matchUp.setScore2(score2);
@@ -203,7 +203,7 @@ public class TournamentController {
 		Tournament tournament = tournamentService.findById(id).get();
 		String userName = (String) model.getAttribute("userName");
 		User loggedUser = userService.findByName(userName).get();
-		boolean isAdmin = tournament.getAdmin().equals(loggedUser) || loggedUser.getRoles().contains("ADMIN");
+		boolean isAdmin = (((tournament.getAdmin() != null) && (tournament.getAdmin().equals(loggedUser))) || (loggedUser.getRoles().contains("ADMIN")));
 		int j=0;
 		if(isAdmin){
 			while(j<tournament.getRounds().get(tournament.getRoundNumber()-1).getMatches().size()){
