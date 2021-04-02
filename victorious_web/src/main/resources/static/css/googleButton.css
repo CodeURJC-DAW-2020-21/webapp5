@@ -1,0 +1,36 @@
+ #customBtn {
+	display: inline-block;
+	background: #4285F4;
+	color: white;
+	width: 100%;
+	border-radius: 0px;
+	border: thin solid #888;
+	box-shadow: 1px 1px 1px grey;
+	white-space: nowrap;
+	position: absolute;
+  	left: 35%;
+}
+#customBtn:hover {
+	cursor: pointer;
+}
+span.label {
+	font-family: serif;
+	font-weight: normal;
+}
+span.icon {
+	background: url('/images/soccer/google-button2.png') 50% 50% no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+	width: 42px;
+	height: 42px;
+}
+span.buttonText {
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 16px;
+	font-weight: bold;
+	font-family: 'Roboto', sans-serif;
+}

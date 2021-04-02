@@ -78,27 +78,21 @@
 
 <script type="text/javascript" src="/js-backend/loadMoreTeams.js"></script>
 <script type="text/javascript" src="/js-backend/loadMoreTournaments.js"></script>
- 
-<script type="text/javascript" src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id" content="512455545742-d24qi4bku033qgg0pt4kglnpf4sprb95.apps.googleusercontent.com">
-
-<script>
-function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  document.getElementById('gname').value = profile.getName();
-  document.getElementById('gemail').value = profile.getEmail();
-}
-</script>
+				
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<script>
 {{#actualTeam}}
+<script>
 var ctx = document.getElementById('myChart').getContext('2d');
-var matches = "{{matches}}".split(',').map(Number);
+var nMatches = parseInt("{{matches}}");
+var matches = [];
+for (let i = 1; i <= nMatches; i++) {
+	matches[i-1] = i;
+}
 var victory = "{{victories}}".split(',').map(Number);
 var loss = "{{loses}}".split(',').map(Number);
 var victories = [];
 var loses = [];
-for (let i = 0; i < matches.length; i++) {
+for (let i = 0; i < nMatches; i++) {
 	victories[i] = victory[i]/matches[i]*100;
 	loses[i] = loss[i]/matches[i]*100;
 }
@@ -133,8 +127,8 @@ var myLineChart = new Chart(ctx, {
 	        }
 	    }
 });
-{{/actualTeam}}
 </script>
+{{/actualTeam}}
 </body>
 
 
