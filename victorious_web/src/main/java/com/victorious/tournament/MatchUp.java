@@ -35,8 +35,20 @@ public class MatchUp {
     public Team getWinner(){
 
         if (score1>score2){
+        	team1.setnVictories(team1.getnVictories() + 1);
+        	team1.setRecordV(team1.getRecordV() + team1.getnVictories() + ",");
+        	team1.setRecordL(team1.getRecordL() + team1.getnLoses() + ",");
+        	team2.setnLoses(team2.getnLoses() + 1);
+        	team2.setRecordV(team2.getRecordV() + team2.getnVictories() + ",");
+        	team2.setRecordL(team2.getRecordL() + team2.getnLoses() + ",");
             return team1;
         }else{
+        	team1.setnLoses(team1.getnLoses() + 1);
+        	team1.setRecordV(team1.getRecordV() + team1.getnVictories() + ",");
+        	team1.setRecordL(team1.getRecordL() + team1.getnLoses() + ",");
+        	team2.setnVictories(team2.getnVictories() + 1);
+        	team2.setRecordV(team2.getRecordV() + team2.getnVictories() + ",");
+        	team2.setRecordL(team2.getRecordL() + team2.getnLoses() + ",");
             return team2;
         }
     }

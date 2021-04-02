@@ -57,6 +57,18 @@ public class Team {
 	private Blob imageFile;
 	
 	private boolean image;
+	
+	@Column
+	private int nVictories;
+
+	@Column
+	private int nLoses;
+	
+	@Column
+	private String recordV;
+	
+	@Column
+	private String recordL;
 
 	public Team() {}
 	
@@ -65,6 +77,10 @@ public class Team {
 		this.description = description;
 		this.tournaments = new ArrayList<Tournament>();
 		this.initLists();
+		this.nVictories = 0;
+		this.nLoses = 0;
+		this.recordV = "";
+		this.recordL = "";
 	}
 
 	public Long getId() {
@@ -180,6 +196,39 @@ public class Team {
 		games = new ArrayList<>();
 		admins = new ArrayList<>();
 		requests = new ArrayList<>();
+	}
+	
+
+	public int getnVictories() {
+		return nVictories;
+	}
+
+	public void setnVictories(int nVictories) {
+		this.nVictories = nVictories;
+	}
+
+	public int getnLoses() {
+		return nLoses;
+	}
+
+	public void setnLoses(int nLoses) {
+		this.nLoses = nLoses;
+	}
+
+	public String getRecordV() {
+		return recordV;
+	}
+
+	public void setRecordV(String recordV) {
+		this.recordV = recordV;
+	}
+
+	public String getRecordL() {
+		return recordL;
+	}
+
+	public void setRecordL(String recordL) {
+		this.recordL = recordL;
 	}
 
 	@Override

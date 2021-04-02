@@ -77,8 +77,7 @@ public class TeamController {
         model.addAttribute("showNext", !teamPages.isLast());
         model.addAttribute("showPrev", !teamPages.isFirst());
         model.addAttribute("hasNext", teamPages.hasNext());
-        model.addAttribute("hasPrevious", teamPages.hasPrevious());
-        
+        model.addAttribute("hasPrevious", teamPages.hasPrevious());        
 		return "teams";
 	}
 	
@@ -111,11 +110,9 @@ public class TeamController {
 			games.remove(g);
 		}
 		model.addAttribute("games", games);
-		
-		//examples for stats 
-				model.addAttribute("victories", "0,1,2,2,3,4");
-				model.addAttribute("loses",     "1,1,1,2,2,2");
-				model.addAttribute("matches",   "1,2,3,4,5,6");
+		model.addAttribute("victories", team.get().getRecordV());
+		model.addAttribute("loses", team.get().getRecordL());
+		model.addAttribute("matches", team.get().getnVictories() + team.get().getnLoses());
 				
 		if (principal != null) {
 			User user = userService.findByName(principal.getName()).get();
