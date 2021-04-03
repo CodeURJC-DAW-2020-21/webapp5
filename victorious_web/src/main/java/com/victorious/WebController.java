@@ -43,12 +43,6 @@ public class WebController {
 		model.addAttribute("settingsSuccess", settingsSuccess);
 		return "index";
 	}	
-
-	@RequestMapping("/league")
-	public String league(Model model){
-		
-		return "league";
-	}
 	
 	@GetMapping("/contact")
 	public String showContactForm(Model model){

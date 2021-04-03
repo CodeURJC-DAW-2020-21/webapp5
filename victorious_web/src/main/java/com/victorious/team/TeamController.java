@@ -15,6 +15,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -132,6 +133,19 @@ public class TeamController {
 		}
 
 		return "team";
+	}
+	
+	@GetMapping("/league")
+	public String sortLeague(Model model) {
+		List<Team> teamsLeague = teamService.findAll(Sort.by(Sort.Direction.DESC, "nVictories"));		
+		model.addAttribute("teams", teamsLeague);
+		return "league";
+	}
+	
+	@RequestMapping("/league")
+	public String league(Model model){
+		
+		return "league";
 	}
 	
 	@GetMapping("/teams/{id}/image")
@@ -324,7 +338,6 @@ public class TeamController {
 		rv.setExposeModelAttributes(false);
 		return (rv);
 	}
-	
 	
 	private void setTeamImage(Team team, String classPathResource) throws IOException {
 		team.setImage(true);

@@ -38,99 +38,81 @@
                                 <th>won</th>
                                 <th>lost</th>
                                 <th>points</th>
-                                <th>form</th>
-                            </tr>
+                                <th>last matches</th>
+                            </tr>                          
+                            {{#teams}}
                             <tr>
-                                <td class="up">
-                                    <i class="fa fa-caret-up" aria-hidden="true"></i> 1 <span class="team"><img src="images/soccer/team-logo1.png" width="30" height="30" alt="team-logo"> </span>Team 1
+                                <td>
+                                    <span><img src="/teams/{{id}}/image" alt="team logo"></span> {{name}}
                                 </td>
-                                <td>11</td>
-                                <td>8</td>
-                                <td>1</td>
-                                <td class="points"><span>26</span></td>
+                                <td id="nMatches{{id}}"></td>
+                                <td>{{nVictories}}</td>
+                                <td>{{nLoses}}</td>
+                                <td class="points"><span>{{nVictories}}</span></td>
                                 <td class="form">
-                                    <span class="win">w</span>
-                                    <span class="drawn">d</span>
-                                    <span class="lose">l</span>
-                                    <span class="win">w</span>
-                                    <span class="win">w</span>
+                                    <span id="match0{{id}}"></span>
+                                    <span id="match1{{id}}"></span>
+                                    <span id="match2{{id}}"></span>
+                                    <span id="match3{{id}}"></span>
+                                    <span id="match4{{id}}"></span>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td class="down">
-                                    <i class="fa fa-caret-down" aria-hidden="true"></i> 2 <span class="team"><img src="images/soccer/team-logo2.png" width="30" height="30" alt="team-logo"> </span>Team 2
-                                </td>
-                                <td>11</td>
-                                <td>8</td>
-                                <td>2</td>
-                                <td class="points"><span>23</span></td>
-                                <td class="form">
-                                    <span class="win">w</span>
-                                    <span class="drawn">d</span>
-                                    <span class="lose">l</span>
-                                    <span class="win">w</span>
-                                    <span class="lose">l</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="down">
-                                    <i class="fa fa-caret-down" aria-hidden="true"></i> 2 <span class="team"><img src="images/soccer/team-logo3.png" width="30" height="30" alt="team-logo"> </span>Team 3
-                                </td>
-                                <td>11</td>
-                                <td>8</td>
-                                <td>2</td>
-                                <td class="points"><span>23</span></td>
-                                <td class="form">
-                                    <span class="win">w</span>
-                                    <span class="lose">l</span>
-                                    <span class="lose">l</span>
-                                    <span class="win">w</span>
-                                    <span class="drawn">d</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="down">
-                                    <i class="fa fa-caret-down" aria-hidden="true"></i> 2 <span class="team"><img src="images/soccer/team-logo4.png" width="30" height="30" alt="team-logo"> </span>Team 4
-                                </td>
-                                <td>11</td>
-                                <td>8</td>
-                                <td>2</td>
-                                <td class="points"><span>23</span></td>
-                                <td class="form">
-                                    <span class="lose">l</span>
-                                    <span class="drawn">d</span>
-                                    <span class="win">w</span>
-                                    <span class="win">w</span>
-                                    <span class="win">w</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="none">
-                                    <i class="fa fa-circle" aria-hidden="true"></i> 3 <span class="team"><img src="images/soccer/team-logo5.png" width="30" height="30" alt="team-logo"> </span>Team 5
-                                </td>
-                                <td>11</td>
-                                <td>8</td>
-                                <td>2</td>
-                                <td class="points"><span>20</span></td>
-                                <td class="form">
-                                    <span class="win">w</span>
-                                    <span class="drawn">d</span>
-                                    <span class="lose">l</span>
-                                    <span class="win">w</span>
-                                    <span class="win">w</span>
-                                </td>
-                            </tr>
+                            </tr>    
+                            {{/teams}}                                                                                             
                         </table>
                     </div>
                 </div>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <p>The league is updating every time an official tornament is ended</p>
+                <p>The league is updating every time an official tournament progress to the next round</p>
             </div>
         </div>
     </div>
 </section>
 
 <!--STANDING TABLE WRAP END-->
-
+{{#teams}}
+<script>
+	var nMatches = parseInt("{{nVictories}}") + parseInt("{{nLoses}}")
+	document.getElementById('nMatches{{id}}').innerHTML = nMatches;
+	var recordMatches = "{{recordV}}".split(',').map(Number);
+	if (nMatches !== 0){		
+		if(nMatches < 5){
+			if (recordMatches[0] == 0){
+				document.getElementById('match0{{id}}').innerHTML = "l";
+				document.getElementById('match0{{id}}').className = "lose"
+			} else{
+				document.getElementById('match0{{id}}').innerHTML = "w";
+				document.getElementById('match0{{id}}').className = "win"
+			} 
+			for (let i = 1; i < nMatches; i++) {
+				if(recordMatches[i] == recordMatches[i-1]){
+					document.getElementById('match' + i + '{{id}}').innerHTML = "l";
+					document.getElementById('match' + i + '{{id}}').className = "lose"
+				} else{
+					document.getElementById('match' + i + '{{id}}').innerHTML = "w";
+					document.getElementById('match' + i + '{{id}}').className = "win"
+				}
+			} 
+		}else{
+			var lastMatches = recordMacthes.slice(nMatches-6, nMatches-1);
+			if (recordMatches[nMatches-5] == recordMatches[nMatches-6]){
+				document.getElementById('match0{{id}}').innerHTML = "l";
+				document.getElementById('match0{{id}}').className = "lose"
+			} else{
+				document.getElementById('match0{{id}}').innerHTML = "w";
+				document.getElementById('match0{{id}}').className = "win"
+			} 
+			for (let i = 1; i < 5; i++) {
+				if(recordMatches[i] == recordMatches[i-1]){
+					document.getElementById('match' + i + '{{id}}').innerHTML = "l";
+					document.getElementById('match' + i + '{{id}}').className = "lose"
+				} else{
+					document.getElementById('match'+ i + '{{id}}').innerHTML = "w";
+					document.getElementById('match'+ i + '{{id}}').className = "win"
+				}
+			}
+		}
+	}
+</script>
+{{/teams}}
 {{>footer}}

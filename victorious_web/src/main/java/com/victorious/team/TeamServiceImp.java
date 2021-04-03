@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +23,11 @@ public class TeamServiceImp implements TeamService{
 	@Override
 	public Page<Team> findAll(Pageable pageable) {
 		return teamRepository.findAll(pageable);
+	}
+
+	@Override
+	public List<Team> findAll(Sort sort) {
+		return teamRepository.findAll(sort);
 	}
 
 	@Override
