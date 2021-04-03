@@ -36,7 +36,7 @@
             <div class="col-md-7">
                 <h4>Get in touch</h4>	
                 <div class="leave-comment-wrap">
-                    <form>								
+                    <form action="/contact" method="POST">								
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="item">
@@ -58,7 +58,7 @@
                                 <div class="item">
                                     <label>
                                         <span>Subject</span>
-                                        <input type="text" name="subjects">
+                                        <input type="text" name="subject">
                                     </label>
                                 </div>	
                             </div>
@@ -66,12 +66,13 @@
                                 <div class="item">
                                     <label>
                                         <span>Your message<i>*</i></span>
-                                        <textarea></textarea>
+                                        <textarea name="content"></textarea>
                                     </label>
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <button class="comment-submit">Send us message</button>
+                               <input type="submit" class="btn" name="submit" value="Send"/>
+                               <input type="hidden" name="_csrf" value="{{token}}"/>
                             </div>
                         </div>
                     </form>
