@@ -26,11 +26,14 @@
                 <div class="champ-date"><i class="fa fa-calendar" aria-hidden="true"></i>{{actualTournament.iniDate}}</div>
             </div>
             {{#logged}}
+			{{^started}}
+			{{^joined}}
             <div class="col-md-3">
-                <!-- BOTON DE JOIN PARA HACER SOLICITUD PARA UNIRSE A TORNEO -->
-                <a href="" class="btn small club-top-btn">Join</a>
+                <a href="/tournaments/{{id}}/join" class="btn small club-top-btn">Join</a>
             </div>
-            {{/logged}} 
+			{{/joined}}
+            {{/started}}
+			{{/logged}} 
         </div>
     </div>
         

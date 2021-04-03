@@ -22,6 +22,25 @@
         <div class="row">
             <div class="col-md-12">
                 <h4>Tournaments</h4>
+				{{#joinError}}
+				<div class="row">
+					<div class="container">
+						<div class="col-md-12">
+							<div class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a> <strong>Error: Your team is already enrolled on this tournament.</strong> </div>
+						</div>
+					</div>
+				</div>
+				{{/joinError}}
+				<!-- JOIN SUCCESS
+				{{^joinSuccess}}
+				<div class="row">
+					<div class="container">
+						<div class="col-md-12">
+							<div class="alert alert-success alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a> <strong>Congratulations!  You succesfully joined the tournament</strong> </div>
+						</div>
+					</div>
+				</div>
+				{{/joinSuccess}} -->
             </div>
             <div class="col-md-12">
             	<div id="tournamentList">
@@ -40,13 +59,19 @@
 	                                            <span class="what">{{iniDate}}</span>
 	                                            <span class="then">{{name}}</span>
 	                                        </span>
-	                                        <span class="marker">Join</span>
+											{{#logged}}
+											{{^started}}
+											<!--{{^joined}}-->
+	                                        <span class="marker"><a href="tournaments/{{id}}/join">Join</a></span>
+											<!--{{/joined}}-->
+											{{/started}}
+											{{/logged}}
 	                                    </div>
 	                                </div>
 	                            </div>	
 	                        </div>
 	                        <div id="{{id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-	                            <div class="img-wrap"><img src="images/soccer/broad-cup-img.jpg" alt="main-match-icon"></div>
+	                            <div class="img-wrap"><img src="/images/soccer/broad-cup-img.jpg" alt="main-match-icon"></div>
 	                            <div class="item-body">
 	                                <div class="row">
 	                                    <div class="col-md-12">

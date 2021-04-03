@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.victorious.game.Game;
 import com.victorious.game.GameService;
 import com.victorious.team.Team;
+import com.victorious.team.TeamService;
 import com.victorious.user.User;
 import com.victorious.user.UserService;
 
@@ -50,6 +51,9 @@ public class TournamentController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired 
+	TeamService teamService; 
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -68,9 +72,10 @@ public class TournamentController {
 	}
 
     @RequestMapping("/tournaments")
-	public String Tournaments(Model model, @PageableDefault(size = 4) Pageable pageable) {
+	public String Tournaments(Model model, @PageableDefault(size = 4) Pageable pageable, @RequestParam(required = false) boolean joinError) {
 		Page<Tournament> tournamentPages = tournamentService.findAll(pageable);
 		model.addAttribute("tournaments", tournamentPages);
+		model.addAttribute("joinError", joinError);
 		
 		model.addAttribute("nextPage", tournamentPages.getNumber() + 1);
         model.addAttribute("prevPage", tournamentPages.getNumber() - 1);
@@ -79,7 +84,7 @@ public class TournamentController {
         model.addAttribute("showPrev", !tournamentPages.isFirst());
         model.addAttribute("hasNext", tournamentPages.hasNext());
         model.addAttribute("hasPrevious", tournamentPages.hasPrevious());
-        
+ 
 		return "tournaments";
 	}	
 	
@@ -109,6 +114,8 @@ public class TournamentController {
 			if(((tournament.get().getAdmin() != null) && (tournament.get().getAdmin().equals(user))) || (user.getRoles().contains("ADMIN"))){
 				model.addAttribute("tournamentAdmin", true);
 			}
+			model.addAttribute("joined", tournament.get().getParticipants().contains(user.getTeam()));
+
 		}
 		return "tournament";
 	}
@@ -131,12 +138,31 @@ public class TournamentController {
 			tournament.setAdmin(user);
 			tournamentService.createTournament(tournament);
 			rv = new RedirectView("tournaments");
-		} else {
+		} else {	
 			rv = new RedirectView("/newTournament?error=true");
 		}
 		return rv;
 	}
-
+	
+	@GetMapping("/tournaments/{id}/join")
+	public View addTeam(@PathVariable Long id, Model model, HttpServletRequest request ) {
+		RedirectView rv;
+		Tournament tournament = tournamentService.findById(id).get();
+		String userName = (String) model.getAttribute("userName");      
+		User user = userService.findByName(userName).get();   
+		if ((boolean) model.getAttribute("logged") && tournament!=null && !tournament.getParticipants().contains(user.getTeam())) {
+			tournament.addTeam(user.getTeam());
+			user.getTeam().addTournament(tournament);
+			teamService.saveTeam(user.getTeam());
+			tournamentService.saveTournament(tournament);
+			rv = new RedirectView("/tournaments");
+		}else{
+			rv = new RedirectView("/tournaments?joinError=true");
+		}
+		rv.setExposeModelAttributes(false);
+		return rv;  
+	}
+	
 	@PostMapping("/tournaments/{id}/start")
 	public View startTournament(Model model, @PathVariable Long id) {
 		RedirectView rv;
