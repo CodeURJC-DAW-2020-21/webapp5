@@ -125,7 +125,7 @@ public class UserController {
 	public String settingsError(Model model, @PathVariable String name, @RequestParam(required = false) boolean settingsError){
 		Optional<User> user = userService.findByName(name);
 
-		if(user.isPresent()) {
+		if(user.isPresent() && (name.equals(model.getAttribute("userName")))) {
 			model.addAttribute("user", user.get());
 		}
 		return "settings";

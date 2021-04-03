@@ -29,12 +29,6 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <h6>Tournaments</h6>
-                {{#user.tournaments}}
-                <div class="list-group"><a class="list-group-item"><span><img src="images/soccer/champ-logo.png"> {{user.tournaments.name}}</span></a></div>
-                {{/user.tournaments}}
-            </div>
-            <div class="col-md-12">
                 <h6>Teams</h6>
                 {{#user.team}}
                 <div class="list-group"><a href="/teams/{{user.team.id}}" class="list-group-item"><span><img src="/teams/{{user.team.id}}/image" alt="team logo" height="50px"> {{user.team.name}}</span></a></div>

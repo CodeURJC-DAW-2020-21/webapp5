@@ -11,11 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-//import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.victorious.team.Team;
-//import com.victorious.tournament.Tournament;
 
 @Entity
 public class User {
@@ -41,10 +39,6 @@ public class User {
 	@ManyToOne
 	private Team team; 
 	
-	/*
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Tournament> tournaments; 
-	*/
 	@ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles;
 	
@@ -61,9 +55,7 @@ public class User {
 		this.name = name;
 		this.email = email;
 		this.encodedPassword = encodedPassword;
-		//this.avatar = "default";
 		this.roles = List.of(roles);
-		//this.setTournaments(new ArrayList<Team>());
 	}
 	
 	public Long getId() {
@@ -121,15 +113,7 @@ public class User {
 	public void setTeam(Team team) {
 		this.team = team;
 	}
-/*
-	public List<Tournament> getTournaments() {
-		return tournaments;
-	}
 
-	public void setTournaments(List<Tournament> tournaments) {
-		this.tournaments = tournaments;
-	}
-*/
 	public List<String> getRoles() {
 		return roles;
 	}
