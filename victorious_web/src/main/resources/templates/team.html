@@ -1,0 +1,251 @@
+{{>header}}
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form action="/teams/{{actualTeam.id}}/addGame" method="post">
+            <input type="hidden" name="_csrf" value="{{token}}" />
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Select the game</h4> </div>
+                <div class="modal-body"> Select game:
+                    <select class="form-control" name="name">
+                    {{#games}}
+						<option>{{name}}</option> 
+					{{/games}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn small" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn small" style= "margin-top: 10px;"value="Add"> 
+               	</div>
+            </div>
+        </form>
+	</div>
+</div>
+
+
+<!--BREADCRUMBS BEGIN-->
+<section class="image-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info">
+                    <div class="wrap">
+                        <h1>Team</h1>
+                    </div>
+                </div>
+            </div>	
+        </div>
+    </div>
+</section>
+<!--BREADCRUMBS END-->
+
+ <!--CLUB WRAP BEGIN-->
+
+ <section class="club-wrap">
+    <div class="container">
+        <div class="row row-eq-height">
+        	<div class="col-md-12">
+        		{{#teamError}}
+	           	<div class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a> <strong> An error occurred </strong> </div>
+	           	{{/teamError}} 
+	           	{{#teamRequest}}
+	           	<div class="alert alert-success alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a> <strong> Success! Wait for an admin </strong> </div>
+	           	{{/teamRequest}}
+        	</div>
+        </div>
+        <div class="row row-eq-height">
+            <div class="col-md-9 col-sm-9 col-xs-9">
+                <h4>{{actualTeam.name}}</h4>
+                <ul class="tab-filters">
+                    <li class="active"><a href="#abstract">Abstract</a></li>
+                    <li><a href="#members">Members</a></li>
+                    {{#teamAdmin}}
+                    <li><a href="#admin">Admin</a></li>
+                    {{/teamAdmin}}
+                </ul>
+            </div>
+            {{#logged}}
+            <div class="col-md-3 col-sm-3 col-xs-3">
+            	{{#doRequest}}
+                <form action="/teams/{{actualTeam.id}}/newRequest" method="post">
+	                <input type="hidden" name="_csrf" value="{{token}}" />
+	                <input type="hidden" name="userName" value="{{userName}}" />
+	                <input type="submit" class="btn btn-lg btn-success text-left" value="Request to Join"> 
+                </form>
+                {{/doRequest}}
+                {{#leaveTeam}}
+                <form action="/teams/{{actualTeam.id}}/leaveTeam" method="post" onsubmit="return confirm('Do you really want to leave the team?');">
+	                <input type="hidden" name="_csrf" value="{{token}}" />
+	                <input type="hidden" name="id" value="{{actualTeam.id}}" />
+	                <input type="hidden" name="userName" value="{{userName}}" />
+	                <input type="submit" class="btn btn-danger btn-lg" value="Leave Team">
+                </form>
+                {{/leaveTeam}}
+            </div>
+            {{/logged}} 
+        </div>
+    </div>
+
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="abstract" role="tabpanel">
+            <div class="club-top-info">
+                <div class="organisation-header-wrapper">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="club-logo  wpb_animate_when_almost_visible wpb_zoomInLeft zoomInLeft wpb_start_animation animated">
+                                    {{#actualTeam.image}}
+                                    <img src="/teams/{{actualTeam.id}}/image" alt="team logo" height="340px" width="320px">                
+                                	{{/actualTeam.image}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="org-club-info">
+                                    <div class="item"><span>{{actualTeam.description}}</span></div>
+                                </div>
+                            </div>
+                        </div>	
+                    </div>	
+                </div>
+            </div>
+            <!--CLUB MAIN STAT BEGIN-->
+            <section class="club-main-stat">
+                <div class="container">
+                    <div class="row" >
+                        <div class="col-md-12">
+                            <h6>Statistics </h6>	                           
+                           	<canvas id="myChart" height="80"></canvas>                          
+                        </div>
+                        <div class="col-md-12">
+                            <h6>Tournaments</h6>
+                            {{#actualTeam.tournaments}}
+                            <div class="list-group"><a href="/tournaments/{{id}}" class="list-group-item"><span><img src="/images/soccer/champ-logo.png" height="40px" width="50px">  {{name}}</span></a></div>
+                        	{{/actualTeam.tournaments}}
+                        </div>
+                        <div class="col-md-12">
+                            <h6>Games</h6>
+                            <ul>
+                            	{{#actualTeam.games}}
+                                <li class="list-group-item"><img src="/game/{{id}}/image" alt="Gamelogo" height="40px" width="50px">  {{name}}</li>
+                                {{/actualTeam.games}}
+                                {{#teamAdmin}}
+                                <li class="list-group-item">
+                                    <div class="text-right">           
+                                        <button class="btn small" data-toggle="modal" data-target="#myModal">+Add Game</button>
+                                    </div>
+                                </li>
+                                {{/teamAdmin}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--CLUB MAIN STAT END-->
+        </div>
+        <div class="tab-pane fade" id="members" role="tabpanel">
+            <!--CLUB MEMBERS TOP BEGIN-->
+            <div class="club-staff-top">
+                <div class="container">
+                    <div class="staff-box">
+                        <div class="row">
+                        	{{#actualTeam.users}}            
+                            <div class="col-md-4  col-sm-6 col-xs-12">
+                                <a href="/user/{{name}}" class="item">
+                                    <span class="info">
+                                        <span class="name">{{name}}</span>
+                                    </span>
+                                    {{#image}}
+                                    <img class="img-responsive" src="/user/{{name}}/image" alt="player">
+                                    {{/image}}
+                                </a>
+                            </div>
+            				{{/actualTeam.users}}
+                        </div>
+                    </div>
+                </div>
+            </div>                                         
+        </div>
+        {{#teamAdmin}}
+        <div class="tab-pane fade" id="admin" role="tabpanel">
+            <div class="container" style="background-color: white;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6>Requests</h6>
+                        <ul class="list-group">
+                        {{#requests}}
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-md-6"> <a href="/user/{{name}}">{{name}}</a> </div>
+                                    <div class="col-md-4 text-right">
+                                        <form action="/teams/{{actualTeam.id}}/acceptRequest" method="post">
+                                            <input type="hidden" name="_csrf" value="{{token}}" />
+                                            <input type="hidden" name="userId" value="{{id}}" />
+                                            <input type="hidden" name="accept" value="true" />
+                                            <input type="submit" class="btn small" value="Accept"> </form>
+                                    </div>
+                                    <div class="col-md-2 text-right">
+                                        <form action="/teams/{{actualTeam.id}}/acceptRequest" method="post">
+                                            <input type="hidden" name="_csrf" value="{{token}}" />
+                                            <input type="hidden" name="userId" value="{{id}}" />
+                                            <input type="hidden" name="accept" value="false" />
+                                            <input type="submit" class="btn small" value="Refuse"> </form>
+                                    </div>
+                                </div>
+                            </li>
+                        {{/requests}}
+                        </ul>
+                        {{^requests}}
+                        <div class="list-group-item"> No requests </div>
+                        <hr>
+                        {{/requests}}
+                        <h6>Members</h6>
+                        <ul class="list-group"> 
+                       	{{#actualTeam.users}}
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-md-6"> <a href="/user/{{name}}">{{name}}</a> </div>
+                                    <div class="col-md-4 text-right">
+                                        <form action="/teams/{{actualTeam.id}}/addAdmin" method="post">
+                                            <input type="hidden" name="_csrf" value="{{token}}" />
+                                            <input type="hidden" name="id" value="{{actualTeam.id}}" />
+                                            <input type="hidden" name="userId" value="{{id}}" />
+                                            <input type="submit" class="btn small btn-info" value="Add as admin"> 
+                                        </form>
+                                    </div>
+                                    <div class="col-md-2 text-right">
+                                        <form action="/teams/{{actualTeam.id}}/kickUser" method="post" onsubmit="return confirm('Do you really want to kick {{name}}');">
+                                            <input type="hidden" name="_csrf" value="{{token}}" />
+                                            <input type="hidden" name="id" value="{{actualTeam.id}}" />
+                                            <input type="hidden" name="userId" value="{{id}}" />
+                                            <input type="submit" class="btn small btn-danger" value="Kick"> 
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                        {{/actualTeam.users}}
+                        </ul>
+                        {{^actualTeam.users}}
+                        <div class="list-group-item"> No Members </div>
+                        <hr>
+                        {{/actualTeam.users}}
+                        <h6>Change team's avatar</h6>
+                        <form action="/teams/{{actualTeam.id}}/changeImage" method="POST" enctype="multipart/form-data">
+                            <input type='file' name='imageField' accept=".jpg, .jpeg" />
+                            <input type="hidden" name="_csrf" value="{{token}}" />
+                            <div class="text-right">
+                            	<input class="btn small" type="submit" value="Change"> 
+                            </div>
+                        </form>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/teamAdmin}}
+    </div>
+</section>
+
+<!--CLUB WRAP END-->
+
+{{>footer}}

@@ -1,0 +1,118 @@
+{{>header}}
+
+<!--BREADCRUMBS BEGIN-->
+<section class="image-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info">
+                    <div class="wrap">
+                        <h1>League</h1>
+                    </div>
+                </div>
+            </div>	
+        </div>
+    </div>
+</section>
+<!--BREADCRUMBS END-->
+
+ <!--STANDING TABLE WRAP BEGIN-->
+
+ <section class="standing-table-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h4>League</h4>
+                <ul class="tab-filters" role="tablist">
+                    <li class="active"><a href="#lol" role="tab" data-toggle="tab">League of Legends</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12 overflow-scroll standings-table"> 
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="lol" role="tabpanel">
+                        <table class="standing-full">
+                            <tr>
+                                <th>club</th>
+                                <th>played</th>
+                                <th>won</th>
+                                <th>lost</th>
+                                <th>points</th>
+                                <th>last matches</th>
+                            </tr>                          
+                            {{#teams}}
+                            <tr>
+                                <td>
+                                    <span><img src="/teams/{{id}}/image" alt="team logo"></span> {{name}}
+                                </td>
+                                <td id="nMatches{{id}}"></td>
+                                <td>{{nVictories}}</td>
+                                <td>{{nLoses}}</td>
+                                <td class="points"><span>{{nVictories}}</span></td>
+                                <td class="form">
+                                    <span id="match0{{id}}"></span>
+                                    <span id="match1{{id}}"></span>
+                                    <span id="match2{{id}}"></span>
+                                    <span id="match3{{id}}"></span>
+                                    <span id="match4{{id}}"></span>
+                                </td>
+                            </tr>    
+                            {{/teams}}                                                                                             
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <p>The league is updating every time an official tournament progress to the next round</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--STANDING TABLE WRAP END-->
+{{#teams}}
+<script>
+	var nMatches = parseInt("{{nVictories}}") + parseInt("{{nLoses}}")
+	document.getElementById('nMatches{{id}}').innerHTML = nMatches;
+	var recordMatches = "{{recordV}}".split(',').map(Number);
+	if (nMatches !== 0){		
+		if(nMatches < 6){
+			if (recordMatches[0] == 0){
+				document.getElementById('match0{{id}}').innerHTML = "l";
+				document.getElementById('match0{{id}}').className = "lose"
+			} else{
+				document.getElementById('match0{{id}}').innerHTML = "w";
+				document.getElementById('match0{{id}}').className = "win"
+			} 
+			for (let i = 1; i < nMatches; i++) {
+				if(recordMatches[i] == recordMatches[i-1]){
+					document.getElementById('match' + i + '{{id}}').innerHTML = "l";
+					document.getElementById('match' + i + '{{id}}').className = "lose"
+				} else{
+					document.getElementById('match' + i + '{{id}}').innerHTML = "w";
+					document.getElementById('match' + i + '{{id}}').className = "win"
+				}
+			} 
+		}else{
+			var lastMatches = recordMacthes.slice(nMatches-5, nMatches-1);
+			if (recordMatches[nMatches-5] == recordMatches[nMatches-6]){
+				document.getElementById('match0{{id}}').innerHTML = "l";
+				document.getElementById('match0{{id}}').className = "lose"
+			} else{
+				document.getElementById('match0{{id}}').innerHTML = "w";
+				document.getElementById('match0{{id}}').className = "win"
+			} 
+			for (let i = 1; i < 5; i++) {
+				if(lastMatches[i] == lastMatches[i-1]){
+					document.getElementById('match' + i + '{{id}}').innerHTML = "l";
+					document.getElementById('match' + i + '{{id}}').className = "lose"
+				} else{
+					document.getElementById('match'+ i + '{{id}}').innerHTML = "w";
+					document.getElementById('match'+ i + '{{id}}').className = "win"
+				}
+			}
+		}
+	}
+</script>
+{{/teams}}
+{{>footer}}

@@ -1,0 +1,61 @@
+{{>header}}
+
+<!--BREADCRUMBS BEGIN-->
+<section class="image-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info">
+                    <div class="wrap">
+                        <h1>User</h1>
+                    </div>
+                </div>
+            </div>	
+        </div>
+    </div>
+</section>
+<!--BREADCRUMBS END-->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="player-name">{{user.name}}</h4>
+            </div>
+            <div class="col-md-3">
+                <div class="player-photo">
+                	{{#user.image}}
+                    <img class="img-responsive" src="/user/{{user.name}}/image" alt="player">
+                    {{/user.image}}
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h6>Teams</h6>
+                {{#user.team}}
+                <div class="list-group"><a href="/teams/{{user.team.id}}" class="list-group-item"><span><img src="/teams/{{user.team.id}}/image" alt="team logo" height="50px"> {{user.team.name}}</span></a></div>
+                {{/user.team}}
+                {{^user.team}}
+                <div class="list-group"><a class="list-group-item"><span>NO TEAM</span></a></div>
+                {{/user.team}}
+            </div>
+            <div class="col-md-12">
+                <h6>Accounts</h6>
+                {{#user.riot}}
+                <div class="list-group"><a class="list-group-item"><span>{{.}}</span></a></div>
+                {{/user.riot}}
+                {{#user.blizzard}}
+                <div class="list-group"><a class="list-group-item"><span>{{.}}</span></a></div>
+                {{/user.blizzard}}
+                {{#user.psn}}
+                <div class="list-group"><a class="list-group-item"><span>{{.}}</span></a></div>
+                {{/user.psn}}
+                {{#user.xbox}}
+                <div class="list-group"><a class="list-group-item"><span>{{.}}</span></a></div>
+                {{/user.xbox}}
+                {{#user.steam}}
+                <div class="list-group"><a class="list-group-item"><span>{{.}}</span></a></div>
+                {{/user.steam}}
+            </div>
+        </div>
+    </div>
+    
+{{>footer}}

@@ -1,0 +1,125 @@
+{{>header}}
+
+<!--BREADCRUMBS BEGIN-->
+<section class="image-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info">
+                    <div class="wrap">
+                        <h1>Tournaments</h1>
+                    </div>
+                </div>
+            </div>	
+        </div>
+    </div>
+</section>
+<!--BREADCRUMBS END-->
+
+<!--TOURNAMENT WRAP BEGIN-->
+<div class="broadcast-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Tournaments</h4>
+				{{#joinError}}
+				<div class="row">
+					<div class="container">
+						<div class="col-md-12">
+							<div class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a> <strong>Error: Your team is already enrolled on this tournament.</strong> </div>
+						</div>
+					</div>
+				</div>
+				{{/joinError}}
+				<!-- JOIN SUCCESS
+				{{^joinSuccess}}
+				<div class="row">
+					<div class="container">
+						<div class="col-md-12">
+							<div class="alert alert-success alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a> <strong>Congratulations!  You succesfully joined the tournament</strong> </div>
+						</div>
+					</div>
+				</div>
+				{{/joinSuccess}} -->
+            </div>
+            <div class="col-md-12">
+            	<div id="tournamentList">
+	                {{#tournaments}}
+	                <div class="broadcast-list" id="accordion" role="tablist" aria-multiselectable="true">
+	                    <div class="broadcast-item">
+	                        <div class="item-header" id="headingOne">
+	                            <div class="row">
+	                                <div class="col-md-1 col-sm-2">
+	                                    <a data-toggle="collapse" data-parent="#accordion" href="#{{id}}" class="arrow"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+	                                </div>
+	                                <div class="col-md-11">
+	                                    <div class="item-head-body">
+	                                        <a><img src="/images/soccer/champ-logo.png" width="40" height="40" alt="main-match-icon"></a>
+	                                        <span class="info">
+	                                            <span class="what">{{iniDate}}</span>
+	                                            <span class="then">{{name}}</span>
+	                                        </span>
+											{{#logged}}
+											{{^started}}
+											<!--{{^joined}}-->
+	                                        <span class="marker"><a href="tournaments/{{id}}/join">Join</a></span>
+											<!--{{/joined}}-->
+											{{/started}}
+											{{/logged}}
+	                                    </div>
+	                                </div>
+	                            </div>	
+	                        </div>
+	                        <div id="{{id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+	                            <div class="img-wrap"><img src="/images/soccer/broad-cup-img.jpg" alt="main-match-icon"></div>
+	                            <div class="item-body">
+	                                <div class="row">
+	                                    <div class="col-md-12">
+	                                        <p>{{description}}</p>
+	                                        <div class="part-list">
+	                                            <div class="row">
+	                                                {{#participants}}
+	                                                <div class="col-md-3">
+	                                                    <a href="/teams/{{id}}" class="item">
+	                                                        <span class="logo"><img src="/teams/{{id}}/image" width="80" height="80" alt="club-image"></span>
+	                                                        <span class="name">{{name}}</span>
+	                                                    </a>
+	                                                </div>
+	                                                {{/participants}}
+	                                            </div>
+	                                        </div>
+	                                        <a href="/tournaments/{{id}}" class="btn">View tournament page</a>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	                {{/tournaments}}	
+                </div>				
+            </div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12" style="text-align:center">
+              			<button class="btn small" id="loadMoreTournaments" nextPage ="1" style="margin-bottom:40px">LOAD MORE</button>
+          			</div>
+				</div>
+			</div>
+            <div class="store-banner position-relative">
+                <div class="store-banner-info">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="title">Create <span>Your Tournament</span></div>
+                                <a href="/newTournament" class="btn">Start</a>
+                            </div>	
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--TOURNAMENT WRAP END-->
+
+{{>footer}}
