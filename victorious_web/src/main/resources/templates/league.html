@@ -76,7 +76,7 @@
 	document.getElementById('nMatches{{id}}').innerHTML = nMatches;
 	var recordMatches = "{{recordV}}".split(',').map(Number);
 	if (nMatches !== 0){		
-		if(nMatches < 5){
+		if(nMatches < 6){
 			if (recordMatches[0] == 0){
 				document.getElementById('match0{{id}}').innerHTML = "l";
 				document.getElementById('match0{{id}}').className = "lose"
