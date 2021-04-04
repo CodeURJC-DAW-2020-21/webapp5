@@ -106,3 +106,16 @@ Screen that shows information about the web app in general, also it allow users 
 ![Navigation Diagram](Screenshots/NavigationDiagram.jpg)
 
 ![Nav](Screenshots/Nav.jpg)
+
+### Database Diagram
+
+![DataBase Diagram](Screenshots/DBDiagramv2.jpg)
+
+### Important Commits by team member
+
+| Name | Github user| Commit 1| Commit 2| Commit 3| Commit 4| Commit 5|
+|--------|------------|-------|---------|---------|---------|---------|
+|Daniel Lahera Esteban| DaniL97 |
+|Enrique Garrido Gónzalez | kikegg |
+|Daniel Alexander Juan Moreno | dajm92 | [Tournament Logic](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/2c16825de4ef2e521c0695134ba6cd5ae379bca0) | [Round and Matches Logic](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/a51df005d1bf014aa7582509e89302c240320c15) | [Tournament advancement](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/c23fdccdb623b861f141843b9d4da66eda531cf1) | [Tournament User Control](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/a01e013d4d3666104510f4f22fe2ed251cee2dba) | Several Minor fixes |
+|Jacobo Miguel Blanzaco Barreiro  | jacobobbm |
