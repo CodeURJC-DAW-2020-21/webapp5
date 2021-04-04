@@ -103,7 +103,7 @@
 				document.getElementById('match0{{id}}').className = "win"
 			} 
 			for (let i = 1; i < 5; i++) {
-				if(recordMatches[i] == recordMatches[i-1]){
+				if(lastMatches[i] == lastMatches[i-1]){
 					document.getElementById('match' + i + '{{id}}').innerHTML = "l";
 					document.getElementById('match' + i + '{{id}}').className = "lose"
 				} else{
