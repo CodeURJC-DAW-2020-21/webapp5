@@ -9,7 +9,7 @@
 |Daniel Alexander Juan Moreno | da.juan@alumnos.urjc.es | dajm92 |
 |Jacobo Miguel Blanzaco Barreiro  | jm.blanzaco.2016@alumnos.urjc.es | jacobobbm |
 
-## FASE 0
+## PHASE 0
 
 ### Description
 
@@ -54,58 +54,58 @@ The web aplication will also generate new rounds with their matchups every time 
 
 **Home:**
 
-![home](Screenshots/Home.jpg)
 Homescreen from where you land when you enter the app, it gives you a general view of everything the apps offers.
+![home](Screenshots/Home.jpg)
 
 **Teams:**
 
-![teams](Screenshots/Teams.jpg)
 This screen shows a list of all the teams managed in our database. From here also you can create a new team.
+![teams](Screenshots/Teams.jpg)
 
 **Team:**
 
-![team](Screenshots/Team.jpg)
 Shows general info about an individual team, you can see from here statistics from their games, tournaments where they are participating and you can also check its members.
+![team](Screenshots/Team.jpg)
 
 **Tournaments:**
 
-![tournaments](Screenshots/Tournaments.jpg)
 From here you can see a list of the created tournaments and if possible you can join one of them to participate. Also you can create a new tournament to be played.
+![tournaments](Screenshots/Tournaments.jpg)
 
 **Tournament:**
 
-![tournament](Screenshots/Tournament.jpg)
 From this screen you can check the information from an tournament, you can see team that are participating in, the results from the current round, and also admins can manage the tournament from an special tab where they can pass to the next round and start the tournament.
+![tournament](Screenshots/Tournament.jpg)
 
 **League:**
 
-![league](Screenshots/League.jpg)
 It shows the general clasification for the games that the teams played, it will be automatically updated once the matches end.
+![league](Screenshots/League.jpg)
 
 **Login:**
 
-![login](Screenshots/Login.jpg)
 Screen that checks if the user exist in the database and if the password match, grants permission to edit user, participate in tournaments,etc.
+![login](Screenshots/Login.jpg)
 
 **Sign Up:**
 
-![sign-up](Screenshots/Sign-up.jpg)
 This screen uses the data introduced to create a new user in the database.
+![sign-up](Screenshots/Sign-up.jpg)
 
 **User**
 
-![User](Screenshots/User.jpg)
 From this screen you can see the user's information, such as their accounts or the team in which they participate
+![User](Screenshots/User.jpg)
 
 **Settings:**
 
-![settings](Screenshots/Settings.jpg)
 Form here a user can change the user attributes: avatar, accounts, nick, email and password. This is available for every registered user.
+![settings](Screenshots/Settings.jpg)
 
 **Contact:**
 
-![contact](Screenshots/Contact.jpg)
 Screen that shows information about the web app in general, also it allow users to send us some feedback via short message.
+![contact](Screenshots/Contact.jpg)
 
 ### Navigation Diagram
 ![Navigation Diagram](Screenshots/NavigationDiagram.jpg)
@@ -186,7 +186,23 @@ The Navigation Diagram has not undergone any change and remains the same as in p
 
 | Name | Github user| Commit 1| Commit 2| Commit 3| Commit 4| Commit 5|
 |--------|------------|-------|---------|---------|---------|---------|
-|Daniel Lahera Esteban| DaniL97 | [Partial implementation of user, login...](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/ad087b43b72b16ff6b462e2328106a8292f1cf99) | [Completed google sign up](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/5c9bba6b064ac2731b65f22722bc0968f6bd3957) | [Added error page](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/f9c5e5266d9418a7f171b355fa129252c4c96630) | [Completed team stats](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/4657be099e0d79cdda93b4c6d7a8869a00f77ef7) | [Added League](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/4fcfe1e8eb333abbfdd1e8fd46a1f6b8dbeb7021)  |
-|Enrique Garrido Gónzalez | kikegg |
-|Daniel Alexander Juan Moreno | dajm92 | [Tournament Logic](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/2c16825de4ef2e521c0695134ba6cd5ae379bca0) | [Round and Matches Logic](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/a51df005d1bf014aa7582509e89302c240320c15) | [Tournament advancement](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/c23fdccdb623b861f141843b9d4da66eda531cf1) | [Tournament User Control](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/a01e013d4d3666104510f4f22fe2ed251cee2dba) | Several Minor fixes |
+|Daniel Lahera Esteban| DaniL97 | 
+[Partial implementation of user, login...](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/ad087b43b72b16ff6b462e2328106a8292f1cf99) | 
+[Completed google sign up](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/5c9bba6b064ac2731b65f22722bc0968f6bd3957) | 
+[Added error page](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/f9c5e5266d9418a7f171b355fa129252c4c96630) | 
+[Completed team stats](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/4657be099e0d79cdda93b4c6d7a8869a00f77ef7) | 
+[Added League](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/4fcfe1e8eb333abbfdd1e8fd46a1f6b8dbeb7021)  |
+|Enrique Garrido Gónzalez | kikegg | Spring Setup 
+[Spring Web Folder Structure](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/0019fb25f66ae9b5c786872d3456bb4351ece4b6) 
+[Header + Footer + 1st Controller](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/f9b5f9cfc11d9262fb31d602ac94728ebf0ce1e4) | 
+[BBDD + Teams + Games](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/de10de937b49725cc73d6248ed172777646a58e0) |
+[Working LoadMores](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/1b72e5703a3ca8163cdef50cbad52eecac196ac1) |
+[Security + Improvements](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/7f152ed7066f2063263e7b02dd557a72d306e34d) |
+[Team-User Joint Operation](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/361ae8476eb5d8ff4eeaee29a90af5a682e1f00f) |
+|Daniel Alexander Juan Moreno | dajm92 | 
+[Tournament Logic](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/2c16825de4ef2e521c0695134ba6cd5ae379bca0) | 
+[Round and Matches Logic](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/a51df005d1bf014aa7582509e89302c240320c15) | 
+[Tournament advancement](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/c23fdccdb623b861f141843b9d4da66eda531cf1) | 
+[Tournament User Control](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/a01e013d4d3666104510f4f22fe2ed251cee2dba) | 
+Several Minor fixes |
 |Jacobo Miguel Blanzaco Barreiro  | jacobobbm |
