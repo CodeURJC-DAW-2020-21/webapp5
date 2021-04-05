@@ -60,7 +60,7 @@ public class WebController {
 		
 		message.setFrom("SpringMail@gmail.com");
 		message.setTo("VictoriusWeb@gmail.com");
-		String mailSubject = name +"has sent a message";
+		String mailSubject = name +" has sent a message";
 		String mailContent = "Sender Name: " + name + "\n"
 							+"Sender Email: " + email + "\n"
 							+"Message Subject: " + subject +"\n"

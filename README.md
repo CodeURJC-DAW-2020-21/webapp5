@@ -201,7 +201,29 @@ The Navigation Diagram has not undergone any change and remains the same as in p
 
 ![Templates Diagram](Screenshots/TemplateDiagramv0.jpg)
 
-### Important Commits by team member
+### Execution Instructions
+
+**Prerrequisites** 
+* Java JDK 11 or newer.
+* MySQL 8.0 or newer.
+* A Browser (Firefox, Google Chrome, Safari, Microsoft Edge...).
+
+**Installation and Running**
+* Clone this repository on your computer or get the code from the release.
+* Create the database in MySQL Workbench with the name Victorious. (Credentials: User = Admin, Password = Pass)
+* In your trusted enviroment, right click on the proyect to Run as Spring Boot App
+* Finally you can open your selected browser to access the web application from: https://localhost:8443
+
+### Participation
+
+## Member's Work
+
+* **Daniel Lahera Esteban**:
+* **Enrique Garrido Gónzalez**: He has taken care of the setup of the Spring Proyect, leaving the first Controller, Repository and Service created as the basis for the rest of the team. He has worked on the creation of the MySQL database, focusing mainly on the Teams, Games and User classes where he has done most of the logic. He has also been in charge of introducing and developing the security for the web, the creation of the buttons with the load more functionality and helped all of the members with their tasks.
+* **Daniel Alexander Juan Moreno**:
+* **Jacobo Miguel Blanzaco Barreiro**:
+
+## Member's Important Commits
 
 | Name | Github user| Commit 1| Commit 2| Commit 3| Commit 4| Commit 5|
 |--------|------------|-------|---------|---------|---------|---------|
@@ -209,3 +231,12 @@ The Navigation Diagram has not undergone any change and remains the same as in p
 |Enrique Garrido Gónzalez | kikegg | Spring Project Setup: [Spring Web Folder Structure](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/0019fb25f66ae9b5c786872d3456bb4351ece4b6) + [Header + Footer + 1st Controller](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/f9b5f9cfc11d9262fb31d602ac94728ebf0ce1e4) | [BBDD + Teams + Games](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/de10de937b49725cc73d6248ed172777646a58e0) |[Working LoadMores](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/1b72e5703a3ca8163cdef50cbad52eecac196ac1) |[Security + Improvements](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/7f152ed7066f2063263e7b02dd557a72d306e34d) |[Team-User Joint Operation](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/361ae8476eb5d8ff4eeaee29a90af5a682e1f00f) |
 |Daniel Alexander Juan Moreno | dajm92 | [Tournament Logic](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/2c16825de4ef2e521c0695134ba6cd5ae379bca0) | [Round and Matches Logic](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/a51df005d1bf014aa7582509e89302c240320c15) | [Tournament advancement](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/c23fdccdb623b861f141843b9d4da66eda531cf1) | [Tournament User Control](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/a01e013d4d3666104510f4f22fe2ed251cee2dba) | Several Minor fixes |
 |Jacobo Miguel Blanzaco Barreiro  | jacobobbm |[Contact Mail System](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/cd35e8ad8de8f00a3ddb17ec168d42027da1237e)|[Join Tournament](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/ccb7e9324da9917324fbb163f8e5cd3e59c82d48) | [Round and Matches addition](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/a51df005d1bf014aa7582509e89302c240320c15) | UML Class Diagram | Other fixes |
+
+## Member's Most Focused Files
+| Name | Github user| File 1| File 2| File 3| File 4| File 5|
+|--------|------------|-------|---------|---------|---------|---------|
+|Daniel Lahera Esteban| DaniL97 |
+|Enrique Garrido Gónzalez | kikegg | [Data Base Initializer](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/DataBaseInitializer.java)| [Team Controller](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/team/TeamController.java) | [Team Java](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/team/Team.java) | [Team Load More](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/resources/static/js-backend/loadMoreTeams.js) + [Tournament Load More](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/resources/static/js-backend/loadMoreTournaments.js) | Security: [CSRFHandlerConfiguration](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/security/CSRFHandlerConfiguration.java) + [RepositoryUserDetails](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/security/RepositoryUserDetailsService.java) + [SecurityConfiguration](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/security/SecurityConfiguration.java) |
+|Daniel Alexander Juan Moreno | dajm92 |
+|Daniel Lahera Esteban| DaniL97 |
+|Jacobo Miguel Blanzaco Barreiro  | jacobobbm |
