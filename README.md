@@ -20,9 +20,9 @@ In addition to that, you can create your own team, apply for others or simply wa
 
 User, Team, Tournament, Game
 
-* **User**: They can participate in tornaments and be part of different teams.
+* **User**: They can participate in tornaments being part of a team.
 * **Team**: Composed by several users. Can have multiple games.
-* **Tournaments**: Composed by several teams or users. Associated to one game at a time. There are official tounaments created by the admin and non-official created by users.
+* **Tournaments**: Composed by several teams. Associated to one game at a time.
 
 ### Users and permissions
 
@@ -48,54 +48,59 @@ Login with third parties IDP
 The web aplication will also generate new rounds with their matchups every time the admin or the creator of the tournament validates the round to advance into the next, until the tournament have a winner.
 - The web application has a classification that will be updated automatically based on the official tournaments and the points achieved by the teams that participate in them. 
 
-## FASE 1
+## PHASE 1
 
-### Screenshots
+### Web Page Screenshots
 
 **Home:**
 
 ![home](Screenshots/Home.jpg)
 Homescreen from where you land when you enter the app, it gives you a general view of everything the apps offers.
 
-**League:**
+**Teams:**
 
-![league](Screenshots/League.jpg)
-It shows the general clasification for the games that the teams played, it will be automatically updated once the matches end.
+![teams](Screenshots/Teams.jpg)
+This screen shows a list of all the teams managed in our database. From here also you can create a new team.
 
 **Team:**
 
 ![team](Screenshots/Team.jpg)
 Shows general info about an individual team, you can see from here statistics from their games, tournaments where they are participating and you can also check its members.
 
-**Teams:**
+**Tournaments:**
 
-![teams](Screenshots/Teams.jpg)
-This screen shows a list of all the teams managed in our database. From here also you can create a new team.
+![tournaments](Screenshots/Tournaments.jpg)
+From here you can see a list of the created tournaments and if possible you can join one of them to participate. Also you can create a new tournament to be played.
 
 **Tournament:**
 
 ![tournament](Screenshots/Tournament.jpg)
 From this screen you can check the information from an tournament, you can see team that are participating in, the results from the current round, and also admins can manage the tournament from an special tab where they can pass to the next round and start the tournament.
 
-**Tournaments:**
+**League:**
 
-![tournaments](Screenshots/Tournaments.jpg)
-From here you can see a list of the created tournaments and if possible you can join one of them to participate. Also you can create a new tournament to be played.
+![league](Screenshots/League.jpg)
+It shows the general clasification for the games that the teams played, it will be automatically updated once the matches end.
 
 **Login:**
 
 ![login](Screenshots/Login.jpg)
-- Login: Screen that checks if the user exist in the database and if the password match, grants permission to edit user, participate in tournaments,etc.
+Screen that checks if the user exist in the database and if the password match, grants permission to edit user, participate in tournaments,etc.
 
 **Sign Up:**
 
 ![sign-up](Screenshots/Sign-up.jpg)
 This screen uses the data introduced to create a new user in the database.
 
+**User**
+
+![User](Screenshots/User.jpg)
+From this screen you can see the user's information, such as their accounts or the team in which they participate
+
 **Settings:**
 
 ![settings](Screenshots/Settings.jpg)
-Form here a user can change its user attributes: avatar, accounts, nick, email and password. This is only avilable for normal users.
+Form here a user can change the user attributes: avatar, accounts, nick, email and password. This is available for every registered user.
 
 **Contact:**
 
@@ -106,6 +111,72 @@ Screen that shows information about the web app in general, also it allow users 
 ![Navigation Diagram](Screenshots/NavigationDiagram.jpg)
 
 ![Nav](Screenshots/Nav.jpg)
+
+## PHASE 2
+
+### Web Page Screenshots
+
+The description and usefulness of the screens on our website is still the same presented in Phase 1, but in the following screenshots we can see the evolution of the website
+
+**Home:**
+
+![home](Screenshots/WebHome.jpg)
+
+**Teams:**
+
+![teams](Screenshots/WebTeams.jpg)
+
+As said, from here we can create a new Team:
+
+![newTeam](Screenshots/NewTeam.jpg)
+
+**Team:**
+
+![team](Screenshots/WebTeam.jpg)
+
+With the user controll implemented, from here the administrator can change the team image, accept user requests and control them:
+
+![team](Screenshots/WebTeamAdmin.jpg)
+
+**Tournaments:**
+
+![tournaments](Screenshots/WebTournaments.jpg)
+
+As said, from here we can create a new Tournament:
+
+![newTournament](Screenshots/NewTournament.jpg)
+
+**Tournament:**
+
+![tournament](Screenshots/WebTournament.jpg)
+
+**League:**
+
+![league](Screenshots/WebLeague.jpg)
+
+**Login:**
+
+![login](Screenshots/WebLogin.jpg)
+
+**Sign Up:**
+
+![sign-up](Screenshots/WebSign-up.jpg)
+
+**User**
+
+![User](Screenshots/WebUser.jpg)
+
+**Settings:**
+
+![settings](Screenshots/WebSettings.jpg)
+
+**Contact:**
+
+![contact](Screenshots/WebContact.jpg)
+
+### Navigation Diagram
+
+The Navigation Diagram has not undergone any change and remains the same as in phase 1, because we contemplate all the pages with their relationships in a precise way.
 
 ### Database Diagram
 
