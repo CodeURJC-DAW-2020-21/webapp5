@@ -214,16 +214,16 @@ The Navigation Diagram has not undergone any change and remains the same as in p
 * In your trusted enviroment, right click on the proyect to Run as Spring Boot App
 * Finally you can open your selected browser to access the web application from: https://localhost:8443
 
-### Participation
+## Participation
 
-## Member's Work
+ **Member's Work**
 
-* **Daniel Lahera Esteban**:
+* **Daniel Lahera Esteban**: He was in charge of creating the base of user, that means creating user, userControler, userReopsitory userService and userServiceImp, after that he added the option to sign up with google. Later he created the error page that shows when an error ocurrs in the webpage, and finally he included 4 extra attributes in team and used them to create the chart of victories and defeats and the league/ranking that updates automatically.  
 * **Enrique Garrido Gónzalez**: He has taken care of the setup of the Spring Proyect, leaving the first Controller, Repository and Service created as the basis for the rest of the team. He has worked on the creation of the MySQL database, focusing mainly on the Teams, Games and User classes where he has done most of the logic. He has also been in charge of introducing and developing the security for the web, the creation of the buttons with the load more functionality and helped all of the members with their tasks.
 * **Daniel Alexander Juan Moreno**:
 * **Jacobo Miguel Blanzaco Barreiro**:
 
-## Member's Important Commits
+**Member's Important Commits**
 
 | Name | Github user| Commit 1| Commit 2| Commit 3| Commit 4| Commit 5|
 |--------|------------|-------|---------|---------|---------|---------|
@@ -232,10 +232,10 @@ The Navigation Diagram has not undergone any change and remains the same as in p
 |Daniel Alexander Juan Moreno | dajm92 | [Tournament Logic](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/2c16825de4ef2e521c0695134ba6cd5ae379bca0) | [Round and Matches Logic](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/a51df005d1bf014aa7582509e89302c240320c15) | [Tournament advancement](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/c23fdccdb623b861f141843b9d4da66eda531cf1) | [Tournament User Control](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/a01e013d4d3666104510f4f22fe2ed251cee2dba) | Several Minor fixes |
 |Jacobo Miguel Blanzaco Barreiro  | jacobobbm |[Contact Mail System](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/cd35e8ad8de8f00a3ddb17ec168d42027da1237e)|[Join Tournament](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/ccb7e9324da9917324fbb163f8e5cd3e59c82d48) | [Round and Matches addition](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/a51df005d1bf014aa7582509e89302c240320c15) | UML Class Diagram | Other fixes |
 
-## Member's Most Focused Files
+**Member's Most Focused Files**
 | Name | Github user| File 1| File 2| File 3| File 4| File 5|
 |--------|------------|-------|---------|---------|---------|---------|
-|Daniel Lahera Esteban| DaniL97 |
+|Daniel Lahera Esteban| DaniL97 | [User](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase2/victorious_web/src/main/java/com/victorious/user/User.java) | [UserController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase2/victorious_web/src/main/java/com/victorious/user/UserController.java) | [UserServiceImp](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase2/victorious_web/src/main/java/com/victorious/user/UserServiceImp.java) | [league html](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase2/victorious_web/src/main/resources/templates/league.html) | [error](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase2/victorious_web/src/main/resources/static/css/error.css) |
 |Enrique Garrido Gónzalez | kikegg | [Data Base Initializer](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/DataBaseInitializer.java)| [Team Controller](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/team/TeamController.java) | [Team Java](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/team/Team.java) | [Team Load More](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/resources/static/js-backend/loadMoreTeams.js) + [Tournament Load More](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/resources/static/js-backend/loadMoreTournaments.js) | Security: [CSRFHandlerConfiguration](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/security/CSRFHandlerConfiguration.java) + [RepositoryUserDetails](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/security/RepositoryUserDetailsService.java) + [SecurityConfiguration](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/security/SecurityConfiguration.java) |
 |Daniel Alexander Juan Moreno | dajm92 |
 |Daniel Lahera Esteban| DaniL97 |
