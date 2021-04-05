@@ -55,59 +55,71 @@ The web aplication will also generate new rounds with their matchups every time 
 **Home:**
 
 Homescreen from where you land when you enter the app, it gives you a general view of everything the apps offers.
+
 ![home](Screenshots/Home.jpg)
 
 **Teams:**
 
 This screen shows a list of all the teams managed in our database. From here also you can create a new team.
+
 ![teams](Screenshots/Teams.jpg)
 
 **Team:**
 
 Shows general info about an individual team, you can see from here statistics from their games, tournaments where they are participating and you can also check its members.
+
 ![team](Screenshots/Team.jpg)
 
 **Tournaments:**
 
 From here you can see a list of the created tournaments and if possible you can join one of them to participate. Also you can create a new tournament to be played.
+
 ![tournaments](Screenshots/Tournaments.jpg)
 
 **Tournament:**
 
 From this screen you can check the information from an tournament, you can see team that are participating in, the results from the current round, and also admins can manage the tournament from an special tab where they can pass to the next round and start the tournament.
+
 ![tournament](Screenshots/Tournament.jpg)
 
 **League:**
 
 It shows the general clasification for the games that the teams played, it will be automatically updated once the matches end.
+
 ![league](Screenshots/League.jpg)
 
 **Login:**
 
 Screen that checks if the user exist in the database and if the password match, grants permission to edit user, participate in tournaments,etc.
+
 ![login](Screenshots/Login.jpg)
 
 **Sign Up:**
 
 This screen uses the data introduced to create a new user in the database.
+
 ![sign-up](Screenshots/Sign-up.jpg)
 
 **User**
 
 From this screen you can see the user's information, such as their accounts or the team in which they participate
+
 ![User](Screenshots/User.jpg)
 
 **Settings:**
 
 Form here a user can change the user attributes: avatar, accounts, nick, email and password. This is available for every registered user.
+
 ![settings](Screenshots/Settings.jpg)
 
 **Contact:**
 
 Screen that shows information about the web app in general, also it allow users to send us some feedback via short message.
+
 ![contact](Screenshots/Contact.jpg)
 
 ### Navigation Diagram
+
 ![Navigation Diagram](Screenshots/NavigationDiagram.jpg)
 
 ![Nav](Screenshots/Nav.jpg)
@@ -181,6 +193,10 @@ The Navigation Diagram has not undergone any change and remains the same as in p
 ### Database Diagram
 
 ![DataBase Diagram](Screenshots/DBDiagramv2.jpg)
+
+### Templates Diagram
+
+![Templates Diagram](Screenshots/TemplateDiagramv0.jpg)
 
 ### Important Commits by team member
 
