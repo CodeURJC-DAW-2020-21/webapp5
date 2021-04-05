@@ -191,7 +191,7 @@ As said, from here we can create a new Tournament:
 The Navigation Diagram has not undergone any change and remains the same as in phase 1, because we contemplate all the pages with their relationships in a precise way.
 
 ### UML Class Diagram
-![UML class diagram](Screnshots/UML.jpg)
+![UML class diagram](Screenshots/UML.jpg)
 
 ### Database Diagram
 
