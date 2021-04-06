@@ -24,6 +24,15 @@
             <div class="col-md-9">
                 <h4>{{actualTournament.name}} </h4>
                 <div class="champ-date"><i class="fa fa-calendar" aria-hidden="true"></i>{{actualTournament.iniDate}}</div>
+                {{#tournamentError}}
+				<div class="row">
+					<div class="container">
+						<div class="col-md-12">
+							<div class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a> <strong>An Error occurred in Tournament: {{actualTournament.name}}.</strong> </div>
+						</div>
+					</div>
+				</div>
+				{{/tournamentError}}
             </div>
             {{#logged}}
 			{{^started}}

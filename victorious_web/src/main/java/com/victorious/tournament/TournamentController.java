@@ -150,7 +150,7 @@ public class TournamentController {
 		Tournament tournament = tournamentService.findById(id).get();
 		String userName = (String) model.getAttribute("userName");      
 		User user = userService.findByName(userName).get();   
-		if ((boolean) model.getAttribute("logged") && tournament!=null && !tournament.getParticipants().contains(user.getTeam())) {
+		if ((boolean) model.getAttribute("logged") && tournament != null && user.getTeam() != null && !tournament.getParticipants().contains(user.getTeam())) {
 			tournament.addTeam(user.getTeam());
 			user.getTeam().addTournament(tournament);
 			teamService.saveTeam(user.getTeam());
