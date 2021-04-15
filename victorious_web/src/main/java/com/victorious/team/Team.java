@@ -18,56 +18,71 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.victorious.user.User;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.victorious.game.Game;
 import com.victorious.tournament.Tournament;
 
 @Entity
 public class Team {
+	public interface Basico{}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Basico.class)
 	private Long id;
 	
 	@Column(nullable = false)
+	@JsonView(Basico.class)
 	private String name;
 	
+	@JsonView(Basico.class)
 	@Column(length = 1000, nullable = true)
 	private String description;
-	
+
 	@ManyToMany(cascade = CascadeType.MERGE)
 	private List<Tournament> tournaments;
 	
+	//@JsonView(Basico.class)
 	@ManyToMany
 	private List<Game> games;
 	
 	@OneToOne
+	//@JsonView(Basico.class)
 	private User creator;
 	
 	@OneToMany(mappedBy="team")
+//	@JsonView(Basico.class)
 	private List<User> users;
 	
 	@ManyToMany
+//	@JsonView(Basico.class)
 	private List<User> admins;
 	
 	@ElementCollection
 	@CollectionTable(name ="requests")
+//	@JsonView(Basico.class)
 	private List<Long> requests;
 	
 	@Lob
+//	@JsonView(Basico.class)
 	private Blob imageFile;
 	
 	private boolean image;
 	
 	@Column
+//	@JsonView(Basico.class)
 	private int nVictories;
 
 	@Column
+//	@JsonView(Basico.class)
 	private int nLoses;
 	
 	@Column
+//	@JsonView(Basico.class)
 	private String recordV;
 	
 	@Column
+//	@JsonView(Basico.class)
 	private String recordL;
 
 	public Team() {}
