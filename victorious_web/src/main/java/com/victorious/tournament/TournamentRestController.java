@@ -35,7 +35,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @RequestMapping("/api/tournaments")
 public class TournamentRestController {
 		
-		interface TournamentDetails extends Tournament.Basic, Tournament.Teams, Team.Basico {}
+		interface TournamentDetails extends Tournament.Basic, Tournament.Teams, Team.Basic {}
 	
 		@Autowired
 	    TournamentService tournamentService;

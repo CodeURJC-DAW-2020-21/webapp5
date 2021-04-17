@@ -18,71 +18,75 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.victorious.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.victorious.game.Game;
 import com.victorious.tournament.Tournament;
 
 @Entity
 public class Team {
-	public interface Basico{}
+	
+	public interface Basic{}
+	public interface Users{}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@JsonView(Basico.class)
+	@JsonView(Basic.class)
 	private Long id;
 	
 	@Column(nullable = false)
-	@JsonView(Basico.class)
+	@JsonView(Basic.class)
 	private String name;
 	
-	@JsonView(Basico.class)
 	@Column(length = 1000, nullable = true)
+	@JsonView(Basic.class)
 	private String description;
 
 	@ManyToMany(cascade = CascadeType.MERGE)
 	private List<Tournament> tournaments;
 	
-	//@JsonView(Basico.class)
 	@ManyToMany
+	@JsonView(Basic.class)
 	private List<Game> games;
 	
 	@OneToOne
-	//@JsonView(Basico.class)
+	@JsonView(Basic.class)
 	private User creator;
 	
 	@OneToMany(mappedBy="team")
-//	@JsonView(Basico.class)
+	@JsonView(Users.class)
 	private List<User> users;
 	
 	@ManyToMany
-//	@JsonView(Basico.class)
+	@JsonView(Users.class)
 	private List<User> admins;
 	
 	@ElementCollection
 	@CollectionTable(name ="requests")
-//	@JsonView(Basico.class)
+	@JsonView(Basic.class)
 	private List<Long> requests;
 	
 	@Lob
-//	@JsonView(Basico.class)
+	@JsonIgnore
 	private Blob imageFile;
 	
+	@JsonIgnore
 	private boolean image;
 	
 	@Column
-//	@JsonView(Basico.class)
+	@JsonView(Basic.class)
 	private int nVictories;
 
 	@Column
-//	@JsonView(Basico.class)
+	@JsonView(Basic.class)
 	private int nLoses;
 	
 	@Column
-//	@JsonView(Basico.class)
+	@JsonView(Basic.class)
 	private String recordV;
 	
 	@Column
-//	@JsonView(Basico.class)
+	@JsonView(Basic.class)
 	private String recordL;
 
 	public Team() {}
