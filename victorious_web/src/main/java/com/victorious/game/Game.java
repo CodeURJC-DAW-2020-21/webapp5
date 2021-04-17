@@ -8,19 +8,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Game {
 	
+	public interface Basic{}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Basic.class)
 	private Long id;
 	
+	@JsonView(Basic.class)
 	private String name;
 	
 	@Lob
+	@JsonIgnore
 	private Blob imageFile;
 	
+	@JsonIgnore
 	private boolean image;
 	
 	protected Game(){}
