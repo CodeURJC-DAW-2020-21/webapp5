@@ -1,4 +1,3 @@
-//userrestcontroller
 package com.victorious.user;
 
 import java.security.Principal;
@@ -17,15 +16,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.victorious.team.Team;
+import com.victorious.game.Game;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserRestController {
+	
+	interface UserDetails extends User.Basic, User.UserTeam, Team.Basic, Game.Basic {}
 
     @Autowired
     private UserService userService;
 
     @GetMapping("/logged")
+    @JsonView(UserDetails.class)
     public ResponseEntity<User> logged(HttpServletRequest request) {
 
         Principal principal = request.getUserPrincipal();
@@ -37,18 +42,19 @@ public class UserRestController {
         }
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> user (@PathVariable Long id){
-        Optional<User> oUser = userService.findById(id);
+    @GetMapping("/{name}")
+    @JsonView(UserDetails.class)
+    public ResponseEntity<?> user (@PathVariable String name){
+        Optional<User> oUser = userService.findByName(name);
         if(!oUser.isPresent()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(oUser);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser (@RequestBody User user, @PathVariable Long id){
-        Optional<User> oUser = userService.findById(id);
+    @PutMapping("/{name}")
+    public ResponseEntity<?> updateUser (@RequestBody User user, @PathVariable String name){
+        Optional<User> oUser = userService.findByName(name);
         if(!oUser.isPresent()) {
             return ResponseEntity.notFound().build();
         }
@@ -68,7 +74,8 @@ public class UserRestController {
     @PostMapping("/")
     public ResponseEntity<User> newUser (@RequestBody User user){
         String name = user.getName();
-        if(userService.findByName(name).isPresent()) {
+        String email = user.getEmail();
+        if(userService.findByName(name).isPresent() && userService.findByEmail(email).isPresent()) {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(user));
