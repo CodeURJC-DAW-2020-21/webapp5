@@ -13,40 +13,57 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.victorious.team.Team;
 
 @Entity
 public class User {
 	
+	public interface Basic{}
+	public interface UserTeam{}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Basic.class)
 	private Long id;
 	
 	@Column(nullable = false)
+	@JsonView(Basic.class)
 	private String name;
 	
 	@Column(nullable = false)
+	@JsonView(Basic.class)
 	private String email;
 	
 	@Column(nullable = false)
+	@JsonIgnore
 	private String encodedPassword;
 	
 	@Lob
+	@JsonIgnore
 	private Blob imageFile;
 	
+	@JsonIgnore
 	private boolean image;
 	
 	@ManyToOne
+	@JsonView(UserTeam.class)
 	private Team team; 
 	
 	@ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles;
 	
-	//Game Accounts 
+	//Game Accounts
+	@JsonView(Basic.class)
 	private String riot;
+	@JsonView(Basic.class)
 	private String blizzard;
+	@JsonView(Basic.class)
 	private String psn;
+	@JsonView(Basic.class)
 	private String xbox;
+	@JsonView(Basic.class)
 	private String steam;
 	
 	public User() {}

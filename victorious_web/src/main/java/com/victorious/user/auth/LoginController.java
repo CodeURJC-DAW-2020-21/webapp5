@@ -1,4 +1,3 @@
-//login controller
 package com.victorious.user.auth;
 
 import javax.servlet.http.HttpServletRequest;
