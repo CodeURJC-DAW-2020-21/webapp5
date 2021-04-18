@@ -1,7 +1,15 @@
 package com.victorious.team;
 
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,14 +19,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.victorious.ImageService;
 
 @RestController
 @RequestMapping("/api/teams")
 public class TeamRestController {
 	
+	private static final String POSTS_FOLDER = "posts";
+	
 	@Autowired
 	private TeamService teamService;
+	
+	@Autowired 
+	private ImageService imgService;
 	
 	//Create a new team
 	@PostMapping(value="/")
@@ -59,4 +76,36 @@ public class TeamRestController {
 		teamService.deleteById(id);
 		return ResponseEntity.ok().build();
 	}*/
+	
+	@GetMapping("/{name}/image")
+	public ResponseEntity<Object> downloadUserImage(@PathVariable String name, HttpServletRequest request) throws MalformedURLException {
+		
+		Optional<Team> team = teamService.findByName(name);
+		
+		if (team.isPresent()) {
+			return this.imgService.createResponseFromImage(POSTS_FOLDER, team.get().getId());
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+    
+    @PostMapping("/{name}/image")
+	public ResponseEntity<Object> uploadUserImage(@PathVariable String name, @RequestParam MultipartFile imageFile, HttpServletRequest request) throws IOException {
+
+    	Optional<Team> team = teamService.findByName(name);
+    	
+		if (team.isPresent()) {
+			
+			URI location = fromCurrentRequest().build().toUri();
+			
+			team.get().setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+			teamService.saveTeam(team.get());
+			imgService.saveImage(POSTS_FOLDER, team.get().getId(), imageFile);
+			
+			return ResponseEntity.created(location).build();
+
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
 }
