@@ -1,9 +1,14 @@
 package com.victorious.tournament;
 
 import java.net.URI;
+import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,9 +23,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.victorious.game.Game;
 import com.victorious.game.GameService;
 import com.victorious.team.Team;
 import com.victorious.team.TeamService;
+import com.victorious.user.User;
 import com.victorious.user.UserService;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -30,7 +37,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @RequestMapping("/api/tournaments")
 public class TournamentRestController {
 		
-		interface TournamentDetails extends Tournament.Basic, Tournament.Teams, Team.Basic {}
+		interface TournamentDetails extends Tournament.Basic, Tournament.Teams, Team.Basic, Game.Basic {}
 		interface RoundDetails extends Rounds.Basic, Team.Basic, MatchUp.Basic {}
 		interface MatchDetails extends MatchUp.Basic, Team.Basic{}
 	
@@ -53,6 +60,7 @@ public class TournamentRestController {
 		MatchService matchService; 
 		
 		@GetMapping("/pages")
+		@JsonView(TournamentDetails.class)
 		public ResponseEntity <Page <Tournament>> getTournametPage (Pageable page){
 			Page <Tournament> tournamentPage = tournamentService.findAll(page);
 			
@@ -83,11 +91,13 @@ public class TournamentRestController {
 			}
 		}
 	
-		@PostMapping("/new-tournament")
+		@PostMapping("/")
+		@JsonView(TournamentDetails.class)
 		public ResponseEntity<Tournament> createTournament(@RequestBody Tournament tournament){
-			
-			if (!tournamentService.findById(tournament.getId()).isPresent() && 
-			!tournamentService.findByName(tournament.getName()).isPresent()) { // IF the new tournament not exists
+			if (!tournamentService.findByName(tournament.getName()).isPresent()) {			
+				String gameName = tournament.getGame().getName();
+				Game tgame = gameService.findByName(gameName).get(); 
+				tournament.setGame(tgame);
 				
 				tournamentService.saveTournament(tournament);
 				
@@ -103,11 +113,17 @@ public class TournamentRestController {
 		}
 			
 		@PutMapping("/{id}")
+		@JsonView(TournamentDetails.class)
 		public ResponseEntity<Tournament> replaceTournament(@PathVariable long id,
-			@RequestBody Tournament newTournament){
+			@RequestBody Tournament newTournament, HttpServletRequest request){
+			Principal principal = request.getUserPrincipal();
+			String userLoggedName = principal.getName();
+			Optional<User> userLogged = userService.findByName(userLoggedName);
+			
 			Optional <Tournament> tournament = tournamentService.findById(id);
 			
-			if (tournament.isPresent()) {
+	    	boolean isAdmin = (((tournament.get().getAdmin() != null) && (tournament.get().getAdmin().equals(userLogged.get()))) || (userLogged.get().getRoles().contains("ADMIN")));
+			if (tournament.isPresent() && isAdmin) {
 				newTournament.setId(id);
 				tournamentService.saveTournament(newTournament);
 				
@@ -120,8 +136,8 @@ public class TournamentRestController {
 			
 		}
 		
-		@JsonView(Team.Basic.class)
 		@GetMapping("/{tournamentId}/participants")
+		@JsonView(Team.Basic.class)
 		public ResponseEntity< Collection<Team> > getTournamentParticipants(@PathVariable Long tournamentId){
 			Optional<Tournament> tournament = tournamentService.findById(tournamentId);
 
@@ -132,8 +148,8 @@ public class TournamentRestController {
 			}
 		}
 
-		@JsonView(Team.Basic.class)
 		@GetMapping("/{tournamentId}/participants/{teamId}")
+		@JsonView(Team.Basic.class)
 		public ResponseEntity<Team> getTournamentParticipant(@PathVariable Long tournamentId, @PathVariable Long teamId ){
 			Optional<Tournament> tournament = tournamentService.findById(tournamentId);
 			Optional<Team> team = teamService.findById(teamId);
@@ -151,18 +167,25 @@ public class TournamentRestController {
 		}
 				
 	    @PostMapping("/{tournamentId}/participants")
-		public ResponseEntity<Team> addParticipantToTournament(@RequestBody Team team, @PathVariable Long tournamentId){
-			Optional<Tournament> tournament = tournamentService.findById(tournamentId);
+	    @JsonView(Team.Basic.class)
+		public ResponseEntity<Team> addParticipantToTournament(@RequestBody Team team, @PathVariable Long tournamentId, HttpServletRequest request){
+	    	Principal principal = request.getUserPrincipal();
+			String userLoggedName = principal.getName();
+			Optional<User> userLogged = userService.findByName(userLoggedName);
 			
-			teamService.saveTeam(team);
-			if(!tournament.get().getParticipants().contains(team)) {
-				tournament.get().addTeam(team);
+			Optional<Tournament> tournament = tournamentService.findById(tournamentId);
+			Optional<Team> teamAdd = teamService.findByName(team.getName());
+			
+			if(userLogged.get().getTeam().equals(teamAdd.get()) && !tournament.get().getParticipants().contains(teamAdd.get())) {
+				tournament.get().addTeam(teamAdd.get());
+				teamAdd.get().addTournament(tournament.get());
+				teamService.saveTeam(teamAdd.get());
 				tournamentService.saveTournament(tournament.get());
 				
 				URI location = fromCurrentRequest().path("/{id}")
-						.buildAndExpand(team.getId()).toUri();
+						.buildAndExpand(teamAdd.get().getId()).toUri();
 					
-				return ResponseEntity.created(location).body(team);
+				return ResponseEntity.created(location).body(teamAdd.get());
 				
 			}else {
 				return ResponseEntity.notFound().build();				
@@ -195,78 +218,87 @@ public class TournamentRestController {
 			}
 		}
 	    
-	    @PostMapping("/{tournamentId}/")
-	    public ResponseEntity<Collection<Rounds>> createRounds(@RequestBody List <Rounds> rounds, @PathVariable  Long tournamentId){
+	    @PostMapping("/{tournamentId}/rounds")
+	    @JsonView(RoundDetails.class)
+	    public ResponseEntity<Rounds> createRounds(@PathVariable  Long tournamentId, HttpServletRequest request){
+	    	Principal principal = request.getUserPrincipal();
+			String userLoggedName = principal.getName();
+			Optional<User> userLogged = userService.findByName(userLoggedName);
 	    	Optional <Tournament> tournament = tournamentService.findById(tournamentId); 
 	    	
-	    	if (tournament.isPresent()) {
-	    		tournament.get().setRounds(rounds);
-	    		tournamentService.saveTournament(tournament.get());
-	    		
-	    		URI location = fromCurrentRequest().path("/rounds").buildAndExpand().toUri();
-	    		return ResponseEntity.created(location).body(rounds);
-	    	
-	    	}else{
-				return ResponseEntity.notFound().build();				
+	    	boolean isAdmin = (((tournament.get().getAdmin() != null) && (tournament.get().getAdmin().equals(userLogged.get()))) || (userLogged.get().getRoles().contains("ADMIN")));
+	    	if (tournament.isPresent() && isAdmin) {
+	    		if(!tournament.get().isStarted()) {
+	    			List<Team> participants = new ArrayList<Team>(tournament.get().getParticipants());
+	    			Collections.shuffle(participants);
+	    			Rounds round = new Rounds(participants);
+	    			if(!round.isEvenRound()){
+	    				round.setOddRound();
+	    			}
+	    			//
+	    			int i=0;
+	    			while(i<round.getParticipants().size()){
+	    				MatchUp matchUp = new MatchUp(round.getParticipants().get(i), round.getParticipants().get(i+1));
+	    				matchService.saveMatch(matchUp);
+	    				round.addMatch(matchUp);
+	    				i=i+2;
+	    			}
+	    			//
+	    			roundsService.saveRounds(round);
+	    			tournament.get().addRound(round);
+	    			round.setNumRound(tournament.get().getRoundNumber());
+	    			roundsService.saveRounds(round);
+	    			tournament.get().setStarted(true);
+	    			tournamentService.saveTournament(tournament.get());
+	    			
+	    			URI location = fromCurrentRequest().path("/{id}").buildAndExpand(round.getId()).toUri();
+		    		return ResponseEntity.created(location).body(round);
+		    		
+	    		}else if(tournament.get().isFinished() == false){
+	    			int j = 0;
+	    			while(j<tournament.get().getRounds().get(tournament.get().getRoundNumber()-1).getMatches().size()){
+	    				tournament.get().getRounds().get(tournament.get().getRoundNumber()-1).getMatches().get(j).setPlayed(true);
+	    				j++;
+	    			}
+	    			List<Team> participants = new ArrayList<Team>(tournament.get().getRounds().get(tournament.get().getRoundNumber()-1).getWinners());
+	    			if(participants.size()>1){
+	    				Collections.shuffle(participants);
+	    				Rounds round = new Rounds(participants);
+	    				if(!round.isEvenRound()){
+	    					round.setOddRound();
+	    				}
+	    				//
+	    				int i=0;
+	    				while(i<round.getParticipants().size()){
+	    					MatchUp matchUp = new MatchUp(round.getParticipants().get(i), round.getParticipants().get(i+1));
+	    					matchService.saveMatch(matchUp);
+	    					round.addMatch(matchUp);
+	    					i=i+2;
+	    				}
+	    				//
+	    				roundsService.saveRounds(round);
+	    				tournament.get().addRound(round);
+	    				round.setNumRound(tournament.get().getRoundNumber());
+	    				roundsService.saveRounds(round);
+	    				tournamentService.saveTournament(tournament.get());
+	    				
+	    				URI location = fromCurrentRequest().path("/{id}").buildAndExpand(round.getId()).toUri();
+	    	    		return ResponseEntity.created(location).body(round);
+	    	    		
+	    			}else {
+	    				tournament.get().setFinished(true);
+	    				tournament.get().setWinner(participants.get(0));
+	    				tournamentService.saveTournament(tournament.get());
+	    				
+	    				return ResponseEntity.ok().build();
+	    			}	    
+	    		} else {
+	    			return ResponseEntity.badRequest().build();	
+	    		}
+	    	}else {
+				return ResponseEntity.badRequest().build();				
 	    	}
-	    	
-	    }
-	    
-	    @PostMapping("/{tournamentId}/rounds/")
-	    public ResponseEntity<Rounds> createRound(@RequestBody Rounds round,
-	    		@PathVariable  Long tournamentId, 
-	    		@PathVariable  int roundNumber){
-	    	Optional <Tournament> tournament = tournamentService.findById(tournamentId); 
-	    	
-	    	if (tournament.isPresent() ) {
-	    		//MEM
-	    		tournament.get().getRounds().add(round);
-	    		tournamentService.saveTournament(tournament.get());
-	    		
-	    		URI location = fromCurrentRequest().path("/{roundId}")
-	    				.buildAndExpand(round.getId()).toUri();
-	    		return ResponseEntity.created(location).body(round);
-	    	
-	    	}else{
-				return ResponseEntity.notFound().build();				
-	    	}
-	    	
-	    }
-	    
-	    @PutMapping("/{tournamentId}/rounds")
-	    public ResponseEntity < Collection <Rounds> > replaceRounds(@PathVariable Long tournamentId, @RequestBody List<Rounds> newRounds ){
-	    	Optional <Tournament> tournament = tournamentService.findById(tournamentId);
-	    	
-	    	if (tournament.isPresent()) {
-	    		tournament.get().setRounds(newRounds);
-	    		tournamentService.saveTournament(tournament.get());
-	    		return ResponseEntity.ok(tournament.get().getRounds());
-	    		
-	    	}else{
-	    		return ResponseEntity.notFound().build();
-	    	}
-	    }
-	    
-	    @PutMapping("/{tournamentId}/rounds/{roundId}")
-	    public ResponseEntity <Rounds>  replaceRounds(@PathVariable Long tournamentId,
-	    		@PathVariable Long roundId,
-	    		@RequestBody Rounds newRound ){
-	    	int roundIndex; 
-	    	Optional <Tournament> tournament = tournamentService.findById(tournamentId);
-	    	Optional <Rounds> round = roundsService.findById(roundId);
-	    	
-	    	if (tournament.isPresent() && round.isPresent() && tournament.get().getRounds().contains(round.get()) && newRound.getId() == round.get().getId() ) {
-	    		List <Rounds> rounds = tournament.get().getRounds();
-	    		roundIndex = rounds.indexOf(round.get());
-	    		rounds.remove(roundIndex);
-	    		rounds.set(roundIndex, newRound);
-	    		tournamentService.saveTournament(tournament.get());
-	    		
-	    		return ResponseEntity.ok(tournament.get().getRounds().get(roundIndex));
-	    		
-	    	}else{
-	    		return ResponseEntity.notFound().build();
-	    	}
+	   	
 	    }
 	    
 	    @GetMapping("/{tournamentId}/rounds/{roundId}/matches")
@@ -293,10 +325,8 @@ public class TournamentRestController {
 	    
 	    @GetMapping("{tournamentId}/rounds/{roundId}/matches/{matchId}")
 	    @JsonView(MatchDetails.class)
-	    public ResponseEntity <MatchUp> getRoundMatch(@PathVariable Long tournamentId,
-	    		@PathVariable Long roundId,
-	    		@PathVariable Long matchId){
-	    	Optional <Tournament> tournament = tournamentService.findById(tournamentId);
+	    public ResponseEntity <MatchUp> getRoundMatch(@PathVariable Long tournamentId, @PathVariable Long roundId, @PathVariable Long matchId){			
+			Optional <Tournament> tournament = tournamentService.findById(tournamentId);
 	    	Optional <Rounds> round = roundsService.findById(roundId);
 			Optional <MatchUp> match = matchService.findById(matchId);                                                                                                      			
 	    	if(tournament.isPresent() && round.isPresent() &&  match.isPresent() 
@@ -310,85 +340,26 @@ public class TournamentRestController {
 	    		return ResponseEntity.notFound().build();
 	    	}
 	    }
-		
-	    @PostMapping("/{tournamentId}/rounds/{roundId}")
-	    public ResponseEntity<Collection <MatchUp>> createMatches(@RequestBody List <MatchUp> newMatches,
-	    		@PathVariable Long tournamentId,
-	    		@PathVariable Long roundId){
-	    	Optional <Tournament> tournament = tournamentService.findById(tournamentId); 
-	    	Optional <Rounds> round = roundsService.findById(roundId); 
-	    	if(tournament.isPresent() && round.isPresent() && tournament.get().getRounds().contains(round.get())){
-	    		int roundIndex = 	tournament.get().getRounds().indexOf(round.get());
-	    		round.get().setMatches(newMatches);
-	    		tournament.get().getRounds().remove(roundIndex);
-	    		tournament.get().getRounds().add(roundIndex, round.get());
-	    		roundsService.saveRounds(round.get());
-	    		tournamentService.saveTournament(tournament.get());
-		    	
-		    	URI location = fromCurrentRequest().path("/maches").buildAndExpand().toUri(); 
-		    	return ResponseEntity.created(location).body(newMatches);
-	    	}else {
-	    		return ResponseEntity.notFound().build();
-	    	}
-	    	
-	    }
-	    
-	    @PostMapping("/{tournamentId}/rounds/{roundId}/matches")
-	    public ResponseEntity<MatchUp> createMatch(@RequestBody MatchUp newMatch,
-	    		@PathVariable Long tournamentId,
-	    		@PathVariable Long roundId){
-	    	Optional <Tournament> tournament = tournamentService.findById(tournamentId); 
-	    	Optional <Rounds> round = roundsService.findById(roundId); 
-	    	if(tournament.isPresent() && round.isPresent() && tournament.get().getRounds().contains(round.get())){
-	    		int roundIndex = 	tournament.get().getRounds().indexOf(round.get());
-	    		List <MatchUp> matches = tournament.get().getRounds().get(roundIndex).getMatches();
-	    		matchService.saveMatch(newMatch);
-	    		matches.add(newMatch);
-	    		tournament.get().getRounds().get(roundIndex).setMatches(matches);
-	    		tournamentService.saveTournament(tournament.get());
-		    	
-		    	URI location = fromCurrentRequest().path("/{matchId}").buildAndExpand(newMatch.getId()).toUri(); 
-		    	return ResponseEntity.created(location).body(newMatch);
-	    	}else {
-	    		return ResponseEntity.notFound().build();
-	    	}
-	    	
-	    }
-	    
-	    @PutMapping("/{tournamentId}/rounds/{roundId}/matches")
-	    public ResponseEntity<Collection <MatchUp>> updateMatches(@RequestBody List <MatchUp> newMatches,
-	    		@PathVariable Long tournamentId,
-	    		@PathVariable Long roundId){
-	    	Optional <Tournament> tournament = tournamentService.findById(tournamentId); 
-	    	Optional <Rounds> round = roundsService.findById(roundId); 
-	    	if(tournament.isPresent() && round.isPresent() && tournament.get().getRounds().contains(round.get()) ){
-	    		int roundIndex = 	tournament.get().getRounds().indexOf(round.get());
-	    		tournament.get().getRounds().get(roundIndex).setMatches(newMatches);
-	    		tournamentService.saveTournament(tournament.get());
-		 		return ResponseEntity.ok(newMatches);
-	    	}else {
-	    		return ResponseEntity.notFound().build();
-	    	}
-	    	
-	    }
 	    
 	    @PutMapping("/{tournamentId}/rounds/{roundId}/matches/{matchId}")
-	    public ResponseEntity <MatchUp> updateMatches(@RequestBody MatchUp newMatch,
-	    		@PathVariable Long tournamentId,
-	    		@PathVariable Long roundId,
-	    		@PathVariable Long matchId){
+	    @JsonView(MatchDetails.class)
+	    public ResponseEntity <MatchUp> updateMatch(@RequestBody MatchUp matchUp, @PathVariable Long tournamentId,
+	    		@PathVariable Long matchId, HttpServletRequest request){
+	    	Principal principal = request.getUserPrincipal();
+			String userLoggedName = principal.getName();
+			Optional<User> userLogged = userService.findByName(userLoggedName);
+			
 	    	Optional <Tournament> tournament = tournamentService.findById(tournamentId); 
-	    	Optional <Rounds> round = roundsService.findById(roundId);
 	    	Optional <MatchUp> match = matchService.findById(matchId);
-	    	if(tournament.isPresent() && round.isPresent() && 
-	    			tournament.get().getRounds().contains(round.get()) &&
-	    			round.get().getMatches().contains(match.get())){
-	    		int roundIndex = 	tournament.get().getRounds().indexOf(round.get());
-	    		int matchIndex = tournament.get().getRounds().get(roundIndex).getMatches().indexOf((match.get()));
-	    		tournament.get().getRounds().get(roundIndex).getMatches().remove(match.get());
-	    		tournament.get().getRounds().get(roundIndex).getMatches().add(matchIndex, newMatch);
-	    		tournamentService.saveTournament(tournament.get());
-		 		return ResponseEntity.ok(newMatch);
+	    	
+	    	boolean isAdmin = (((tournament.get().getAdmin() != null) && (tournament.get().getAdmin().equals(userLogged.get()))) || (userLogged.get().getRoles().contains("ADMIN")));
+	    	if(isAdmin){
+				match.get().setScore1(matchUp.getScore1());
+				match.get().setScore2(matchUp.getScore2());
+				match.get().setPlayed(true);
+				matchService.saveMatch(match.get());
+				tournamentService.saveTournament(tournament.get());	    	
+		 		return ResponseEntity.ok(match.get());
 	    	}else {
 	    		return ResponseEntity.notFound().build();
 	    	}

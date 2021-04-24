@@ -61,6 +61,7 @@ public class Tournament {
     private List<Rounds> rounds;
 
     @OneToOne
+    @JsonView(Basic.class)
     private Game game;
 
     @JsonView(Basic.class)
