@@ -27,7 +27,8 @@ import com.victorious.tournament.Tournament;
 public class Team {
 	
 	public interface Basic{}
-	public interface Users{}
+	public interface TeamUsers{}
+	public interface TeamTournament{}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,6 +44,7 @@ public class Team {
 	private String description;
 
 	@ManyToMany(cascade = CascadeType.MERGE)
+	@JsonView(TeamTournament.class)
 	private List<Tournament> tournaments;
 	
 	@ManyToMany
@@ -50,15 +52,15 @@ public class Team {
 	private List<Game> games;
 	
 	@OneToOne
-	@JsonView(Basic.class)
+	@JsonView(TeamUsers.class)
 	private User creator;
 	
 	@OneToMany(mappedBy="team")
-	@JsonView(Users.class)
+	@JsonView(TeamUsers.class)
 	private List<User> users;
 	
 	@ManyToMany
-	@JsonView(Users.class)
+	@JsonView(TeamUsers.class)
 	private List<User> admins;
 	
 	@ElementCollection
