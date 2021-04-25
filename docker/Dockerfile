@@ -1,5 +1,5 @@
 FROM maven as builder
-COPY ../ /code/
+COPY ../victorious_web /code/
 WORKDIR /code
 RUN mvn package -DskipTests
 
