@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -38,9 +40,9 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 public class TournamentRestController {
 		
 		interface TournamentDetails extends Tournament.Basic, Tournament.TournamentTeams, Tournament.TournamentRounds, 
-		Team.Basic, Game.Basic, Rounds.Basic  {}
-		interface RoundDetails extends Rounds.Basic, Rounds.RoundMatchUps, Team.Basic, MatchUp.Basic {}
-		interface MatchDetails extends MatchUp.Basic, MatchUp.MatchUpTeams, Team.Basic{}
+		Team.Basic, Game.Basic, Rounds.Basic {}
+		interface RoundDetails extends Rounds.Basic, Rounds.RoundMatchUps, Team.Basic, MatchUp.Basic, Game.Basic {}
+		interface MatchDetails extends MatchUp.Basic, MatchUp.MatchUpTeams, Team.Basic, Game.Basic {}
 	
 		@Autowired
 	    TournamentService tournamentService;
@@ -62,10 +64,16 @@ public class TournamentRestController {
 		
 		@GetMapping("/pages")
 		@JsonView(TournamentDetails.class)
-		public ResponseEntity <Page <Tournament>> getTournametPage (Pageable page){
-			Page <Tournament> tournamentPage = tournamentService.findAll(page);
+		public ResponseEntity <Collection<Tournament>> getTournametPage (@RequestParam int numPage){
+			Pageable webPage = PageRequest.of(numPage, 4);
 			
-			return ResponseEntity.ok(tournamentPage);
+			Page <Tournament> tournamentPage = tournamentService.findAll(webPage);
+			
+			if(tournamentPage.getContent().isEmpty()){
+	            return ResponseEntity.notFound().build();
+	        }
+			
+			return ResponseEntity.ok(tournamentPage.getContent());
 		}
 
 		@JsonView(TournamentDetails.class)

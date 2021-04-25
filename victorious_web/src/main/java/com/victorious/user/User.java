@@ -22,7 +22,6 @@ public class User {
 	
 	public interface Basic{}
 	public interface UserTeam{}
-	interface UserCreate{}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,7 +37,6 @@ public class User {
 	private String email;
 	
 	@Column(nullable = false)
-	@JsonView(UserCreate.class)
 	private String encodedPassword;
 	
 	@Lob
@@ -53,7 +51,6 @@ public class User {
 	private Team team; 
 	
 	@ElementCollection(fetch = FetchType.EAGER)
-	@JsonView(Basic.class)
     private List<String> roles;
 	
 	//Game Accounts

@@ -5,6 +5,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,12 +35,14 @@ import com.victorious.game.Game;
 import com.victorious.game.GameService;
 import com.victorious.user.User;
 import com.victorious.user.UserService;
+import com.victorious.tournament.Tournament;
 
 @RestController
 @RequestMapping("/api/teams")
 public class TeamRestController {
 	
-	interface TeamDetails extends User.Basic, Team.Basic, Game.Basic, Team.TeamTournament, Team.TeamUsers{}
+	interface TeamDetails extends User.Basic, Team.Basic, Game.Basic, Team.TeamTournament, Team.TeamUsers, Tournament.Basic{}
+	interface TeamChart extends Team.TeamChart{}
 	
 	private static final String POSTS_FOLDER = "posts";
 	
@@ -79,6 +85,20 @@ public class TeamRestController {
 		}
 	}
 	
+	@GetMapping("/pages")
+	@JsonView(TeamDetails.class)
+	public ResponseEntity <Collection<Team>> getTournametPage (@RequestParam int numPage){
+		Pageable webPage = PageRequest.of(numPage, 4);
+		
+		Page <Team> teamPage = teamService.findAll(webPage);
+		
+		if(teamPage.getContent().isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+		
+		return ResponseEntity.ok(teamPage.getContent());
+	}
+	
 	@GetMapping("/{id}")
 	@JsonView(TeamDetails.class)
 	public ResponseEntity<Team> team (@PathVariable Long id){
@@ -103,6 +123,17 @@ public class TeamRestController {
 		teamService.updateTeam(oTeam.get());
 		return ResponseEntity.status(HttpStatus.OK).body(oTeam.get());
 	}
+	
+	@GetMapping("/{id}/chart")
+    @JsonView(TeamChart.class)
+    public ResponseEntity<Team> getChart (@PathVariable Long id){
+
+        Optional<Team> oTeam = teamService.findById(id);
+        if(!oTeam.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(oTeam.get());
+    }
 	
 	@GetMapping("/league")
 	@JsonView(TeamDetails.class)
@@ -191,10 +222,10 @@ public class TeamRestController {
 		}
 	}
 	
-	@PutMapping("{id}/requests/{accept}")
+	@PutMapping("{id}/requests/")
 	@JsonView(TeamDetails.class)
 	public ResponseEntity<List<User>> addUserToTeam(HttpServletRequest request, @PathVariable Long id, @RequestBody User user,
-			@PathVariable boolean accept) {
+			@RequestParam boolean accept) {
 
 		String loggedUserName = request.getUserPrincipal().getName();
 		User loggedUser = userService.findByName(loggedUserName).get();

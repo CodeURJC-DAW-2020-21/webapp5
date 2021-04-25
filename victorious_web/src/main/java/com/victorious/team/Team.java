@@ -29,6 +29,7 @@ public class Team {
 	public interface Basic{}
 	interface TeamUsers{}
 	interface TeamTournament{}
+	interface TeamChart{}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -76,19 +77,19 @@ public class Team {
 	private boolean image;
 	
 	@Column
-	@JsonView(Basic.class)
+	@JsonView(TeamChart.class)
 	private int nVictories;
 
 	@Column
-	@JsonView(Basic.class)
+	@JsonView(TeamChart.class)
 	private int nLoses;
 	
 	@Column
-	@JsonView(Basic.class)
+	@JsonView(TeamChart.class)
 	private String recordV;
 	
 	@Column
-	@JsonView(Basic.class)
+	@JsonView(TeamChart.class)
 	private String recordL;
 
 	public Team() {}

@@ -35,7 +35,6 @@ import com.victorious.ImageService;
 public class UserRestController {
 	
 	interface UserDetails extends User.Basic, User.UserTeam, Team.Basic  {}
-	interface UserModify extends UserDetails, User.UserCreate{}
 	
 	private static final String POSTS_FOLDER = "posts";
 
@@ -72,28 +71,45 @@ public class UserRestController {
     }
 
     @PutMapping("/{name}")
-    @JsonView(UserModify.class)
+    @JsonView(UserDetails.class)
     public ResponseEntity<User> updateUser (@RequestBody User user, @PathVariable String name){
         Optional<User> oUser = userService.findByName(name);
         if(!oUser.isPresent()) {
             return ResponseEntity.notFound().build();
         }
 
-        oUser.get().setName(user.getName());
-        oUser.get().setEmail(user.getEmail());
-        oUser.get().setEncodedPassword(user.getEncodedPassword());
-        oUser.get().setRiot(user.getRiot());
-        oUser.get().setBlizzard(user.getBlizzard());
-        oUser.get().setPsn(user.getPsn());
-        oUser.get().setXbox(user.getXbox());
-        oUser.get().setSteam(user.getSteam());
+        if(!user.getName().isEmpty()){
+        	oUser.get().setName(user.getName());
+        }
+        if(!user.getEmail().isEmpty()){
+        	oUser.get().setEmail(user.getEmail());
+        }
+        if(!user.getEncodedPassword().isEmpty()){
+        	oUser.get().setEncodedPassword(passwordEncoder.encode(user.getEncodedPassword()));
+        }
+        if(!user.getRiot().isEmpty()){
+        	oUser.get().setRiot(user.getRiot());
+        }
+        if(!user.getBlizzard().isEmpty()){
+        	oUser.get().setBlizzard(user.getBlizzard());
+        }
+        if(!user.getPsn().isEmpty()){
+        	oUser.get().setPsn(user.getPsn());
+        }
+        if(!user.getXbox().isEmpty()){
+        	oUser.get().setXbox(user.getXbox());
+        }
+        if(!user.getSteam().isEmpty()){
+        	oUser.get().setSteam(user.getSteam());
+        }
+        
         userService.updateUser(oUser.get());
         
         return ResponseEntity.status(HttpStatus.OK).body(oUser.get());
     }
 
     @PostMapping("/")
-    @JsonView(UserModify.class)
+    @JsonView(UserDetails.class)
     public ResponseEntity<User> newUser (@RequestBody User user){
     	
         if(userService.findByName(user.getName()).isPresent() && userService.findByEmail(user.getEmail()).isPresent()) {
@@ -101,10 +117,13 @@ public class UserRestController {
         }
         User newUser = new User(user.getName(),user.getEmail(),passwordEncoder.encode(user.getEncodedPassword()), "USER");
         userService.saveUser(newUser);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
+        
+        URI location = fromCurrentRequest().path("/{id}").buildAndExpand(newUser.getId()).toUri();
+		return ResponseEntity.created(location).body(newUser);
     }
     
     @GetMapping("/{name}/image")
+    @JsonView(UserDetails.class)
 	public ResponseEntity<Object> downloadUserImage(@PathVariable String name, HttpServletRequest request) throws MalformedURLException {
 		
 		Principal principal = request.getUserPrincipal();
@@ -124,6 +143,7 @@ public class UserRestController {
 	}
     
     @PostMapping("/{name}/image")
+    @JsonView(UserDetails.class)
 	public ResponseEntity<Object> uploadUserImage(@PathVariable String name, @RequestParam MultipartFile imageFile, HttpServletRequest request) throws IOException {
 
     	Principal principal = request.getUserPrincipal();
