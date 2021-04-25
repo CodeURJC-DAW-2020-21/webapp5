@@ -291,7 +291,7 @@ Development environnmet set-up:
 * **Daniel Lahera Esteban**: He has contributed to User, Team, and Tournament. He created User Rest Controller and Login Controller along with Enrique and during the phase 3 updated User Rest Controllers various times. He was also in charge of creating Team Rest Controller and fixing it later, finally he helped Enrique Create and mantain Tournament Rest Controller. Even though he has contributed to 3 entities, his main focus has been in Team and in second place User, besides that he was the one who managed the interfaces to avoid infinite request in postman.
 * **Enrique Garrido Gónzalez**: 
 * **Daniel Alexander Juan Moreno**: He managed and create all the logic and services related to the docker deployment, from the cration of the dockerfile and the docker-compose.yml to the creation of the team dockerhub account and the building of the webapp image, also colaborates to the correction of the UML Class Diagram to make it more readable and the creation of the api-doc.
-* **Jacobo Miguel Blanzaco Barreiro**: 
+* **Jacobo Miguel Blanzaco Barreiro**: He was focused on the TournamentRestController which is one of the biggest ones
 
 **Member's Important Commits**
 
@@ -300,7 +300,7 @@ Development environnmet set-up:
 |Daniel Lahera Esteban| DaniL97 | [Updated TeamRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/4f097d57305b0eabb53ac7d5de3e1a9d3931f4cc) | [Users Rest](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/6102dc6eb7b42d6e5c2c4c4fbb7b6f9d4f62f463) | [TournamentRestController Updated](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/7f3907d302dfbe8a1f5bd42bed5e01b63f75051f) | [Patch](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/66ac81e2b790090471a7e187b99f99836274ec52) | [Fixes + Postman Collection + api-docs](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/2ece70c9ccb0ea3050ae3f58cfc961f43179defb)  |
 |Enrique Garrido Gónzalez | kikegg | []() | []() | []() | []() | []() |
 |Daniel Alexander Juan Moreno | dajm92 | [Docker logic](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/4e9297c58dc2a329a91c6de29e246511e6d86cfb) | [api-docs](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/2ece70c9ccb0ea3050ae3f58cfc961f43179defb) | []() | []() | []() |
-|Jacobo Miguel Blanzaco Barreiro  | jacobobbm | []() | []() | []() | []() | []() |
+|Jacobo Miguel Blanzaco Barreiro  | jacobobbm | [TournamentRestController + JsonView Annotations](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/f5e7eecb0770b8cf9b69939d5452909e3b9c6936) | [Tournament Rest Controller v0](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/00f40fa9efb780973bae54ce9956234672c38f94) | []() | []() | []() |
 
 **Member's Most Focused Files**
 | Name | Github user| File 1| File 2| File 3| File 4| File 5|
@@ -308,4 +308,4 @@ Development environnmet set-up:
 |Daniel Lahera Esteban| DaniL97 | [TournamentRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/tournament/TournamentRestController.java) | [TeamRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/team/TeamRestController.java) | [UserRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/user/UserRestController.java) | [LoginController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/user/auth/LoginController.java) | [Tournament](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/tournament/Tournament.java)  |
 |Enrique Garrido Gónzalez | kikegg | []() | []() | []() | []() | []() |
 |Daniel Alexander Juan Moreno | dajm92 | [Dockerfile](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/docker/Dockerfile) | [Docker-compose](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/docker/docker-compose.yml) | [Docker building script](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/docker/create_image.ps1) | []() | []() |
-|Jacobo Miguel Blanzaco Barreiro  | jacobobbm | []() | []() | []() | []() | []() |
+|Jacobo Miguel Blanzaco Barreiro  | jacobobbm | [TournamentRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/tournament/TournamentRestController.java) | []() | []() | []() | []() |
