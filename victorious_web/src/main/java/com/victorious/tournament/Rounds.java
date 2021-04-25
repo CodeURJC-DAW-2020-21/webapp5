@@ -18,6 +18,8 @@ import com.victorious.team.Team;
 public class Rounds {
     
 	public interface Basic{}
+	interface RoundTeams{}
+	interface RoundMatchUps{}
 	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,21 +27,21 @@ public class Rounds {
     private Long id;
     
     @ManyToMany
-    @JsonView(Basic.class)
+    @JsonView(RoundTeams.class)
     private List<Team> participants;
 
     @ManyToMany
-    @JsonView(Basic.class)
+    @JsonView(RoundTeams.class)
     List<Team> winners;
 
     @ManyToOne
-    @JsonView(Basic.class)
+    @JsonView(RoundTeams.class)
     private Team oddTeam;
 
     @OneToMany
-    @JsonView(Basic.class)
+    @JsonView(RoundMatchUps.class)
     private List<MatchUp> matches;
-
+    
     private int numRound;
 
     public Rounds(){ }

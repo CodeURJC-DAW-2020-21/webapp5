@@ -27,8 +27,8 @@ import com.victorious.tournament.Tournament;
 public class Team {
 	
 	public interface Basic{}
-	public interface TeamUsers{}
-	public interface TeamTournament{}
+	interface TeamUsers{}
+	interface TeamTournament{}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

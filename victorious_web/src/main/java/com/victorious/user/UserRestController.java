@@ -10,10 +10,12 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,13 +29,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.victorious.team.Team;
 import com.victorious.ImageService;
-import com.victorious.game.Game;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserRestController {
 	
-	interface UserDetails extends User.Basic, User.UserTeam, Team.Basic, Game.Basic {}
+	interface UserDetails extends User.Basic, User.UserTeam, Team.Basic  {}
+	interface UserModify extends UserDetails, User.UserCreate{}
 	
 	private static final String POSTS_FOLDER = "posts";
 
@@ -42,6 +44,9 @@ public class UserRestController {
     
     @Autowired
 	private ImageService imgService;
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/logged")
     @JsonView(UserDetails.class)
@@ -58,16 +63,17 @@ public class UserRestController {
 
     @GetMapping("/{name}")
     @JsonView(UserDetails.class)
-    public ResponseEntity<?> user (@PathVariable String name){
+    public ResponseEntity<User> user (@PathVariable String name){
         Optional<User> oUser = userService.findByName(name);
         if(!oUser.isPresent()) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(oUser);
+        return ResponseEntity.ok(oUser.get());
     }
 
     @PutMapping("/{name}")
-    public ResponseEntity<?> updateUser (@RequestBody User user, @PathVariable String name){
+    @JsonView(UserModify.class)
+    public ResponseEntity<User> updateUser (@RequestBody User user, @PathVariable String name){
         Optional<User> oUser = userService.findByName(name);
         if(!oUser.isPresent()) {
             return ResponseEntity.notFound().build();
@@ -81,18 +87,21 @@ public class UserRestController {
         oUser.get().setPsn(user.getPsn());
         oUser.get().setXbox(user.getXbox());
         oUser.get().setSteam(user.getSteam());
-
-        return ResponseEntity.status(HttpStatus.OK).body(userService.updateUser(oUser.get()));
+        userService.updateUser(oUser.get());
+        
+        return ResponseEntity.status(HttpStatus.OK).body(oUser.get());
     }
 
     @PostMapping("/")
+    @JsonView(UserModify.class)
     public ResponseEntity<User> newUser (@RequestBody User user){
-        String name = user.getName();
-        String email = user.getEmail();
-        if(userService.findByName(name).isPresent() && userService.findByEmail(email).isPresent()) {
+    	
+        if(userService.findByName(user.getName()).isPresent() && userService.findByEmail(user.getEmail()).isPresent()) {
             return ResponseEntity.badRequest().build();
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(user));
+        User newUser = new User(user.getName(),user.getEmail(),passwordEncoder.encode(user.getEncodedPassword()), "USER");
+        userService.saveUser(newUser);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
     
     @GetMapping("/{name}/image")

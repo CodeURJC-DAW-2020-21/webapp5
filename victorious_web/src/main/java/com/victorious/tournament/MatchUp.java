@@ -13,17 +13,18 @@ import com.victorious.team.Team;
 public class MatchUp {
     
 	public interface Basic{}
-	public interface Teams{}
+	interface MatchUpTeams{}
+	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonView(Basic.class)
     private Long id;
 
     @ManyToOne
-    @JsonView(Basic.class)
+    @JsonView(MatchUpTeams.class)
     private Team team1, team2;
     
-    @JsonView(Basic.class)
+    @JsonView(MatchUpTeams.class)
     private int score1,score2;
     
     @JsonView(Basic.class)

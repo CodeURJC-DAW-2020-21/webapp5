@@ -37,9 +37,10 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @RequestMapping("/api/tournaments")
 public class TournamentRestController {
 		
-		interface TournamentDetails extends Tournament.Basic, Tournament.Teams, Team.Basic, Game.Basic {}
-		interface RoundDetails extends Rounds.Basic, Team.Basic, MatchUp.Basic {}
-		interface MatchDetails extends MatchUp.Basic, Team.Basic{}
+		interface TournamentDetails extends Tournament.Basic, Tournament.TournamentTeams, Tournament.TournamentRounds, 
+		Team.Basic, Game.Basic, Rounds.Basic  {}
+		interface RoundDetails extends Rounds.Basic, Rounds.RoundMatchUps, Team.Basic, MatchUp.Basic {}
+		interface MatchDetails extends MatchUp.Basic, MatchUp.MatchUpTeams, Team.Basic{}
 	
 		@Autowired
 	    TournamentService tournamentService;
@@ -98,13 +99,15 @@ public class TournamentRestController {
 				String gameName = tournament.getGame().getName();
 				Game tgame = gameService.findByName(gameName).get(); 
 				tournament.setGame(tgame);
+				Tournament newTournament = new Tournament(tournament.getName(),tournament.getDescription(), tournament.getMaxPlayers(),
+						tournament.getIniDate(),tournament.getEndDate(), tgame);
 				
-				tournamentService.saveTournament(tournament);
+				tournamentService.saveTournament(newTournament);
 				
 				URI location = fromCurrentRequest().path("/{id}")
 						.buildAndExpand(tournament.getId()).toUri();
 				
-				return ResponseEntity.created(location).body(tournament);
+				return ResponseEntity.created(location).body(newTournament);
 
 			}else{
 			
@@ -137,7 +140,7 @@ public class TournamentRestController {
 		}
 		
 		@GetMapping("/{tournamentId}/participants")
-		@JsonView(Team.Basic.class)
+		@JsonView(TournamentDetails.class)
 		public ResponseEntity< Collection<Team> > getTournamentParticipants(@PathVariable Long tournamentId){
 			Optional<Tournament> tournament = tournamentService.findById(tournamentId);
 
@@ -149,7 +152,7 @@ public class TournamentRestController {
 		}
 
 		@GetMapping("/{tournamentId}/participants/{teamId}")
-		@JsonView(Team.Basic.class)
+		@JsonView(TournamentDetails.class)
 		public ResponseEntity<Team> getTournamentParticipant(@PathVariable Long tournamentId, @PathVariable Long teamId ){
 			Optional<Tournament> tournament = tournamentService.findById(tournamentId);
 			Optional<Team> team = teamService.findById(teamId);
@@ -167,16 +170,16 @@ public class TournamentRestController {
 		}
 				
 	    @PostMapping("/{tournamentId}/participants")
-	    @JsonView(Team.Basic.class)
-		public ResponseEntity<Team> addParticipantToTournament(@RequestBody Team team, @PathVariable Long tournamentId, HttpServletRequest request){
+	    @JsonView(TournamentDetails.class)
+		public ResponseEntity<Team> addParticipantToTournament(@PathVariable Long tournamentId, HttpServletRequest request){
 	    	Principal principal = request.getUserPrincipal();
 			String userLoggedName = principal.getName();
 			Optional<User> userLogged = userService.findByName(userLoggedName);
 			
 			Optional<Tournament> tournament = tournamentService.findById(tournamentId);
-			Optional<Team> teamAdd = teamService.findByName(team.getName());
+			Optional<Team> teamAdd = teamService.findByName(userLogged.get().getTeam().getName());
 			
-			if(userLogged.get().getTeam().equals(teamAdd.get()) && !tournament.get().getParticipants().contains(teamAdd.get())) {
+			if(!tournament.get().getParticipants().contains(teamAdd.get())) {
 				tournament.get().addTeam(teamAdd.get());
 				teamAdd.get().addTournament(tournament.get());
 				teamService.saveTeam(teamAdd.get());
@@ -353,7 +356,7 @@ public class TournamentRestController {
 	    	Optional <MatchUp> match = matchService.findById(matchId);
 	    	
 	    	boolean isAdmin = (((tournament.get().getAdmin() != null) && (tournament.get().getAdmin().equals(userLogged.get()))) || (userLogged.get().getRoles().contains("ADMIN")));
-	    	if(isAdmin){
+	    	if(isAdmin && !match.get().isPlayed()){
 				match.get().setScore1(matchUp.getScore1());
 				match.get().setScore2(matchUp.getScore2());
 				match.get().setPlayed(true);

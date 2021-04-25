@@ -54,9 +54,13 @@ public class TeamRestController {
 	
 	@PostMapping(value="/")
 	@JsonView(TeamDetails.class)
-	public ResponseEntity<Team> createTeam (@RequestBody Team team){
+	public ResponseEntity<Team> createTeam (@RequestBody Team team, HttpServletRequest request){
 		
+		String loggedUserName = request.getUserPrincipal().getName();
+		User loggedUser = userService.findByName(loggedUserName).get();
 		Team newTeam = new Team(team.getName(), team.getDescription());
+		newTeam.setCreator(loggedUser);
+		newTeam.addAdmin(loggedUser);
 		URI location = fromCurrentRequest().path("/{id}")
 				.buildAndExpand(newTeam.getId()).toUri();
 		
@@ -114,14 +118,16 @@ public class TeamRestController {
 	
 	@PostMapping("{id}/requests/")
 	@JsonView(TeamDetails.class)
-	public ResponseEntity<Team> requestToJoin(@RequestBody User user, @PathVariable Long id){
+	public ResponseEntity<List<Long>> requestToJoin(@PathVariable Long id, HttpServletRequest request){
 		
+		String loggedUserName = request.getUserPrincipal().getName();
+		User loggedUser = userService.findByName(loggedUserName).get();
 		Team team = teamService.findById(id).get();
-		Long userId = userService.findByName(user.getName()).get().getId();
+		Long userId = userService.findByName(loggedUser.getName()).get().getId();
 		if (!team.getRequests().contains(userId)) {
 			team.getRequests().add(userId);
 			teamService.saveTeam(team);
-			return ResponseEntity.status(HttpStatus.CREATED).body(team);
+			return ResponseEntity.status(HttpStatus.CREATED).body(team.getRequests());
 		} else {
 			return ResponseEntity.badRequest().build();
 		}
@@ -129,7 +135,7 @@ public class TeamRestController {
 	
 	@PutMapping("{id}/members/")
 	@JsonView(TeamDetails.class)
-	public ResponseEntity<Team> LeaveFromTeam(HttpServletRequest request, @PathVariable Long id){
+	public ResponseEntity<List<User>> LeaveFromTeam(@PathVariable Long id, HttpServletRequest request){
 		
 		String loggedUserName = request.getUserPrincipal().getName();
 		User loggedUser = userService.findByName(loggedUserName).get();
@@ -140,7 +146,7 @@ public class TeamRestController {
 			}
 			loggedUser.setTeam(null);
 			userService.saveUser(loggedUser);
-			return ResponseEntity.status(HttpStatus.OK).body(team);
+			return ResponseEntity.status(HttpStatus.OK).body(team.getUsers());
 		} else {
 			return ResponseEntity.badRequest().build();
 		}
@@ -148,7 +154,7 @@ public class TeamRestController {
 	
 	@PutMapping("{id}/members/{userId}")
 	@JsonView(TeamDetails.class)
-	public ResponseEntity<Team> kickMemberFromTeam(HttpServletRequest request, @PathVariable Long userId, @PathVariable Long id){
+	public ResponseEntity<List<User>> kickMemberFromTeam(HttpServletRequest request, @PathVariable Long userId, @PathVariable Long id){
 		
 		String loggedUserName = request.getUserPrincipal().getName();
 		User loggedUser = userService.findByName(loggedUserName).get();
@@ -161,7 +167,7 @@ public class TeamRestController {
 			}
 			user.setTeam(null);
 			userService.saveUser(user);
-			return ResponseEntity.status(HttpStatus.OK).body(team);
+			return ResponseEntity.status(HttpStatus.OK).body(team.getUsers());
 		} else {
 			return ResponseEntity.badRequest().build();
 		}
@@ -169,7 +175,7 @@ public class TeamRestController {
 	
 	@PostMapping("{id}/admins/")
 	@JsonView(TeamDetails.class)
-	public ResponseEntity<Team> addUserToAdmins(HttpServletRequest request, @PathVariable Long id, @RequestBody User user){		
+	public ResponseEntity<List<User>> addUserToAdmins(HttpServletRequest request, @PathVariable Long id, @RequestBody User user){		
 		
 		String loggedUserName = request.getUserPrincipal().getName();
 		User loggedUser = userService.findByName(loggedUserName).get();
@@ -179,7 +185,7 @@ public class TeamRestController {
 		if (!team.isAdmin(oUser) && oUser.getTeam().equals(team) && isAdmin) {
 			team.addAdmin(oUser);
 			teamService.saveTeam(team);
-			return ResponseEntity.status(HttpStatus.OK).body(team);
+			return ResponseEntity.status(HttpStatus.OK).body(team.getAdmins());
 		} else {
 			return ResponseEntity.badRequest().build();
 		}
@@ -187,7 +193,7 @@ public class TeamRestController {
 	
 	@PutMapping("{id}/requests/{accept}")
 	@JsonView(TeamDetails.class)
-	public ResponseEntity<Team> addUserToTeam(HttpServletRequest request, @PathVariable Long id, @RequestBody User user,
+	public ResponseEntity<List<User>> addUserToTeam(HttpServletRequest request, @PathVariable Long id, @RequestBody User user,
 			@PathVariable boolean accept) {
 
 		String loggedUserName = request.getUserPrincipal().getName();
@@ -204,7 +210,7 @@ public class TeamRestController {
 					oUser.setTeam(team);
 					userService.saveUser(oUser);
 					teamService.saveTeam(team);
-					return ResponseEntity.status(HttpStatus.CREATED).body(team);
+					return ResponseEntity.status(HttpStatus.CREATED).body(team.getUsers());
 				} else {
 					team.getRequests().remove(userId);
 					return ResponseEntity.badRequest().build();
@@ -213,7 +219,7 @@ public class TeamRestController {
 				if (team.getRequests().contains(userId)) {
 					team.getRequests().remove(userId);
 					teamService.saveTeam(team);
-					return ResponseEntity.status(HttpStatus.OK).body(team);
+					return ResponseEntity.status(HttpStatus.OK).body(team.getUsers());
 				} else {
 					team.getRequests().remove(userId);
 					return ResponseEntity.badRequest().build();
@@ -226,7 +232,7 @@ public class TeamRestController {
 	
 	@PostMapping("{id}/games/")
 	@JsonView(TeamDetails.class)
-	public ResponseEntity<Team> addGameToTeam(HttpServletRequest request, @PathVariable Long id, @RequestBody Game game) {
+	public ResponseEntity<List<Game>> addGameToTeam(HttpServletRequest request, @PathVariable Long id, @RequestBody Game game) {
 		
 		String loggedUserName = request.getUserPrincipal().getName();
 		User loggedUser = userService.findByName(loggedUserName).get();
@@ -236,7 +242,7 @@ public class TeamRestController {
 			Game oGame = gameService.findByName(game.getName()).get();
 			team.getGames().add(oGame);
 			teamService.saveTeam(team);
-			return ResponseEntity.status(HttpStatus.CREATED).body(team);
+			return ResponseEntity.status(HttpStatus.CREATED).body(team.getGames());
 		} else {
 			return ResponseEntity.badRequest().build();
 		}

@@ -20,8 +20,9 @@ import com.victorious.user.User;
 
 @Entity
 public class Tournament {
-	interface Basic{}
-	interface Teams{}
+	public interface Basic{}
+	interface TournamentTeams{}
+	interface TournamentRounds{} 
 
 //ATTRIBUTES
     @Id
@@ -37,7 +38,7 @@ public class Tournament {
     @JsonView(Basic.class)
     private String description;
     
-    @JsonView(Basic.class)
+    @JsonView(TournamentTeams.class)
     private int currentPlayers;
     
     @JsonView(Basic.class)
@@ -50,14 +51,15 @@ public class Tournament {
     private String endDate;
 
     @ManyToMany(mappedBy = "tournaments")
-    @JsonView(Teams.class)
+    @JsonView(TournamentTeams.class)
     private List<Team> participants;
 
     @ManyToOne
-    @JsonView(Teams.class)
+    @JsonView(TournamentTeams.class)
     private Team winner;
 
     @OneToMany
+    @JsonView(TournamentRounds.class)
     private List<Rounds> rounds;
 
     @OneToOne
