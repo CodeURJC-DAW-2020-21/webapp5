@@ -240,3 +240,68 @@ The Navigation Diagram has not undergone any change and remains the same as in p
 |Daniel Alexander Juan Moreno | dajm92 | [TournamentController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/TournamentController.java) | [tournament.html](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/resources/templates/tournament.html) | [Rounds](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/Rounds.java) | [Tournament](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/Tournament.java) | [MatchUp](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/MatchUp.java) |
 |Jacobo Miguel Blanzaco Barreiro  | jacobobbm |[TournamentController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/TournamentController.java)|[TournamentServiceImp](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/TournamentServiceImp.java) | [RoundController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/Roundcontroller.java) | [tournaments.html](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/resources/templates/tournaments.html) | [tournament.html](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/resources/templates/tournament.html) |
 
+## PHASE 2
+
+**API Rest Documentation**
+
+[YAML File](api_docs/api-docs.yaml)
+
+[API Rest Documentation](api_docs/api-docs.html)
+
+**Class Diagram update**
+
+![Class Diagram](Screenshots/classDiagram.jpg)
+
+
+
+**Instructions to execute the docker app**
+
+Local prerrequisites:
+
+* Windows: Docker Desktop 2.0+ on Windows 10 Pro/Enterprise. Windows 10 Home (2004+) requires Docker Desktop 2.2+ and the WSL2 back-end (Docker Toolbox is not supported)
+* macOS: Docker Desktop 2.0+
+* Linux: Docker CE/EE 18.06+ and Docker Compose 1.21+
+
+Once Docker is installed:
+
+* Build a "docker-compose.yaml", to run the webapp with a mysql database within the same container, such as [this one](ENLACE DEL YAML DEL COMPOSE)
+    * Note that the webapp must be published in dockerhub for this to work properly
+* Open a terminal in the same location you have the "docker-compose.yml" and execute the command "docker-compose up"
+* Wait for the images to download if you don't have them yet, and then wait for the application to finish its set-up. Once is finished it can be used as intended
+
+**Documentation to build the docker image**
+
+Development environnmet set-up:
+* Java JDK 11
+* Docker:
+    * Windows: Docker Desktop 2.0+ on Windows 10 Pro/Enterprise. Windows 10 Home (2004+) requires Docker Desktop 2.2+ and the WSL2 back-end (Docker Toolbox is not supported)
+    * macOS: Docker Desktop 2.0+
+    * Linux: Docker CE/EE 18.06+ and Docker Compose 1.21+
+* IDE (visual studio code or srping tool suite recommended)
+* Maven extension (lifecycle) for that IDE
+
+## Participation
+
+ **Member's Work**
+
+* **Daniel Lahera Esteban**: 
+* **Enrique Garrido Gónzalez**: 
+* **Daniel Alexander Juan Moreno**: 
+* **Jacobo Miguel Blanzaco Barreiro**: 
+
+**Member's Important Commits**
+
+| Name | Github user| Commit 1| Commit 2| Commit 3| Commit 4| Commit 5|
+|--------|------------|-------|---------|---------|---------|---------|
+|Daniel Lahera Esteban| DaniL97 | []() | []() | []() | []() | []()  |
+|Enrique Garrido Gónzalez | kikegg | []() | []() | []() | []() | []() |
+|Daniel Alexander Juan Moreno | dajm92 | []() | []() | []() | []() | []() |
+|Jacobo Miguel Blanzaco Barreiro  | jacobobbm | []() | []() | []() | []() | []() |
+
+**Member's Most Focused Files**
+| Name | Github user| File 1| File 2| File 3| File 4| File 5|
+|--------|------------|-------|---------|---------|---------|---------|
+|Daniel Lahera Esteban| DaniL97 | []() | []() | []() | []() | []()  |
+|Enrique Garrido Gónzalez | kikegg | []() | []() | []() | []() | []() |
+|Daniel Alexander Juan Moreno | dajm92 | []() | []() | []() | []() | []() |
+|Jacobo Miguel Blanzaco Barreiro  | jacobobbm | []() | []() | []() | []() | []() |
