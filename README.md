@@ -240,7 +240,7 @@ The Navigation Diagram has not undergone any change and remains the same as in p
 |Daniel Alexander Juan Moreno | dajm92 | [TournamentController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/TournamentController.java) | [tournament.html](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/resources/templates/tournament.html) | [Rounds](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/Rounds.java) | [Tournament](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/Tournament.java) | [MatchUp](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/MatchUp.java) |
 |Jacobo Miguel Blanzaco Barreiro  | jacobobbm |[TournamentController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/TournamentController.java)|[TournamentServiceImp](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/TournamentServiceImp.java) | [RoundController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/Roundcontroller.java) | [tournaments.html](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/resources/templates/tournaments.html) | [tournament.html](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/resources/templates/tournament.html) |
 
-## PHASE 2
+## PHASE 3
 
 **API Rest Documentation**
 
@@ -284,7 +284,7 @@ Development environnmet set-up:
 
  **Member's Work**
 
-* **Daniel Lahera Esteban**: 
+* **Daniel Lahera Esteban**: He has contributed to User, Team, and Tournament. He created User Rest Controller and Login Controller along with Enrique and during the phase 3 updated User Rest Controllers various times. He was also in charge of creating Team Rest Controller and fixing it later, finally he helped Enrique Create and mantain Tournament Rest Controller. Even though he has contributed to 3 entities, his main focus has been in Team and in second place User, besides that he was the one who managed the interfaces to avoid infinite request in postman.
 * **Enrique Garrido Gónzalez**: 
 * **Daniel Alexander Juan Moreno**: 
 * **Jacobo Miguel Blanzaco Barreiro**: 
@@ -293,7 +293,7 @@ Development environnmet set-up:
 
 | Name | Github user| Commit 1| Commit 2| Commit 3| Commit 4| Commit 5|
 |--------|------------|-------|---------|---------|---------|---------|
-|Daniel Lahera Esteban| DaniL97 | []() | []() | []() | []() | []()  |
+|Daniel Lahera Esteban| DaniL97 | [Updated TeamRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/4f097d57305b0eabb53ac7d5de3e1a9d3931f4cc) | [Users Rest](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/6102dc6eb7b42d6e5c2c4c4fbb7b6f9d4f62f463) | [TournamentRestController Updated](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/7f3907d302dfbe8a1f5bd42bed5e01b63f75051f) | [Patch](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/66ac81e2b790090471a7e187b99f99836274ec52) | [Fixes + Postman Collection + api-docs](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/2ece70c9ccb0ea3050ae3f58cfc961f43179defb)  |
 |Enrique Garrido Gónzalez | kikegg | []() | []() | []() | []() | []() |
 |Daniel Alexander Juan Moreno | dajm92 | []() | []() | []() | []() | []() |
 |Jacobo Miguel Blanzaco Barreiro  | jacobobbm | []() | []() | []() | []() | []() |
@@ -301,7 +301,7 @@ Development environnmet set-up:
 **Member's Most Focused Files**
 | Name | Github user| File 1| File 2| File 3| File 4| File 5|
 |--------|------------|-------|---------|---------|---------|---------|
-|Daniel Lahera Esteban| DaniL97 | []() | []() | []() | []() | []()  |
+|Daniel Lahera Esteban| DaniL97 | [TournamentRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/tournament/TournamentRestController.java) | [TeamRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/team/TeamRestController.java) | [UserRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/user/UserRestController.java) | [LoginController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/user/auth/LoginController.java) | [Tournament](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/tournament/Tournament.java)  |
 |Enrique Garrido Gónzalez | kikegg | []() | []() | []() | []() | []() |
 |Daniel Alexander Juan Moreno | dajm92 | []() | []() | []() | []() | []() |
 |Jacobo Miguel Blanzaco Barreiro  | jacobobbm | []() | []() | []() | []() | []() |
