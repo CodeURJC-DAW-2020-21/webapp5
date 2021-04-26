@@ -11,27 +11,37 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.victorious.team.Team;
 
 @Entity
 public class Rounds {
     
+	public interface Basic{}
+	interface RoundTeams{}
+	interface RoundMatchUps{}
+	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(Basic.class)
     private Long id;
     
     @ManyToMany
+    @JsonView(RoundTeams.class)
     private List<Team> participants;
 
     @ManyToMany
+    @JsonView(RoundTeams.class)
     List<Team> winners;
 
     @ManyToOne
+    @JsonView(RoundTeams.class)
     private Team oddTeam;
 
     @OneToMany
+    @JsonView(RoundMatchUps.class)
     private List<MatchUp> matches;
-
+    
     private int numRound;
 
     public Rounds(){ }

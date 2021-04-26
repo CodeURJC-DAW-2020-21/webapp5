@@ -18,56 +18,78 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.victorious.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.victorious.game.Game;
 import com.victorious.tournament.Tournament;
 
 @Entity
 public class Team {
 	
+	public interface Basic{}
+	interface TeamUsers{}
+	interface TeamTournament{}
+	interface TeamChart{}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Basic.class)
 	private Long id;
 	
 	@Column(nullable = false)
+	@JsonView(Basic.class)
 	private String name;
 	
 	@Column(length = 1000, nullable = true)
+	@JsonView(Basic.class)
 	private String description;
-	
+
 	@ManyToMany(cascade = CascadeType.MERGE)
+	@JsonView(TeamTournament.class)
 	private List<Tournament> tournaments;
 	
 	@ManyToMany
+	@JsonView(Basic.class)
 	private List<Game> games;
 	
 	@OneToOne
+	@JsonView(TeamUsers.class)
 	private User creator;
 	
 	@OneToMany(mappedBy="team")
+	@JsonView(TeamUsers.class)
 	private List<User> users;
 	
 	@ManyToMany
+	@JsonView(TeamUsers.class)
 	private List<User> admins;
 	
 	@ElementCollection
 	@CollectionTable(name ="requests")
+	@JsonView(Basic.class)
 	private List<Long> requests;
 	
 	@Lob
+	@JsonIgnore
 	private Blob imageFile;
 	
+	@JsonIgnore
 	private boolean image;
 	
 	@Column
+	@JsonView(TeamChart.class)
 	private int nVictories;
 
 	@Column
+	@JsonView(TeamChart.class)
 	private int nLoses;
 	
 	@Column
+	@JsonView(TeamChart.class)
 	private String recordV;
 	
 	@Column
+	@JsonView(TeamChart.class)
 	private String recordL;
 
 	public Team() {}

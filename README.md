@@ -240,3 +240,72 @@ The Navigation Diagram has not undergone any change and remains the same as in p
 |Daniel Alexander Juan Moreno | dajm92 | [TournamentController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/TournamentController.java) | [tournament.html](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/resources/templates/tournament.html) | [Rounds](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/Rounds.java) | [Tournament](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/Tournament.java) | [MatchUp](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/MatchUp.java) |
 |Jacobo Miguel Blanzaco Barreiro  | jacobobbm |[TournamentController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/TournamentController.java)|[TournamentServiceImp](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/TournamentServiceImp.java) | [RoundController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/java/com/victorious/tournament/Roundcontroller.java) | [tournaments.html](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/resources/templates/tournaments.html) | [tournament.html](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/main/victorious_web/src/main/resources/templates/tournament.html) |
 
+## PHASE 3
+
+**API Rest Documentation**
+
+[YAML File](api_docs/api-docs.yaml)
+
+[API Rest Documentation](https://ghcdn.rawgit.org/CodeURJC-DAW-2020-21/webapp5/fase3/api_docs/api-docs.html)
+
+**Class Diagram update**
+
+![Class Diagram](Screenshots/classDiagram.jpg)
+
+For simplicity we ommitted certain elements of the diagram to make it understandable:
+* Tournament: it also have other entities such as Round and Matchup with a similar structure like the other entities but without conotroller or restController
+* Entity controllers: some relations have been ommited for a better readability
+    * TournamentController: also uses services from game match, round, team and user
+    * TeamController: also uses services form game and user
+
+**Instructions to execute the docker app**
+
+Local prerrequisites:
+
+* Windows: Docker Desktop 2.0+ on Windows 10 Pro/Enterprise. Windows 10 Home (2004+) requires Docker Desktop 2.2+ and the WSL2 back-end (Docker Toolbox is not supported)
+* macOS: Docker Desktop 2.0+
+* Linux: Docker CE/EE 18.06+ and Docker Compose 1.21+
+
+Once Docker is installed:
+
+* Build a "docker-compose.yaml", to run the webapp with a mysql database within the same container, such as [this one](ENLACE DEL YAML DEL COMPOSE)
+    * Note that the webapp must be published in dockerhub for this to work properly
+* Open a terminal in the same location you have the "docker-compose.yml" and execute the command "docker-compose up"
+* Wait for the images to download if you don't have them yet, and then wait for the application to finish its set-up. Once is finished it can be used as intended
+
+**Documentation to build the docker image**
+
+Development environnmet set-up:
+* Java JDK 11
+* Docker:
+    * Windows: Docker Desktop 2.0+ on Windows 10 Pro/Enterprise. Windows 10 Home (2004+) requires Docker Desktop 2.2+ and the WSL2 back-end (Docker Toolbox is not supported)
+    * macOS: Docker Desktop 2.0+
+    * Linux: Docker CE/EE 18.06+ and Docker Compose 1.21+
+* IDE (visual studio code or srping tool suite recommended)
+* Maven extension (lifecycle) for that IDE
+
+## Participation
+
+ **Member's Work**
+
+* **Daniel Lahera Esteban**: He has contributed to User, Team, and Tournament. He created User Rest Controller and Login Controller along with Enrique and during the phase 3 updated User Rest Controllers various times. He was also in charge of creating Team Rest Controller and fixing it later, finally he helped Enrique Create and mantain Tournament Rest Controller. Even though he has contributed to 3 entities, his main focus has been in Team and in second place User, besides that he was the one who managed the interfaces to avoid infinite request in postman.
+* **Enrique Garrido Gónzalez**: He has taken care of leaving the first RestController functions and Basic Interfaces so the rest of the team could get an idea of how the work with the APIs was going to be. He was also in charge of all the security part of the phase. Furthermore he has also worked in all the rest controllers, both on his own account, and helping others in the User Rest Controller, in the Team Rest Controller, in the Tournament Rest Controller and in the implementation of the ImageService. Without neglecting the contribution of the postman collection and the work of the api docs 
+* **Daniel Alexander Juan Moreno**: He managed and create all the logic and services related to the docker deployment, from the cration of the dockerfile and the docker-compose.yml to the creation of the team dockerhub account and the building of the webapp image, also colaborates to the correction of the UML Class Diagram to make it more readable and the creation of the api-doc.
+* **Jacobo Miguel Blanzaco Barreiro**: He was focused on the TournamentRestController which is one of the biggest ones
+
+**Member's Important Commits**
+
+| Name | Github user| Commit 1| Commit 2| Commit 3| Commit 4| Commit 5|
+|--------|------------|-------|---------|---------|---------|---------|
+|Daniel Lahera Esteban| DaniL97 | [Updated TeamRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/4f097d57305b0eabb53ac7d5de3e1a9d3931f4cc) | [Users Rest](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/6102dc6eb7b42d6e5c2c4c4fbb7b6f9d4f62f463) | [TournamentRestController Updated](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/7f3907d302dfbe8a1f5bd42bed5e01b63f75051f) | [Patch](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/66ac81e2b790090471a7e187b99f99836274ec52) | [Fixes + Postman Collection + api-docs](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/2ece70c9ccb0ea3050ae3f58cfc961f43179defb)  |
+|Enrique Garrido Gónzalez | kikegg | [Security Rest](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/89d0ee40b6600ff25a3a2e2fe19cdfc0529d4f7a) | [TournamentRestController Updated](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/7f3907d302dfbe8a1f5bd42bed5e01b63f75051f) | [User Rest](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/7bcf3f3dd3ce79519567e16b953de1671bc7a1ae) | [ImageService Rest User Team](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/7bcf3f3dd3ce79519567e16b953de1671bc7a1ae) | [Fixes + Postman Collection + api-docs](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/2ece70c9ccb0ea3050ae3f58cfc961f43179defb) |
+|Daniel Alexander Juan Moreno | dajm92 | [Docker logic](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/4e9297c58dc2a329a91c6de29e246511e6d86cfb) | [api-docs](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/2ece70c9ccb0ea3050ae3f58cfc961f43179defb) | []() | []() | []() |
+|Jacobo Miguel Blanzaco Barreiro  | jacobobbm | [TournamentRestController + JsonView Annotations](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/f5e7eecb0770b8cf9b69939d5452909e3b9c6936) | [Tournament Rest Controller v0](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/00f40fa9efb780973bae54ce9956234672c38f94) | []() | []() | []() |
+
+**Member's Most Focused Files**
+| Name | Github user| File 1| File 2| File 3| File 4| File 5|
+|--------|------------|-------|---------|---------|---------|---------|
+|Daniel Lahera Esteban| DaniL97 | [TournamentRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/tournament/TournamentRestController.java) | [TeamRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/team/TeamRestController.java) | [UserRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/user/UserRestController.java) | [LoginController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/user/auth/LoginController.java) | [Tournament](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/tournament/Tournament.java)  |
+|Enrique Garrido Gónzalez | kikegg | [TournamentRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/tournament/TournamentRestController.java) | [Image Service](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/ImageService.java) | [Security Configuration](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/security/RestSecurityConfig.java) | [UserRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/user/UserRestController.java) | [Victorious.postman_collection](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/Victorious.postman_collection.json) |
+|Daniel Alexander Juan Moreno | dajm92 | [Dockerfile](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/docker/Dockerfile) | [Docker-compose](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/docker/docker-compose.yml) | [Docker building script](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/docker/create_image.ps1) | []() | []() |
+|Jacobo Miguel Blanzaco Barreiro  | jacobobbm | [TournamentRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/tournament/TournamentRestController.java) | []() | []() | []() | []() |

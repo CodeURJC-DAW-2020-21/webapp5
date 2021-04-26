@@ -6,20 +6,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.victorious.team.Team;
 
 @Entity
 public class MatchUp {
     
+	public interface Basic{}
+	interface MatchUpTeams{}
+	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(Basic.class)
     private Long id;
 
     @ManyToOne
+    @JsonView(MatchUpTeams.class)
     private Team team1, team2;
     
+    @JsonView(MatchUpTeams.class)
     private int score1,score2;
-
+    
+    @JsonView(Basic.class)
     private boolean isPlayed;
 
     public MatchUp(){ }

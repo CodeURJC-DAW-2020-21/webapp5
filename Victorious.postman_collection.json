@@ -1,0 +1,1263 @@
+{
+	"info": {
+		"_postman_id": "88d24995-6475-4745-99cd-62f51b4748ee",
+		"name": "Victorious",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\": \"aUser\", \"password\": \"adminpass\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/auth/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\": \"nUser\", \"password\": \"pass\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/auth/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/auth/logout",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Logged",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/users/logged",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users",
+						"logged"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/users/User0",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users",
+						"User0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"NewUser\",\r\n    \"email\": \"newUser@gmail.com\",\r\n    \"encodedPassword\": \"userpass\",\r\n    \"team\": null,\r\n    \"riot\": null,\r\n    \"blizzard\": null,\r\n    \"psn\": null,\r\n    \"xbox\": null,\r\n    \"steam\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/users/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update nUser",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"NewName\",\r\n    \"email\": \"newName@gmail.com\",\r\n    \"encodedPassword\": \"\",\r\n    \"riot\": \"\",\r\n    \"blizzard\": \"\",\r\n    \"psn\": \"\",\r\n    \"xbox\": \"\",\r\n    \"steam\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/users/nUser",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users",
+						"nUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "nUser Update Img",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "imageFile",
+							"type": "file",
+							"src": "/C:/Users/Kike/Pictures/fondos/mr.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/users/nUser/image",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users",
+						"nUser",
+						"image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "nUser Image",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/users/nUser/image",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users",
+						"nUser",
+						"image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Teams",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/teams/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"teams",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Teams Pages",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/teams/pages?numPage=0",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"teams",
+						"pages"
+					],
+					"query": [
+						{
+							"key": "numPage",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Team Fnatic",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/api/teams/14",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"teams",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update G2",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"G2 ESPORT Updated\",\r\n    \"description\":\"G2 ESPORT has been updated in postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/teams/15",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"teams",
+						"15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get chart FNATIC",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let template = `\r",
+							"<script type=\"text/javascript\" src=\"https://cdn.jsdelivr.net/npm/chart.js@2.8.0\"></script>\r",
+							"<canvas id=\"myChart\" height=\"80\"></canvas>\r",
+							"<script>\r",
+							"var ctx = document.getElementById('myChart').getContext('2d');\r",
+							"var nMatches = parseInt(\"{{nVicories}}\") + parseInt(\"{{nLoses}}\");\r",
+							"var matches = [];\r",
+							"for (let i = 1; i <= nMatches; i++) {\r",
+							"\tmatches[i-1] = i;\r",
+							"}\r",
+							"var victory = \"{{recordV}}\".split(',').map(Number);\r",
+							"var loss = \"{{recordL}}\".split(',').map(Number);\r",
+							"var victories = [];\r",
+							"var loses = [];\r",
+							"for (let i = 0; i < nMatches; i++) {\r",
+							"\tvictories[i] = victory[i]/matches[i]*100;\r",
+							"\tloses[i] = loss[i]/matches[i]*100;\r",
+							"}\r",
+							"var myLineChart = new Chart(ctx, {\r",
+							"    type: 'line',\r",
+							"\r",
+							"    data: {\r",
+							"\r",
+							"    \tlabels: matches,\r",
+							"    \tdatasets: [{\r",
+							"    \t\tlabel: '% of victories',\r",
+							"    \t\tdata: victories,\r",
+							"    \t\tbackgroundColor:'rgba(255, 255, 255, 0)',\r",
+							"            borderColor:'rgba(255, 15, 15, 1)',\r",
+							"            borderWidth: 5\r",
+							"    \t},{\r",
+							"    \t\tlabel: '% of loses',\r",
+							"    \t\tdata: loses,\r",
+							"    \t\tbackgroundColor:'rgba(255, 255, 255, 0)',\r",
+							"            borderColor:'rgba(30, 35, 235, 1)',\r",
+							"            pointBorderColor:'rgba(30, 35, 235, 1)',\r",
+							"            borderWidth: 5\r",
+							"    \t}]\r",
+							"    },\r",
+							"\t options: {\r",
+							"\t        scales: {\r",
+							"\t            yAxes: [{\r",
+							"\t                ticks: {\r",
+							"\t                    beginAtZero: true\r",
+							"\t                }\r",
+							"\t            }]\r",
+							"\t        }\r",
+							"\t    }\r",
+							"});\r",
+							"</script>`;\r",
+							"pm.visualizer.set(template, {\r",
+							"    response: pm.response.json()});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/teams/14/chart",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"teams",
+						"14",
+						"chart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create newTeam",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"newTeam\",\r\n    \"description\":\"This is a team created in postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/teams/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"teams",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fnatic Update Img",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "imageFile",
+							"type": "file",
+							"src": "/C:/Users/Kike/Pictures/assasih.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/teams/14/image",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"teams",
+						"14",
+						"image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fnatic Image",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/teams/14/image",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"teams",
+						"14",
+						"image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get league",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/teams/league",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"teams",
+						"league"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Request  aUser to Fnatic",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/api/teams/14/requests/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"teams",
+						"14",
+						"requests",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accept/Reject request of aUser to Fnatic",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"aUser\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/teams/14/requests/?accept=true",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"teams",
+						"14",
+						"requests",
+						""
+					],
+					"query": [
+						{
+							"key": "accept",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Leave aUser Fnatic",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/teams/14/members/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"teams",
+						"14",
+						"members",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Kick User0 from Fnatic",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/teams/14/members/26",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"teams",
+						"14",
+						"members",
+						"26"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add User2 to Fnatic admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"User2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/teams/14/admins/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"teams",
+						"14",
+						"admins",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add CS to Fnatic games",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Counter Strike\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/teams/14/games/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"teams",
+						"14",
+						"games",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tournaments",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/tournaments/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"tournaments",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tournaments Pages",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/tournaments/pages?numPage=0",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"tournaments",
+						"pages"
+					],
+					"query": [
+						{
+							"key": "numPage",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tournament Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/tournaments/3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"tournaments",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Tournament",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \"name\": \"New Tournament\",\r\n    \"description\": \"New Tournament Description\",\r\n    \"maxPlayers\": 32,\r\n    \"iniDate\": \"12-13-20 at 13:00\",\r\n    \"endDate\": \"12-13-20 at 14:00\",\r\n    \"game\": {\r\n        \"id\": 1,\r\n        \"name\": \"League of Legends\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/tournaments/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"tournaments",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tournament Id Participants",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/tournaments/3/participants",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"tournaments",
+						"3",
+						"participants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tournament Id Participant",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/tournaments/3/participants/14",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"tournaments",
+						"3",
+						"participants",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Tournament Participant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/tournaments/4/participants/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"tournaments",
+						"4",
+						"participants",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tournament Id Rounds",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/tournaments/3/rounds",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"tournaments",
+						"3",
+						"rounds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tournament Id Round",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/tournaments/3/rounds/48",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"tournaments",
+						"3",
+						"rounds",
+						"48"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Tournament Id Rounds",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/api/tournaments/3/rounds/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"tournaments",
+						"3",
+						"rounds",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tournament Id Round Matches",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/tournaments/3/rounds/44/matches",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"tournaments",
+						"3",
+						"rounds",
+						"44",
+						"matches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tournament Id Round Match",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/tournaments/3/rounds/44/matches/43",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"tournaments",
+						"3",
+						"rounds",
+						"44",
+						"matches",
+						"43"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Score Tournament Id MatchUp",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"score1\": \"3\",\r\n    \"score2\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/tournaments/3/rounds/44/matches/43",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"tournaments",
+						"3",
+						"rounds",
+						"44",
+						"matches",
+						"43"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

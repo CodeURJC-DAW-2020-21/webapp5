@@ -13,48 +13,66 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.victorious.game.Game;
 import com.victorious.team.Team;
 import com.victorious.user.User;
 
 @Entity
 public class Tournament {
+	public interface Basic{}
+	interface TournamentTeams{}
+	interface TournamentRounds{} 
 
 //ATTRIBUTES
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(Basic.class)
     private Long id;
 
     @Column(nullable = false)
+    @JsonView(Basic.class)
     private String name;
 
     @Column(length = 1000, nullable = true)
+    @JsonView(Basic.class)
     private String description;
     
+    @JsonView(TournamentTeams.class)
     private int currentPlayers;
     
+    @JsonView(Basic.class)
     private int maxPlayers;
 
+    @JsonView(Basic.class)
     private String iniDate;
 
+    @JsonView(Basic.class)
     private String endDate;
 
     @ManyToMany(mappedBy = "tournaments")
+    @JsonView(TournamentTeams.class)
     private List<Team> participants;
 
     @ManyToOne
+    @JsonView(TournamentTeams.class)
     private Team winner;
 
     @OneToMany
+    @JsonView(TournamentRounds.class)
     private List<Rounds> rounds;
 
     @OneToOne
+    @JsonView(Basic.class)
     private Game game;
 
+    @JsonView(Basic.class)
     private int roundNumber;
 	
+    @JsonView(Basic.class)
 	private boolean started;
 	
+    @JsonView(Basic.class)
 	private boolean finished;
 
     @ManyToOne
