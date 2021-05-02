@@ -1,21 +1,26 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
-import { FooterComponent } from './footer.component';
-import { HeaderComponent } from './header.component';
-import { TournamentsComponent } from './tournaments.component';
+import { routing } from './app.routing';
+import { IndexComponent } from './components/index/index.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent, 
     FooterComponent,
-    TournamentsComponent
+    HeaderComponent,
+    IndexComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    routing,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

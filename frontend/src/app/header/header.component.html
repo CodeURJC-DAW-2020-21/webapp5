@@ -1,0 +1,41 @@
+<!--MAIN MENU WRAP BEGIN-->
+<div class="main-menu-wrap sticky-menu">
+    <div class="container">
+        <a class="custom-logo-link"><img src="assets/images/common/esport-champ-logo.png" alt="logo" class="custom-logo"></a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#team-menu" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <nav class="navbar">
+            <div class="collapse navbar-collapse" id="team-menu">
+                <ul class="main-menu nav">
+                    <li><a href="/index"><span>Home</span></a></li>
+                    <li><a href="/tournaments"><span>Tournaments</span></a></li>
+                    <li><a href="/teams"><span>Teams</span></a></li>
+                    <li><a href="/league"><span>League</span></a></li>
+                    <li><a href="/contact"><span>Contact</span></a></li>
+                    <li><a href="/login"><span>Log In</span></a></li>
+                    <li><a href=""><span>Settings</span></a></li>
+                    <li><img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="" height="50" width="50"/>
+                        <ul>
+                            <li>
+                                <a href=""> <strong></strong>
+                                    <p class="small">Profile</p>
+                                </a>
+                            </li>
+							<li>
+                                <form action="/logout" method="post">
+                                    <input type="hidden" name="_csrf" value="" />
+                                    <button type="submit" class="btn-link">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>       
+        </nav>
+    </div>
+</div>
+<!--MAIN MENU WRAP END-->
