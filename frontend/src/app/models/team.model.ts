@@ -1,4 +1,4 @@
-import { Tournament } from './tournament.model'
+import { Tournament } from '../components/tournaments/tournament.model'
 import { User } from './user.model'
 import {Game} from './game.model'
 

@@ -8,6 +8,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { TournamentsComponent } from './components/tournaments/tournament.component';
+import { TCollapse } from './components/tournaments/collapse/collapse.component';
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,12 +19,15 @@ import { ContactComponent } from './components/contact/contact.component';
     FooterComponent,
     HeaderComponent,
     IndexComponent,
-    ContactComponent
+    ContactComponent,
+    TournamentsComponent,
+    TCollapse    
   ],
   imports: [
     BrowserModule,
     routing,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

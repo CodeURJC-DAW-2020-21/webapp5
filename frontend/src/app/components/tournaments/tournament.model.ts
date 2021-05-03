@@ -1,7 +1,7 @@
-import { Team } from './team.model'
-import { User } from './user.model'
-import { Game } from './game.model'
-import { Round } from './round.model'
+import { Team } from '../../models/team.model'
+import { User } from '../../models/user.model'
+import { Game } from '../../models/game.model'
+import { Round } from '../../models/round.model'
 
 export interface Tournament {
     id?: number;
