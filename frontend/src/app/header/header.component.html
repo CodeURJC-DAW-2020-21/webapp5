@@ -11,24 +11,24 @@
         <nav class="navbar">
             <div class="collapse navbar-collapse" id="team-menu">
                 <ul class="main-menu nav">
-                    <li><a href="/index"><span>Home</span></a></li>
-                    <li><a href="/tournaments"><span>Tournaments</span></a></li>
-                    <li><a href="/teams"><span>Teams</span></a></li>
-                    <li><a href="/league"><span>League</span></a></li>
-                    <li><a href="/contact"><span>Contact</span></a></li>
-                    <li><a href="/login"><span>Log In</span></a></li>
-                    <li><a href=""><span>Settings</span></a></li>
-                    <li><img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="" height="50" width="50"/>
+                    <li><a style="color: white;" (click)="goToIndex()"><span>Home</span></a></li>
+                    <li><a style="color: white;" (click)="goToTournaments()"><span>Tournaments</span></a></li>
+                    <li><a style="color: white;" (click)="goToTeams()"><span>Teams</span></a></li>
+                    <li><a style="color: white;" (click)="goToLeague()"><span>League</span></a></li>
+                    <li><a style="color: white;" (click)="goToContact()"><span>Contact</span></a></li>
+                    <li *ngIf="!loginService.isLogged()"><a style="color: white;" (click)="goToLogin()"><span>Log In</span></a></li>
+                    <li *ngIf="loginService.isLogged()"><a style="color: white;" (click)="goToSettings()"><span>Settings</span></a></li>
+                    <li *ngIf="loginService.isLogged()"><img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="" height="50" width="50"/>
                         <ul>
                             <li>
-                                <a href=""> <strong></strong>
+                                <a style="color: white;" (click)="goToProfile()"> <strong></strong>
                                     <p class="small">Profile</p>
                                 </a>
                             </li>
 							<li>
                                 <form action="/logout" method="post">
                                     <input type="hidden" name="_csrf" value="" />
-                                    <button type="submit" class="btn-link">Logout</button>
+                                    <button type="submit" class="btn-link" (click)="logOut()">Logout</button>
                                 </form>
                             </li>
                         </ul>

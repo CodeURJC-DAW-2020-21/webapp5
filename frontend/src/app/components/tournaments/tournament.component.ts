@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { TournamentService } from './tournaments.service';
-import { Tournament } from './tournament.model';
+import { TournamentService } from '../../services/tournaments.service';
+import { Tournament } from '../../models/tournament.model';
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'tournaments',
@@ -11,7 +12,7 @@ export class TournamentsComponent implements OnInit{
 
     private tournaments: Tournament[] = [];
 
-    constructor(private tournamentService: TournamentService){}
+    constructor(private router: Router, private tournamentService: TournamentService){}
 
     ngOnInit(): void {
         this.tournamentService.getTournaments().subscribe(

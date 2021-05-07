@@ -1,15 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Tournament } from './tournament.model';
+import { Tournament } from '../models/tournament.model';
 import {catchError, map} from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
 
 
-@Injectable({
-    providedIn: 'root'
-})
-
+@Injectable({ providedIn: 'root' })
 export class TournamentService{
 
     private readonly tournamentsUrl: string;

@@ -1,0 +1,124 @@
+<!--BREADCRUMBS BEGIN-->
+<section class="image-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info">
+                    <div class="wrap">
+                        <h1>User Settings</h1>
+                    </div>
+                </div>
+            </div>	
+        </div>
+    </div>
+</section>
+<!--BREADCRUMBS END-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="player-name">{{user?.name}}</h4>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+	        <div class="col-md-12">
+	            <div id="profileSetLeftSide">
+	                <p class="options"> Avatar: </p>
+	                <div id="profileMainPic"> <img id="profile" class="img-square" src="" height="150" width="150"/></div>
+	                <br>
+	                <input type='file' name='imageField' accept=".jpg, .jpeg" />
+	            </div>
+	        </div>
+	        <div class="col-md-12">
+	            <h6>User Data:</h6>
+	            <div class="row">
+	                <div class="col-lg-4">
+	                    <p class="options"> Nickname</p>
+	                </div>
+	                <div class="col-md-6">
+	                    <div class="form-group">
+	                        <input type="text" class="form-control" name="username"> 
+	                	</div>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="col-lg-4">
+	                    <p class="options"> E-mail</p>
+	                </div>
+	                <div class="col-md-6">
+	                    <div class="form-group">
+	                        <input type="text" class="form-control" name="email">
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="col-lg-4">
+	                    <p class="options">Password: </p>
+	                </div>
+	                <div class="col-md-6">
+	                    <div class="form-group">
+	                        <input type="password" class="form-control" name="password"> 
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+        	<br>
+        	<br>
+	        <div class="col-md-12">
+	            <h6>User Accounts:</h6>
+	            <div class="row">
+	                <div class="col-lg-4">
+	                    <p class="options"> Riot Account</p>
+	                </div>
+	                <div class="col-md-6">
+	                    <div class="form-group">
+	                        <input type="text" class="form-control" name="riot"> 
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="col-lg-4">
+	                    <p class="options"> Blizzard Account</p>
+	                </div>
+	                <div class="col-md-6">
+	                    <div class="form-group">
+	                        <input type="text" class="form-control" name="blizzard"> 
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="col-lg-4">
+	                    <p class="options">PSN Account </p>
+	                </div>
+	                <div class="col-md-6">
+	                    <div class="form-group">
+	                        <input type="password" class="form-control" name="psn"> 
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="col-lg-4">
+	                    <p class="options">Xbox Account </p>
+	                </div>
+	                <div class="col-md-6">
+	                    <div class="form-group">
+	                        <input type="password" class="form-control" name="xbox"> 
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="col-lg-4">
+	                    <p class="options">Steam Account </p>
+	                </div>
+	                <div class="col-md-6">
+	                    <div class="form-group">
+	                        <input type="password" class="form-control" name="steam"> 
+	                    </div>
+	                </div>
+	            </div>
+	            <br>
+	            <br>
+	        </div> 
+        	<input class="btn small" type="submit" value="Apply Changes">
+        </form>
+    </div>
+</div>

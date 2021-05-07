@@ -1,0 +1,61 @@
+<!--BREADCRUMBS BEGIN-->
+<section class="image-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info">
+                    <div class="wrap">
+                        <h1>Teams</h1>
+                    </div>
+                </div>
+            </div>	
+        </div>
+    </div>
+</section>
+<!--BREADCRUMBS END-->
+
+<!--ESPORT CHAMPIONSHIP PARTICIPANTS BEGIN-->
+<div class="esport_championship_participants">
+    <div class="container">
+        <div class="row no-guters">
+            <div class="col-md-12">
+                <h5>Teams</h5>
+            </div>
+            <div id="teamList">
+	            <div class="col-md-3 col-sm-4 col-xs-6" *ngFor="let team of getTeams()">
+	                <a [routerLink]="['/teams/' + team.id]">
+	                    <img src="assets/images/common/esport-participants-background.jpg" class="background-team" alt="background">
+	                    <img src="assets/images/common/team-logo4.png" alt="team-logo">
+	                    <span>{{team.name}}</span>
+	                </a>
+	            </div>
+          	</div>
+        </div>
+    </div>  
+</div>
+<!--ESPORT CHAMPIONSHIP PARTICIPANTS END-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" style="text-align:center">
+              <button class="btn small" id="loadMoreTeams" nextPage ="1" style="margin-bottom:40px">LOAD MORE</button>
+          </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="store-banner position-relative">
+            <div class="store-banner-info">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="title">Create <span>Your Team</span></div>
+                            <button class="btn small" (click)="goToNewTeam()">Start</button>
+                        </div>	
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
