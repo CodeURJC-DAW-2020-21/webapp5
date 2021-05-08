@@ -44,17 +44,15 @@
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="store-banner position-relative">
-            <div class="store-banner-info">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="title">Create <span>Your Team</span></div>
-                            <button class="btn small" *ngIf="loginService.isLogged()" (click)="goToNewTeam()">Start</button>
-                            <button class="btn small" *ngIf="!loginService.isLogged()" (click)="goToLogin()">Start</button>
-                        </div>	
-                    </div>
+    <div class="store-banner position-relative">
+        <div class="store-banner-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title" style="margin-right: 20px">Create <span>Your Team</span></div>
+                        <button class="btn small" *ngIf="loginService.isLogged()" (click)="goToNewTeam()" style="margin-right: 20px">Start</button>
+                        <button class="btn small" *ngIf="!loginService.isLogged()" (click)="goToLogin()" style="margin-right: 20px">Start</button>
+                    </div>	
                 </div>
             </div>
         </div>

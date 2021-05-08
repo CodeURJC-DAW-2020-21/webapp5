@@ -9,7 +9,7 @@ import { IndexComponent } from './components/index/index.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { TournamentsComponent } from './components/tournaments/tournament.component';
+import { TournamentsComponent } from './components/tournaments/tournaments.component';
 import { LoginComponent } from './components/login/login.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { TCollapse } from './components/tournaments/collapse/collapse.component';
@@ -17,6 +17,7 @@ import { NewTeamComponent } from './components/teams/newTeam/newTeam.component';
 import { TeamComponent } from './components/teams/team/team.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { NewTournamentComponent } from "./components/tournaments/newTournament/newTournament.component"
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SettingsComponent } from './components/settings/settings.component';
     TeamComponent,
     NewTeamComponent,
     ProfileComponent,
-    SettingsComponent
+    SettingsComponent,
+    NewTournamentComponent
   ],
   imports: [
     BrowserModule,

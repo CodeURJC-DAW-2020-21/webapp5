@@ -1,0 +1,127 @@
+<!--BREADCRUMBS BEGIN-->
+<section class="image-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info">
+                    <div class="wrap">
+                        <h1>Create a Tournament</h1>
+                    </div>
+                </div>
+            </div>	
+        </div>
+    </div>
+</section>
+<!--BREADCRUMBS END-->
+
+<div class="container">
+    <br>
+    <form class="forml" method="post">
+        <input type="hidden" name="_csrf" value="" />               
+            <div class="panel-body">
+                <div class="col-lg-12">
+                    
+                    <br>
+
+                    <form action="newTournament.html" method="post">
+                    <div class="row top-buffer">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">
+                            <p class="options">Tournament Name:</p>
+                        </div>
+                        <div class="col-lg-8">
+                            <input class="form-control" type="name" value="Default Tournament" name="name" required>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row top-buffer">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">
+                            <p class="options">Tournament Participant Capacity:</p>
+                        </div>
+                        <div class="col-lg-8">
+                            <input class="form-control" type="number" value="32"
+                                id="example-number-input" name="maxPlayers" required>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row top-buffer">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">
+                            <p class="options">Start Date:</p>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="date" name="iniDate" step="1" min="2020-01-01"
+                                max="2021-12-31" value="2021-02-26"> <input type="time"
+                                name="time" value="00:00">
+                        </div>
+                    </div>
+
+                    <br>
+                    
+                    <div class="row top-buffer">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">
+                            <p class="options">End Date:</p>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="date" name="endDate" step="1" min="2020-01-01"
+                                max="2021-12-31" value="2021-02-26"> <input type="time"
+                                name="time" value="00:00">
+                        </div>
+                    </div>
+                    
+                    <br>
+
+                    <div class="row top-buffer">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">
+                            <p class="options">Game:</p>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <label for="gameSelect">Select Tournament's Game</label> <select
+                                    class="form-control" name="gameName"> 
+                                    
+										<option></option> 
+									
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row top-buffer">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">
+                            <p class="options">Description:</p>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="5" name="description"
+                                    style="max-width: 100%"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="text-center">
+                        <div>
+                            <input class="btn small" type="submit" value="Create Tournament">
+                        </div>
+                    </div>
+
+                    <br>
+
+                
+            
+        
+    </form>
+</div>

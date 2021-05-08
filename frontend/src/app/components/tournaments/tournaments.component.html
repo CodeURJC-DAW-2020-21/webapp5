@@ -1,0 +1,42 @@
+<!--BREADCRUMBS BEGIN-->
+<section class="image-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info">
+                    <div class="wrap">
+                        <h1>Tournaments</h1>
+                    </div>
+                </div>
+            </div>	
+        </div>
+    </div>
+</section>
+<!--BREADCRUMBS END-->
+
+<!--TOURNAMENT WRAP BEGIN-->
+<div class="broadcast-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Tournaments</h4>
+            </div>
+            <tCollapse></tCollapse>				
+        </div>
+		<div class="store-banner position-relative">
+			<div class="store-banner-info">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="title" style="margin-right: 20px">Create <span>Your Tournament</span></div>
+							<button class="btn small" *ngIf="loginService.isLogged()" (click)="goToNewTournament()" style="margin-right: 20px">Start</button>
+                            <button class="btn small" *ngIf="!loginService.isLogged()" (click)="goToLogin()" style="margin-right: 20px">Start</button>
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
+
+<!--TOURNAMENT WRAP END-->
