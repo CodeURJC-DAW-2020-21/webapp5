@@ -30,7 +30,7 @@
                             <p class="options">Tournament Name:</p>
                         </div>
                         <div class="col-lg-8">
-                            <input class="form-control" type="name" value="Default Tournament" name="name" required>
+                            <input #name [(ngModel)]="tournament.name" class="form-control" type="name" value="Default Tournament" name="name" required>
                         </div>
                     </div>
 
@@ -42,7 +42,7 @@
                             <p class="options">Tournament Participant Capacity:</p>
                         </div>
                         <div class="col-lg-8">
-                            <input class="form-control" type="number" value="32"
+                            <input #maxPlayers [(ngModel)]="tournament.maxPlayers" class="form-control" type="number" value="32"
                                 id="example-number-input" name="maxPlayers" required>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                             <p class="options">Start Date:</p>
                         </div>
                         <div class="col-lg-8">
-                            <input type="date" name="iniDate" step="1" min="2020-01-01"
+                            <input #iniDate [(ngModel)]="tournament.iniDate" type="date" name="iniDate" step="1" min="2020-01-01"
                                 max="2021-12-31" value="2021-02-26"> <input type="time"
                                 name="time" value="00:00">
                         </div>
@@ -69,7 +69,7 @@
                             <p class="options">End Date:</p>
                         </div>
                         <div class="col-lg-8">
-                            <input type="date" name="endDate" step="1" min="2020-01-01"
+                            <input #endDate [(ngModel)]="tournament.endDate" type="date" name="endDate" step="1" min="2020-01-01"
                                 max="2021-12-31" value="2021-02-26"> <input type="time"
                                 name="time" value="00:00">
                         </div>
@@ -84,11 +84,9 @@
                         </div>
                         <div class="col-lg-8">
                             <div class="form-group">
-                                <label for="gameSelect">Select Tournament's Game</label> <select
-                                    class="form-control" name="gameName"> 
-                                    
-										<option></option> 
-									
+                                <label for="gameSelect">Select Tournament's Game</label>
+                                <select #game [(ngModel)]="tournament.game" class="form-control" name="gameName"> 
+										<option>League of legends</option> 
                                 </select>
                             </div>
 
@@ -104,7 +102,7 @@
                         </div>
                         <div class="col-lg-8">
                             <div class="form-group">
-                                <textarea class="form-control" rows="5" name="description"
+                                <textarea #description [(ngModel)]="tournament.description" class="form-control" rows="5" name="description"
                                     style="max-width: 100%"></textarea>
                             </div>
                         </div>
@@ -114,7 +112,7 @@
 
                     <div class="text-center">
                         <div>
-                            <input class="btn small" type="submit" value="Create Tournament">
+                            <input class="btn small" type="submit" (click)="newTournament()" value="Create Tournament">
                         </div>
                     </div>
 

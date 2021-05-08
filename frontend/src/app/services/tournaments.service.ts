@@ -36,7 +36,7 @@ export class TournamentService{
 
     newTournament(tournament: Tournament) {
         console.log(tournament);
-        return this.httpClient.post(BASE_URL, { name: tournament.name, description: tournament.description }).pipe(
+        return this.httpClient.post(BASE_URL, { name: tournament.name, description: tournament.description,  maxPlayers: tournament.maxPlayers, iniDate: tournament.iniDate, endDate: tournament.endDate, game: tournament.game}).pipe(
             catchError(error => throwError('Server error'))
         );
     }
