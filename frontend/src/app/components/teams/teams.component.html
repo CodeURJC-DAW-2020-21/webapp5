@@ -21,11 +21,11 @@
             <div class="col-md-12">
                 <h5>Teams</h5>
             </div>
-            <div id="teamList">
-	            <div class="col-md-3 col-sm-4 col-xs-6" *ngFor="let team of getTeams()">
+            <div class="col-md-12" id="teamList">
+	            <div class="col-md-3" *ngFor="let team of getTeamsPage()">
 	                <a [routerLink]="['/teams/' + team.id]">
 	                    <img src="assets/images/common/esport-participants-background.jpg" class="background-team" alt="background">
-	                    <img src="assets/images/common/team-logo4.png" alt="team-logo">
+	                    <img [src]="teamImage(team)" alt="team-logo">
 	                    <span>{{team.name}}</span>
 	                </a>
 	            </div>
@@ -37,8 +37,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12" style="text-align:center">
-              <button class="btn small" id="loadMoreTeams" nextPage ="1" style="margin-bottom:40px">LOAD MORE</button>
+        <div class="col-md-12" style="text-align:center" *ngIf="getCanLoadMore()">
+              <button class="btn small" id="loadMoreTeams" (click)="loadMoreTeams()" style="margin-bottom:40px">LOAD MORE</button>
           </div>
     </div>
 </div>
@@ -51,7 +51,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="title">Create <span>Your Team</span></div>
-                            <button class="btn small" (click)="goToNewTeam()">Start</button>
+                            <button class="btn small" *ngIf="loginService.isLogged()" (click)="goToNewTeam()">Start</button>
+                            <button class="btn small" *ngIf="!loginService.isLogged()" (click)="goToLogin()">Start</button>
                         </div>	
                     </div>
                 </div>

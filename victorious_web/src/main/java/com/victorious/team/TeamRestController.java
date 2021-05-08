@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -60,13 +62,14 @@ public class TeamRestController {
 	
 	@PostMapping(value="/")
 	@JsonView(TeamDetails.class)
-	public ResponseEntity<Team> createTeam (@RequestBody Team team, HttpServletRequest request){
+	public ResponseEntity<Team> createTeam (@RequestBody Team team, HttpServletRequest request) throws IOException{
 		
 		String loggedUserName = request.getUserPrincipal().getName();
 		User loggedUser = userService.findByName(loggedUserName).get();
 		Team newTeam = new Team(team.getName(), team.getDescription());
 		newTeam.setCreator(loggedUser);
 		newTeam.addAdmin(loggedUser);
+		setTeamImage(newTeam, "/sample_images/team_default.jpg");
 		URI location = fromCurrentRequest().path("/{id}")
 				.buildAndExpand(newTeam.getId()).toUri();
 		
@@ -320,5 +323,11 @@ public class TeamRestController {
 		} else {
 			return ResponseEntity.notFound().build();
 		}
+	}
+    
+	public void setTeamImage(Team team, String classpathResource) throws IOException {
+		team.setImage(true);
+		Resource image = (Resource) new ClassPathResource(classpathResource);
+		team.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
 	}
 }

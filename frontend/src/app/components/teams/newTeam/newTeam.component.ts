@@ -12,7 +12,6 @@ import { Team } from "../../../models/team.model";
 })
 
 export class NewTeamComponent {
-
     
     team: Team;
     error: boolean;
@@ -20,8 +19,8 @@ export class NewTeamComponent {
 
     constructor(private httpClient: HttpClient, private router: Router, private teamService: TeamService){
         this.team={
-            name: "",
-            description: "",
+            name: '',
+            description: '',
             tournaments: null,
             games: null,
 	        creator: null,
@@ -31,23 +30,18 @@ export class NewTeamComponent {
 	        image: false,
 	        nVictories: 0,
             nLoses: 0,
-	        recordV: "",
-	        recordL: ""
+	        recordV: '',
+	        recordL: ''
         };
     }
 
      newTeam(){
-        this.teamService.newTeam(this.team).subscribe(data => {
-            this.team = data as Team;
-            //this.uploadTeamImage();
-        },
-        error => {
-            this.error = true;
-            if(!this.error){
-                this.router.navigate(['/teams']);
-            }
-            this.errorText = "Data Error, Invalid Team Name";
-            window.scrollTo(0, 0);
-        });
+        this.teamService.newTeam(this.team).subscribe(
+            (team:Team) => this.router.navigate(['/teams']),
+            error => {
+                this.error = true;
+                this.errorText = "Data Error, Invalid Team Name";
+                window.scrollTo(0, 0);
+            });
      }
 }
