@@ -7,6 +7,7 @@ import { Router } from "@angular/router";
 })
 
 export class IndexComponent {
+    active=1;
     constructor(private router: Router){
     }
 }

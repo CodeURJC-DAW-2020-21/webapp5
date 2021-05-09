@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Team } from '../models/team.model';
+import { User } from '../models/user.model';
 import {catchError, map} from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
@@ -26,6 +27,31 @@ export class TeamService{
         ) as Observable<Team>;
     }
 
+	getGraph(id: number | string): Observable<Team> {
+        return this.httpClient.get(BASE_URL + id + '/chart').pipe(
+          map(response => response),
+          catchError(error => throwError('Server error'))
+        ) as Observable<Team>;
+    }
+	
+	acceptRejectMember(userId: number | string, teamId: number | string , accept: boolean){
+		return this.httpClient.post(BASE_URL + teamId + '/requests/' + '?accept=' + accept, {id: userId}).pipe(
+            catchError(error => throwError('Server error'))
+        );
+	}
+	
+	addAdminToTeam(userId: number | string, teamId: number | string){
+		return this.httpClient.post(BASE_URL + teamId + '/admins/', {id: userId}).pipe(
+            catchError(error => throwError('Server error'))
+        );
+	}
+	
+	kickMemberFromTeam(userId: number | string, teamId: number | string){
+		return this.httpClient.put(BASE_URL + teamId + '/members/' + userId,{}).pipe(
+            catchError(error => throwError('Server error'))
+        );
+	}
+	
     getTeamsPage(pageNumber: number): Observable<Team[]>{
         return this.httpClient.get(PAGE_URL + '?numPage=' + pageNumber).pipe(
             map(response => response),

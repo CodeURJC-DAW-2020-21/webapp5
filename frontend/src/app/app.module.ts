@@ -9,6 +9,7 @@ import { IndexComponent } from './components/index/index.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { CarouselComponent } from './components/index/carousel/carousel.component';
 import { TournamentsComponent } from './components/tournaments/tournaments.component';
 import { LoginComponent } from './components/login/login.component';
 import { TeamsComponent } from './components/teams/teams.component';
@@ -28,6 +29,7 @@ import { TNav } from './components/tournaments/tournament/nav/nav.component';
     HeaderComponent,
     IndexComponent,
     ContactComponent,
+    CarouselComponent,
     TournamentsComponent,
     TCollapse,    
     LoginComponent,

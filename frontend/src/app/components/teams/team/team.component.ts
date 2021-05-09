@@ -10,13 +10,13 @@ import { TeamService } from "../../../services/teams.service";
 
 export class TeamComponent {
     
-    active = 1;
+    active = 'abstract';
     team: Team;
     id: number;
 
     @ViewChild("file")
     file:any;
-
+	
     constructor(private router: Router, private activatedRoute: ActivatedRoute, private teamService: TeamService){
         this.id = activatedRoute.snapshot.params.id;
     }
@@ -33,6 +33,35 @@ export class TeamComponent {
       getTeam() {
         return this.team;
       }
+
+	  getChart(){
+		return this.team;
+	  }
+
+	  acceptRejectMember(userId: number, teamId:string|number, accept: boolean){
+		this.teamService.acceptRejectMember(userId , teamId, accept).subscribe(
+            (team:Team) => this.router.navigate(['/teams/teamId']),
+            error => {
+                console.error(error);             
+            });
+	  }
+
+	  addAdminToTeam(userId: string|number, teamId: number | string){
+		this.teamService.addAdminToTeam(userId, teamId).subscribe(
+            (team:Team) => this.router.navigate(['/teams/teamId']),
+            error => {
+                console.error(error);             
+            });
+	  }
+
+	  kickMemberFromTeam(userId: number, teamId: number | string){
+		this.teamService.kickMemberFromTeam(userId, teamId).subscribe(
+            (team:Team) => this.router.navigate(['/teams/teamId']),
+            error => {
+                console.error(error);             
+            });
+	  }
+	
 
       teamImage(){
         return this.team.image? 'api/teams/' + this.team.id + '/image' :  '/assets/images/sample_images/team_default.jpg';

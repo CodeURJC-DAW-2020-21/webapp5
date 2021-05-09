@@ -213,7 +213,7 @@ public class TeamRestController {
 		
 		String loggedUserName = request.getUserPrincipal().getName();
 		User loggedUser = userService.findByName(loggedUserName).get();
-		User oUser = userService.findByName(user.getName()).get();
+		User oUser = userService.findById(user.getId()).get();
 		Team team = teamService.findById(id).get();
 		boolean isAdmin = team.isAdmin(loggedUser) || loggedUser.getRoles().contains("ADMIN");
 		if (!team.isAdmin(oUser) && oUser.getTeam().equals(team) && isAdmin) {
@@ -233,7 +233,7 @@ public class TeamRestController {
 		String loggedUserName = request.getUserPrincipal().getName();
 		User loggedUser = userService.findByName(loggedUserName).get();
 		Team team = teamService.findById(id).get();
-		User oUser = userService.findByName(user.getName()).get();
+		User oUser = userService.findById(user.getId()).get();
 		Long userId = oUser.getId();
 		boolean isAdmin = team.isAdmin(loggedUser) || loggedUser.getRoles().contains("ADMIN");
 
