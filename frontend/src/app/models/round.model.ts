@@ -5,7 +5,7 @@ export interface Round {
     id?: number;
     participants: Team[];
     winners: Team[];
-    oddTeam: Team;
+    oddTeam?: Team;
     matches: Match[];
     numRound: number;
 }

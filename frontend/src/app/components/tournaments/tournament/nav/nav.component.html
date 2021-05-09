@@ -1,0 +1,180 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>Participants</a>
+    </li>
+    <!--*ngFor="let round of tournament.rounds; let i=index" [ngbNavItem]="tabs[i]"-->
+    <li [ngbNavItem]="2" >
+        <a ngbNavLink>Round {{tournament.roundNumber}}</a>
+    </li>
+    <li [ngbNavItem]="98" *ngIf="tournament.finished">
+        <a ngbNavLink>Winner</a>
+    </li>
+    <li [ngbNavItem]="99">
+        <a ngbNavLink>Admin</a>
+    </li>
+
+        <div class="tab-item part-wrap tab-pane active" id="Participants" *ngIf="active===1">
+            <div class="part-list">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3" *ngFor="let participant of tournament.participants; let i=index">
+                            <a [routerLink]="['/teams/' + participant.id]" class="item">
+                                <span class="logo">
+                                    <img [src]="participant.image" width="80" height="80" alt="team-logo">
+                                </span>
+                                <span class="name">{{participant.name}}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div *ngFor="let round of tournament.rounds; let i=index">
+            <!--*ngIf="active===tabs[i]"-->
+            <div class="tab-item match-wrap tab-pane" id="Round{{id}}" *ngIf="active===2" >
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="main-lates-matches">
+                                <!-- ROUNDS-->
+                                    <a class="item" *ngFor="let match of round.matches">
+                                        <!--el form para subir las puntuaciones-->
+                                        <form action="" method="post">
+                                            <input type="hidden" name="_csrf" value="" /> 
+                                            <input type="hidden" name="idMatch" value="{{id}}" />
+                                            <span class="teams-wrap">
+                                                <span class="team" [routerLink]="['/teams/' + match.team1.id]">
+                                                    <span>
+                                                        <img [src]="match.team1.image" alt="team logo" height="340px" width="320px">
+                                                    </span>
+                                                    <span>{{match.team1.name}}</span>
+                                                </span>
+                                                <div class="col-md-offset-5 col-md-5"></div>
+                                                <span class="score">
+                                                    <div *ngIf="!match.isPlayed">
+                                                        <!--if es admin-->
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <input type="number" name="score1" min="0" max="3" value="0" style="width:50px">
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <span>:</span>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="number" name="score2" min="0" max="3" value="0" style="width:50px">
+                                                            </div>
+                                                        </div>
+                                                        <!--si no es admin-->
+                                                        <div>
+                                                            <span>VS</span>
+                                                        </div>
+                                                    </div>    
+                                                    <div *ngIf="match.isPlayed">
+                                                        <span>{{match.score1}}:{{match.score2}}</span>
+                                                    </div>
+                                                </span>
+                                                <span class="team1" [routerLink]="['/teams/' + match.team2.id]">
+                                                    <span>{{match.team2.name}}</span>
+                                                    <span>
+                                                        <img [src]="match.team2.image" alt="team logo" height="340px" width="320px">
+                                                    </span>
+                                                </span>
+                                                <div class="col-md-offset-5 col-md-5"></div>
+                                                <span *ngIf="!match.isPlayed">
+                                                    <!--si es admin-->
+                                                    <div calss="row" >
+                                                        <div class="col-md-4"></div>
+                                                        <div class="col-md-4" style="text-align: center">
+                                                            <input type="submit" class="btn small" value="Submit Score">
+                                                        </div>
+                                                        <div class="col-md-4"></div>
+                                                    </div> 
+                                                </span>
+                                            </span>
+                                        </form>
+                                        <br>
+                                    </a>
+                                    <span class="teams-wrap" *ngIf="round.oddTeam!=null">
+                                        <span class="team" [routerLink]="['/teams/' + round.oddTeam.id]">
+                                            <span>
+                                                <img [src]="round.oddTeam.image" alt="team logo" height="340px" width="320px">
+                                            </span>
+                                            <span><strong>{{round.oddTeam.name}} goes to the next round</strong></span>
+                                        </span>
+                                    </span>                                  
+                                <!-- ROUNDS-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--WINNER-->
+        <div class="tab-item part-wrap tab-pane" id="Winner" *ngIf="active===98">
+            <div class="part-list">
+                <div class="container">
+                    <div class="row">
+                    	<div class="col-md-3"></div>
+                        <div class="col-md-3">
+                        	<h3 style="text-align:center;"><strong>THE WINNER IS</strong></h3> 
+                            <a [routerLink]="['/teams/' + tournament.winner.id]" class="item">
+                                <span class="logo">
+                                    <img [src]="tournament.winner.image" width="80" height="80" alt="team-logo">
+                                </span>
+                                <span class="name">{{tournament.winner.name}} </span>
+                            </a>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--WINNER-->
+
+        <!--ADMIN-->
+        <!--si es admin-->
+        <div class="tab-item news-tab tab-pane" id="Admin" *ngIf="active===99">
+            <div class="news-list">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6" *ngIf="!tournament.started">
+                            <div class="item img-top">
+                                <div class="img-wrap">
+                                    <a><img src="assets/images/soccer/tournament_button.png" alt="news-list-img"></a>
+                                </div>                               
+                                <div class="info">
+                                    <!--form para empezar el torneo-->
+                                    <form action="" method="post">                                      
+                                        <input type="submit" class="btn btn-large btn-block btn-success" class="name" value="START">
+                                        <div class="clear"></div>
+                                        <input type="hidden" name="_csrf" value="" />                                       
+                                    </form>                              
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" *ngIf="tournament.started && !tournament.finished">
+                            <div class="item img-top">
+                                <div class="img-wrap">
+                                    <a><img src="assets/images/soccer/tournament_button.png" alt="news-list-img"></a>
+                                </div>
+                                <div class="info">
+                                    <form action="" method="post">                                      
+                                        <input type="submit" class="btn btn-large btn-block btn-success" class="name" value="NEXT ROUND">
+                                        <div class="clear"></div>
+                                        <input type="hidden" name="_csrf" value="" />
+                                    </form> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>	
+        </div>
+        <!--ADMIN-->
+  </ul>
+  
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+  
+  <pre>Active: {{ active }}</pre>
