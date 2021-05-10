@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 @Component({selector: 'ngcarousel', templateUrl: './carousel.component.html'})
 export class CarouselComponent {
-  image = ["/assets/images/soccer/main-slider.jpg"];
+  image = ["assets/images/soccer/main-slider.jpg"];
 
   constructor(private router: Router){}
 
