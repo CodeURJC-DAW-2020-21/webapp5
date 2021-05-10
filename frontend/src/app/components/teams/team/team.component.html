@@ -17,13 +17,13 @@
 
 	<!--CLUB WRAP BEGIN-->
 	<div ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-	<section class="club-wrap">
+	<section class="club-wrap" style="margin-left: 10%;">
 		<div class="container">
 			<div class="row row-eq-height">
 				<div class="col-md-9 col-sm-9 col-xs-9">
 					<h4>{{team.name}}</h4>
 					<ul class="tab-filters">
-						<li class="active" ngbNavItem=abstract><a ngbNavLink>ABSTRACT</a></li>
+						<li ngbNavItem=abstract><a ngbNavLink>ABSTRACT</a></li>
 						<li ngbNavItem=members><a ngbNavLink>MEMBERS</a></li>
 						<li ngbNavItem=admin *ngIf="loginService.isAdmin()"><a ngbNavLink>ADMIN</a></li>  
 					</ul>            
@@ -84,7 +84,7 @@
 							<ul *ngFor="let game of getTeam().games">
 								<li class="list-group-item"><img src="assets/images/sample_images/game_default.jpg" height="40px" width="50px">{{ game.name }}</li>
 								<div class="text-right">
-									<button class="btn small" data-toggle="modal"  (click)="addGame(team.id ,'counter Strike')" data-target="#myModal">+Add Game</button>
+									<button class="btn small" data-toggle="modal"  (click)="addGame(team.id ,'counter Strike')" data-target="#myModal" style="margin-top: 5%;">+Add Game</button>
 								</div>								 					 
 							</ul>
 						</div>
