@@ -54,6 +54,7 @@ export class TeamComponent {
 			error => {
                 console.error(error);             
             });
+      location.reload();
 	  }
 
 	  addGame(teamId: number, gameName:string){
@@ -62,6 +63,7 @@ export class TeamComponent {
 			error => {
                 console.error(error);             
             });
+      location.reload();
 	  }
 
 	  leaveTeam(teamId: number){
@@ -70,6 +72,7 @@ export class TeamComponent {
 			error => {
                 console.error(error);             
             });
+            location.reload();
 	  }
 
 	  acceptRejectMember(userId: number, teamId:string|number, accept: boolean){
@@ -78,6 +81,7 @@ export class TeamComponent {
             error => {
                 console.error(error);             
             });
+            location.reload();
 	  }
 
 	  addAdminToTeam(userId: string|number, teamId: number | string){
@@ -86,6 +90,7 @@ export class TeamComponent {
             error => {
                 console.error(error);             
             });
+            location.reload();
 	  }
 
 	  kickMemberFromTeam(userId: number, teamId: number | string){
@@ -94,6 +99,7 @@ export class TeamComponent {
             error => {
                 console.error(error);             
             });
+            location.reload();
 	  }
 
       teamImage(){

@@ -40,19 +40,12 @@
                             <ng-container *ngFor="let team of getTeams()">
 	                            <tr>
 	                                <td>
-	                                    <span><img src="api/teams/team.id/{{team.image}}" alt="team logo">{{team.name}}</span> 
+	                                    <span><img [src]="teamImage(team)" alt="team logo">{{team.name}}</span> 
 	                                </td>
-	                                <td id="nMatches{{team.id}}"></td>
+	                                <td>{{getNMatches(team)}}</td>
 	                                <td>{{team.nVictories}}</td>
 	                                <td>{{team.nLoses}}</td>
-	                                <td class="points"><span>{{team.nVictories}}</span></td>	  
-	                                <td class="form">
-	                                    <span id="match0{{team.id}}"></span>
-	                                    <span id="match1{{team.id}}"></span>
-	                                    <span id="match2{{team.id}}"></span>
-	                                    <span id="match3{{team.id}}"></span>
-	                                    <span id="match4{{team.id}}"></span>
-                                	</td>                            
+	                                <td class="points"><span>{{team.nVictories}}</span></td>	                              
 	                            </tr>    
                             </ng-container>                                                                                             
                         </table>
@@ -65,45 +58,3 @@
         </div>
     </div>
 </section>
-<script type="text/javascript">
-document.getElementById('nMatches{{id}}').innerHTML = nMatches;
-var recordMatches = "{{recordV}}".split(',').map(Number);
-if (nMatches !== 0){		
-	if(nMatches < 6){
-		if (recordMatches[0] == 0){
-			document.getElementById('match0{{id}}').innerHTML = "l";
-			document.getElementById('match0{{id}}').className = "lose"
-		} else{
-			document.getElementById('match0{{id}}').innerHTML = "w";
-			document.getElementById('match0{{id}}').className = "win"
-		} 
-		for (let i = 1; i < nMatches; i++) {
-			if(recordMatches[i] == recordMatches[i-1]){
-				document.getElementById('match' + i + '{{id}}').innerHTML = "l";
-				document.getElementById('match' + i + '{{id}}').className = "lose"
-			} else{
-				document.getElementById('match' + i + '{{id}}').innerHTML = "w";
-				document.getElementById('match' + i + '{{id}}').className = "win"
-			}
-		} 
-	}else{
-		var lastMatches = recordMacthes.slice(nMatches-5, nMatches-1);
-		if (recordMatches[nMatches-5] == recordMatches[nMatches-6]){
-			document.getElementById('match0{{id}}').innerHTML = "l";
-			document.getElementById('match0{{id}}').className = "lose"
-		} else{
-			document.getElementById('match0{{id}}').innerHTML = "w";
-			document.getElementById('match0{{id}}').className = "win"
-		}
-	} 
-	for (let i = 1; i < 5; i++){
-		if(lastMatches[i] == lastMatches[i-1]){
-			document.getElementById('match' + i + '{{id}}').innerHTML = "l";
-			document.getElementById('match' + i + '{{id}}').className = "lose"
-		} else{
-			document.getElementById('match'+ i + '{{id}}').innerHTML = "w";
-			document.getElementById('match'+ i + '{{id}}').className = "win"
-		}
-	}
-}
-</script>

@@ -21,6 +21,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { NewTournamentComponent } from "./components/tournaments/newTournament/newTournament.component"
 import { TournamentComponent } from './components/tournaments/tournament/tournament.component';
 import { TNav } from './components/tournaments/tournament/nav/nav.component';
+import { LeagueComponent } from './components/league/league.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { TNav } from './components/tournaments/tournament/nav/nav.component';
     SettingsComponent,
     NewTournamentComponent,
     TournamentComponent,
-    TNav
+    TNav,
+    LeagueComponent
   ],
   imports: [
     BrowserModule,
