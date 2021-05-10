@@ -28,8 +28,6 @@ export class TNav {
       this.tournamentService.getTournament(this.id).subscribe(
         data => {
           this.tournament = data;
-          console.log(this.loginService.currentUser().roles);
-          console.log(this.loginService.isAdmin());
         },
         error => console.error(error)
       );
@@ -37,22 +35,22 @@ export class TNav {
 
   nextRound(tournament: Tournament){
     this.tournamentService.nextRound(tournament).subscribe(
-
+      _ => location.reload(),
+      error => console.error(error)
     );
-    location.reload();
   }
 
   submitScore(tournament: Tournament, match: Match, roundId: number){
     this.tournamentService.submitScore(tournament, match, roundId).subscribe(
-
+      _ => location.reload(),
+      error => console.error(error)
     );
-    location.reload();
   }
   join(tournament: Tournament){
     this.tournamentService.joinTournament(tournament).subscribe(
-      
+      _ => location.reload(),
+      error => console.error(error)
     );
-    location.reload();
   }
 
   teamImage(team: Team){

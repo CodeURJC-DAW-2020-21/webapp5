@@ -89,15 +89,15 @@
                                             </span>
                                         </form>
                                         <br>
-                                    </a>
-                                    <span class="teams-wrap" *ngIf="round.oddTeam !== null">
-                                        <span class="team" [routerLink]="['/teams/' + round.oddTeam.id]">
-                                            <span>
-                                                <img [src]="teamImage(round.oddTeam)" alt="team logo" height="340px" width="320px">
+                                        <span class="teams-wrap" *ngIf="round.oddTeam !== null">
+                                            <span class="team" [routerLink]="['/teams/' + round.oddTeam.id]">
+                                                <span>
+                                                    <img [src]="teamImage(round.oddTeam)" alt="team logo" height="340px" width="320px">
+                                                </span>
+                                                <span><strong>{{round.oddTeam.name}} goes to the next round</strong></span>
                                             </span>
-                                            <span><strong>{{round.oddTeam.name}} goes to the next round</strong></span>
                                         </span>
-                                    </span>                                  
+                                    </a>                                  
                                 <!-- ROUNDS-->
                             </div>
                         </div>

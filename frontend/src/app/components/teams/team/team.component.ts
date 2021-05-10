@@ -24,18 +24,9 @@ export class TeamComponent {
     }
 
     ngOnInit(): void {
-      console.log(this.loginService.currentUser());
       this.teamService.getTeam(this.id).subscribe(
           data => {
-            this.team = data;
-            this.teamService.getGraph(this.id).subscribe(
-              data2 => {
-                this.team.nVictories = data2.nVictories;
-                this.team.nLoses = data2.nLoses;
-                this.team.recordV = data2.recordV;
-                this.team.recordL = data2.recordL;
-              }
-            )
+            this.team = data
           },
           error => console.error(error)
         );
@@ -44,10 +35,6 @@ export class TeamComponent {
     getTeam() {
       return this.team;
     }
-
-	  getChart(){
-		return this.team;
-	  }
 
     isMember(){
       if(this.loginService.currentUser().team === null){
