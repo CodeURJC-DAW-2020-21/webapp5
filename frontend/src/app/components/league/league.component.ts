@@ -37,6 +37,6 @@ export class LeagueComponent{
   }
 
   teamImage(team: Team){
-    return team.image? 'api/teams/' + team.id + '/image' :  '/assets/images/sample_images/team_default.jpg';
+    return team.image? '/api/teams/' + team.id + '/image' :  '/assets/images/sample_images/team_default.jpg';
   }
 }

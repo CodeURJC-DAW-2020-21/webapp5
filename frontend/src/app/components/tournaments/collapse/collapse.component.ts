@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { Team } from "src/app/models/team.model";
 import { Tournament } from "src/app/models/tournament.model";
 import { LoginService } from "src/app/services/login.sevice";
 import { TournamentService } from "src/app/services/tournaments.service";
@@ -10,7 +11,7 @@ import { TournamentService } from "src/app/services/tournaments.service";
   })
   export class TCollapse{
     
-    public isCollapsed: boolean[] = [false];
+    public isCollapsed: boolean[] = [];
 
     tournamentsPages: Tournament[] = [];
     tournaments: Tournament[] = [];
@@ -80,6 +81,10 @@ import { TournamentService } from "src/app/services/tournaments.service";
           
         );
         location.reload();
+      }
+      
+      teamImage(team: Team){
+        return team.image? '/api/teams/' + team.id + '/image' :  '/assets/images/sample_images/team_default.jpg';
       }
       
   }

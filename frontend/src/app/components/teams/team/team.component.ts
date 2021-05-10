@@ -132,7 +132,7 @@ export class TeamComponent {
     }
 
     teamImage(){
-      return this.team.image? 'api/teams/' + this.team.id + '/image' :  '/assets/images/sample_images/team_default.jpg';
+      return this.team.image? '/api/teams/' + this.team.id + '/image' :  '/assets/images/sample_images/team_default.jpg';
     }
 
     uploadTeamImage(team: Team): void{
@@ -151,6 +151,6 @@ export class TeamComponent {
     }
 
     userImage(user: User){
-      return user.image? 'api/users/' + user.name + '/image' :  '/assets/images/sample_images/user_default.jpg';
+      return user.image? '/api/users/' + user.name + '/image' :  '/assets/images/sample_images/user_default.jpg';
     }
 }
