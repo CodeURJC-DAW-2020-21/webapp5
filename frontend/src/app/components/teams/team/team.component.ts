@@ -126,8 +126,8 @@ export class TeamComponent {
         formData.append("imageFile", image);
         this.teamService.setTeamImage(team, formData).subscribe(
           _ => {
-            this.router.navigate(['/teams/' + team.id]),
-            alert('Team Image has been changed')
+            alert('Team Image has been changed'),
+            this.router.navigate(['/teams/'])
           },
           error => alert('Error uploading team image: ' + error)
         );
