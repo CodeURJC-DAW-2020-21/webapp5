@@ -27,4 +27,10 @@ export class TournamentComponent{
         );
     }
 
+    join(tournament: Tournament){
+      this.tournamentService.joinTournament(tournament).subscribe(
+
+      );
+      location.reload();
+    }
 }

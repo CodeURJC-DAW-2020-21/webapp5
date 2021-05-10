@@ -5,7 +5,7 @@
                 <button type="button" class="btn btn-outline-primary" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed[i]" aria-controls="collapseExample">
                 {{tournament.name}}
                 </button>
-                <span class="marker"><a href="">Join</a></span>
+                <span class="marker"><button (click)="join(tournament)" *ngIf="loginService.isLogged() && !tournament.started">Join</button></span>
             </p>
             <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed[i]">
                 <div class="card">

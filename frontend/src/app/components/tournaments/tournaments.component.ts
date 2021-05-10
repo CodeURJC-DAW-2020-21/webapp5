@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { Tournament } from "src/app/models/tournament.model";
 import { LoginService } from "src/app/services/login.sevice";
+import { TournamentService } from "src/app/services/tournaments.service";
 
 @Component({
     selector: 'tournaments',
@@ -9,7 +11,7 @@ import { LoginService } from "src/app/services/login.sevice";
 
 export class TournamentsComponent{
     
-    constructor(private router: Router, public loginService: LoginService){
+    constructor(private router: Router, public loginService: LoginService, private tournamentService: TournamentService){
     }
 
       goToNewTournament(){
@@ -17,4 +19,10 @@ export class TournamentsComponent{
       }
 
       goToLogin(){this.router.navigate(['/login']);}
+
+      join(tournament: Tournament){
+        this.tournamentService.joinTournament(tournament).subscribe(
+          
+        )
+      }
 }

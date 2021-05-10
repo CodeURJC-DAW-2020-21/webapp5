@@ -74,6 +74,12 @@ import { TournamentService } from "src/app/services/tournaments.service";
       getCanLoadMore(){
         return this.canLoadMore;
       }
-  
+
+      join(tournament: Tournament){
+        this.tournamentService.joinTournament(tournament).subscribe(
+          
+        );
+        location.reload();
+      }
       
   }

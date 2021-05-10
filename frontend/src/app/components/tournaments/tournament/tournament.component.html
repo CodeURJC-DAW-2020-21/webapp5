@@ -27,7 +27,7 @@
 
 
             <div class="col-md-3">
-                <a class="btn small club-top-btn" *ngIf="loginService.isLogged() && !tournament.started">Join</a>
+                <a class="btn small club-top-btn" (click)="join(tournament)" *ngIf="loginService.isLogged() && !tournament.started">Join</a>
             </div>
 
 
