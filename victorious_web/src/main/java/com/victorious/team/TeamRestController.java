@@ -45,6 +45,7 @@ public class TeamRestController {
 	
 	interface TeamDetails extends User.Basic, Team.Basic, Game.Basic, Team.TeamTournament, Team.TeamUsers, Tournament.Basic{}
 	interface TeamChart extends Team.TeamChart{}
+	interface TeamLeague extends Team.Basic, Team.TeamChart{}
 	
 	private static final String POSTS_FOLDER = "posts";
 	
@@ -139,7 +140,7 @@ public class TeamRestController {
     }
 	
 	@GetMapping("/league")
-	@JsonView(TeamDetails.class)
+	@JsonView(TeamLeague.class)
 	public ResponseEntity<List<Team>> getLeague(){
 		
 		List<Team> league = teamService.findAll(Sort.by(Sort.Direction.DESC, "nVictories"));

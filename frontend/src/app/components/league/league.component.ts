@@ -3,7 +3,8 @@ import { Component} from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from "@angular/router";
 import { Injectable } from '@angular/core';
-import { TeamService } from "../../services/teams.sevice";
+import { TeamService } from "../../services/teams.service";
+import { Team } from "src/app/models/team.model";
 
 @Component({
     selector: 'league',
@@ -13,12 +14,22 @@ import { TeamService } from "../../services/teams.sevice";
 @Injectable({ providedIn: 'root' })
 export class LeagueComponent{
 	
-	constructor(private router: Router, private activatedRoute: ActivatedRoute,private httpClient: HttpClient, private teamService: TeamService){}
+    public teams: Team[]=[];
 
-	getLeague(){
-        return this.teamService.getLeague().subscribe(
-		error => {
-                console.error(error);             
-            });
-    }
+	constructor(private router: Router, private activatedRoute: ActivatedRoute,private httpClient: HttpClient, private teamService: TeamService){}
+    
+    ngOnInit(): void {
+  
+        this.teamService.getLeague().subscribe(
+          data => {
+            this.teams = data;
+            console.log('Teams: ', data);;
+          },
+          error => console.error(error)
+        );   
+      }
+
+      getTeams(){
+        return this.teams;
+      }
 }
