@@ -1,11 +1,11 @@
 FROM node as node
-COPY ../frontend /front/
+COPY ./frontend /front/
 WORKDIR /front
 RUN npm ci
 RUN npm run build --prod --base-href="/new/"
 
 FROM maven as builder
-COPY ../victorious_web/ /code/
+COPY ./victorious_web/ /code/
 WORKDIR /code
 RUN mkdir -p /code/victorious_web/src/main/resources/static/new
 COPY --from=node /front/dist/frontend/* /code/victorious_web/src/main/resources/static/new
