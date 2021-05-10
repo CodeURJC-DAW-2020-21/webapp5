@@ -23,11 +23,11 @@ export class LeagueComponent{
         this.teamService.getLeague().subscribe(
           data => {
             this.teams = data;
-            console.log('Teams: ', data);;
+            console.log('Teams: ', data);
           },
           error => console.error(error)
         );   
-      }
+    }
 
       getTeams(){
         return this.teams;
