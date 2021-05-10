@@ -338,7 +338,7 @@ Development environnmet set-up:
 
  **Member's Work**
 
-* **Daniel Lahera Esteban**: 
+* **Daniel Lahera Esteban**: He created the base project of angular with daniel, later he recreated the carousel using angular elements, after that he focused in completing the html and ts of team component and the services of teams, at the same time providing some help when other members members asked for it(mainly with tournament), finally he created the component of league and fixes some of his errors.
 * **Enrique Garrido Gónzalez**: He has been in charge of preparing and organizing the frontend angular project folder. Leaving everything ready and working properly so that the rest of the team could work without problems. His most specific and significant work is reflected in the work of the services, the login, the signup, the user profile, their settings, the creation of teams, the load more functionality and the work with the images, among others things.
 * **Daniel Alexander Juan Moreno**: 
 * **Jacobo Miguel Blanzaco Barreiro**: 
@@ -347,7 +347,7 @@ Development environnmet set-up:
 **Member's Important Commits**
 | Name | Github user| Commit 1| Commit 2| Commit 3| Commit 4| Commit 5|
 |--------|------------|-------|---------|---------|---------|---------|
-|Daniel Lahera Esteban| DaniL97 | []() | []() | []() | []() | []() |
+|Daniel Lahera Esteban| DaniL97 | [angular base project](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/3cad16fc6607633dafff5dc203111f74722f2201) | [big initial update](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/6621d457ca68c11d8d411ceef4ff0aee53e92e24) | [completed carousel and team](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/f798565d86900feb366a878b317364ddb41d0df9) | [completed team and league](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/5d80391751583819e25f4e8fd818c278054f1189) | [league update](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/f84fad3c6a05411adf8f3b8b6c0957468e253117) |
 |Enrique Garrido Gónzalez | kikegg | [Frontend structure](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/a9f4839cb542e19327dba12ba5f85e8db6e00e6c) | [Big Initial Update](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/6621d457ca68c11d8d411ceef4ff0aee53e92e24) | [Load More Teams + New Team + Team Images](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/17e4195c95e2f9f4473328e425cac87a036f4a85) | [NewTournament + Load More Tournaments](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/7f70069db3f790f262d43ec95218a88a1dc4ddcd) | [Sign-up + User Profile + Settings + Improvements](https://github.com/CodeURJC-DAW-2020-21/webapp5/commit/ac97a643e14cd5365637962f7726a316e4e1a9e6) |
 |Daniel Alexander Juan Moreno | dajm92 | []() | []() | []() | []() | []() |
 |Jacobo Miguel Blanzaco Barreiro  | jacobobbm | []() | []() | []() | []() | []() |
@@ -356,7 +356,7 @@ Development environnmet set-up:
 **Member's Most Focused Files**
 | Name | Github user| File 1| File 2| File 3| File 4| File 5|
 |--------|------------|-------|---------|---------|---------|---------|
-|Daniel Lahera Esteban| DaniL97 | []() | []() | []() | []() | []() |
+|Daniel Lahera Esteban| DaniL97 | [teamComponent](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase4/frontend/src/app/components/teams/team/team.component.ts) | [teamsService](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase4/frontend/src/app/services/teams.service.ts) | [league.component](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase4/frontend/src/app/components/league/league.component.html) | [carousel.component](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase4/frontend/src/app/components/index/carousel/carousel.component.html) | [tournament.component](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase4/frontend/src/app/components/tournaments/tournament/tournament.component.ts) |
 |Enrique Garrido Gónzalez | kikegg | [SettingsComponent](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase4/frontend/src/app/components/settings/settings.component.ts) | [NewTeamComponent](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase4/frontend/src/app/components/teams/newTeam/newTeam.component.ts) | [ProfileComponent](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase4/frontend/src/app/components/profile/profile.component.ts) | [TeamsComponent](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase4/frontend/src/app/components/teams/teams.component.ts) | [TeamService](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase4/frontend/src/app/services/teams.service.ts) + [UserService](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase4/frontend/src/app/services/users.service.ts) |
 |Daniel Alexander Juan Moreno | dajm92 | []() | []() | []() | []() | []() |
 |Jacobo Miguel Blanzaco Barreiro  | jacobobbm | []() | []() | []() | []() | []() |
