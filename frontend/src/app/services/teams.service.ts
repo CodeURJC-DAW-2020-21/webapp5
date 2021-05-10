@@ -85,7 +85,6 @@ export class TeamService{
     } 
 
     newTeam(team: Team) {
-        console.log(team);
         return this.httpClient.post(BASE_URL, { name: team.name, description: team.description }).pipe(
             catchError(error => throwError('Server error'))
         );

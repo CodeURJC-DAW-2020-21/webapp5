@@ -23,4 +23,8 @@ export class LoginComponent {
     this.loginService.logOut();
   }
 
+  goToSignup(){
+    this.router.navigate(['signup']);
+  }
+
 }

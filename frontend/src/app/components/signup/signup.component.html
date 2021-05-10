@@ -1,0 +1,51 @@
+<script src="https://apis.google.com/js/platform.js" ></script>
+<script src="https://apis.google.com/js/platform.js?onload=init"></script>								
+<script src="https://apis.google.com/js/api:client.js"></script>  
+<script type="text/javascript" src="/js-backend/googleSignUp.js"></script> 
+<section class="login-block">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                  <form class="forml" method="post">     
+                    <div class="auth-box card">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 class="text-center heading">SIGN UP FORM</h3>                            
+                                </div>
+                            </div>
+                            <div class="form-group form-primary"> <input type="text" id="gname" class="form-control" name="name"  placeholder="Display name" [(ngModel)]="user.name"></div>
+                            <div class="form-group form-primary"> <input type="text" id="gemail" class="form-control" name="email"  placeholder="Email" [(ngModel)]="user.email"></div>
+                            <div class="form-group form-primary"> <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="user.encodedPassword"> </div>
+                            <div class="form-group form-primary"> <input type="hidden" id="glink" class="form-control "name="link" placeholder="none"></div>                                                     
+                            <!--<div class="form-group form-primary"> <input type="password" class="form-control" name="password_confirm" placeholder="Repeat password" value="" id="password_confirm"> -->
+                            <div class="row">
+                                <div class="col-md-12"> 
+                                	<input type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" name="submit" value="sign-up" (click)="createUser()">
+                                </div>
+                            </div>
+                            <div class="or-container">
+                                <div class="line-separator"></div>
+                                <div class="or-label">or</div>
+                                <div class="line-separator"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-7">   
+								  <div id="gSignInWrapper">	
+								    <div id="customBtn" class="customGPlusSignIn" onload="">
+								      <span class="icon"></span>
+								      <span class="buttonText">Sign up with Google</span>
+								    </div>
+								  </div>
+								  <div id="name"></div>			
+								  <script>startApp();</script>							                          	      
+                                </div>                                                 	 
+                            </div><br><br>
+                            <p class="text-inverse text-center">Already have an account? <a style="cursor: pointer; text-decoration: underline;" (click)="goToLogin()" data-abc="true">Login</a></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

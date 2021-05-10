@@ -18,9 +18,10 @@ import { NewTeamComponent } from './components/teams/newTeam/newTeam.component';
 import { TeamComponent } from './components/teams/team/team.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { NewTournamentComponent } from "./components/tournaments/newTournament/newTournament.component"
+import { NewTournamentComponent } from "./components/tournaments/newTournament/newTournament.component";
 import { TournamentComponent } from './components/tournaments/tournament/tournament.component';
 import { TNav } from './components/tournaments/tournament/nav/nav.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { LeagueComponent } from './components/league/league.component';
 
 @NgModule({
@@ -34,6 +35,7 @@ import { LeagueComponent } from './components/league/league.component';
     TournamentsComponent,
     TCollapse,    
     LoginComponent,
+    SignupComponent,
     TeamsComponent,
     TeamComponent,
     NewTeamComponent,

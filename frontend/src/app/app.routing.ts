@@ -11,6 +11,7 @@ import { SettingsComponent } from "./components/settings/settings.component";
 import { NewTournamentComponent } from "./components/tournaments/newTournament/newTournament.component";
 import { TournamentComponent } from "./components/tournaments/tournament/tournament.component";
 import { LeagueComponent } from "./components/league/league.component";
+import { SignupComponent } from "./components/signup/signup.component";
 
 const appRoutes = [
     { path: '', component: IndexComponent},
@@ -18,6 +19,7 @@ const appRoutes = [
     { path: 'contact', component: ContactComponent},
     { path: 'tournaments', component: TournamentsComponent},
     { path: 'login', component: LoginComponent},
+    { path: 'signup', component: SignupComponent},
     { path: 'teams', component: TeamsComponent},
     { path: 'teams/:id', component: TeamComponent},
     { path: 'newTeam', component: NewTeamComponent},

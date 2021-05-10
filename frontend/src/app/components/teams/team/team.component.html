@@ -1,193 +1,194 @@
-
-<!--BREADCRUMBS BEGIN-->
-<section class="image-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="info">
-                    <div class="wrap">
-                        <h1>Team</h1>
-                    </div>
-                </div>
-            </div>	
-        </div>
-    </div>
-</section>
-<!--BREADCRUMBS END-->
-
- <!--CLUB WRAP BEGIN-->
- <div ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
- <section class="club-wrap">
-    <div class="container">
-        <div class="row row-eq-height">
-            <div class="col-md-9 col-sm-9 col-xs-9">
-                <h4>{{team.name}}</h4>
-                <ul class="tab-filters">
-                	<li class="active" ngbNavItem=abstract><a ngbNavLink>ABSTRACT</a></li>
-				  	<li ngbNavItem=members><a ngbNavLink>MEMBERS</a></li>
-				  	<li ngbNavItem=admin *ngIf="loginService.isAdmin()"><a ngbNavLink>ADMIN</a></li>  
-				</ul>            
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-3">
-                <form method="post">
-	                <input type="hidden" name="_csrf" value="" />
-	                <input type="hidden" name="userName" value="" />
-	                <input type="submit" (click)="requestToJoin(getTeam().id)" class="btn btn-lg btn-success text-left" value="Request to Join"> 
-                </form>
-                <form method="post" onsubmit="return confirm('Do you really want to leave the team?');">
-	                <input type="hidden" name="_csrf" value="" />
-	                <input type="hidden" name="id" value="" />
-	                <input type="hidden" name="userName" value="" />
-	                <input type="submit" (click)="leaveTeam(getTeam().id)" class="btn btn-danger btn-lg" value="Leave Team">
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="tab-content">
-        <div class="tab-pane fade in active" *ngIf="active=== 'abstract'">
-            <div class="club-top-info">
-                <div class="organisation-header-wrapper">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="club-logo  wpb_animate_when_almost_visible wpb_zoomInLeft zoomInLeft wpb_start_animation animated">
-                                    <img [src]="teamImage()" alt="team logo" height="340px" width="320px">                
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="org-club-info">
-                                    <div class="item"><span>{{team.description}}</span></div>
-                                </div>
-                            </div>
-                        </div>	
-                    </div>	
-                </div>
-            </div>
-            <!--CLUB MAIN STAT BEGIN-->
-            <section class="club-main-stat">			
-			  	<div class="row" >
-				  	<div class="col-md-12">
-					  	<h6>Statistics </h6>
-						<canvas  id="myChart" height="80"></canvas>
+<div *ngIf="team">
+	<!--BREADCRUMBS BEGIN-->
+	<section class="image-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="info">
+						<div class="wrap">
+							<h1>Team</h1>
+						</div>
 					</div>
-				  	<div class="col-md-12">
-					  	<h6>Tournaments</h6>
-					  	<div></div>
-					  	<div class="list-group" *ngFor="let tournament of team.tournaments">
-					  		<a [routerLink]="['/tournaments/' + tournament.id]" class="list-group-item">
-					  			<span><img src="assets/images/soccer/champ-logo.png" height="40px" width="50px">{{ tournament.name }}</span>
-					  		</a>
-					  	</div>
-				  	</div>
-				  	<div class="col-md-12">
-					  	<h6>Games</h6>
-					  	<ul *ngFor="let game of getTeam().games">
-						  	<li class="list-group-item"><img height="40px" width="50px">{{ game.name }}</li>
-						  	<div class="text-right">
-							  	<button class="btn small" data-toggle="modal"  (click)="addGame(team.id ,'counter Strike')" data-target="#myModal">+Add Game</button>
-						  	</div>								 					 
-					  	</ul>
-				  	</div>
-			  	</div>
-            </section>
-            <!--CLUB MAIN STAT END-->
+				</div>	
+			</div>
 		</div>
-        <div class="tab-pane fade in active" *ngIf="active === 'members'">
-            <!--CLUB MEMBERS TOP BEGIN-->
-            <div class="club-staff-top">
-				<div class="container" >
-					<div class="staff-box" >
-						<div class="row" >
-							<ng-container *ngFor="let user of getTeam().users">
-								<div class="col-md-4  col-sm-6 col-xs-12" >
-									<a [routerLink]="['/users/' + user.name]" class="item">
-										<span class="info">
-											<span class="name">{{ user.name }}</span>
-										</span>
-										<img class="img-responsive"  alt="player">
-									</a>
+	</section>
+	<!--BREADCRUMBS END-->
+
+	<!--CLUB WRAP BEGIN-->
+	<div ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+	<section class="club-wrap">
+		<div class="container">
+			<div class="row row-eq-height">
+				<div class="col-md-9 col-sm-9 col-xs-9">
+					<h4>{{team.name}}</h4>
+					<ul class="tab-filters">
+						<li class="active" ngbNavItem=abstract><a ngbNavLink>ABSTRACT</a></li>
+						<li ngbNavItem=members><a ngbNavLink>MEMBERS</a></li>
+						<li ngbNavItem=admin *ngIf="loginService.isAdmin()"><a ngbNavLink>ADMIN</a></li>  
+					</ul>            
+				</div>
+				<div class="col-md-3 col-sm-3 col-xs-3">
+					<form *ngIf="loginService.isLogged() && hasNoTeam(loginService.currentUser())" method="post">
+						<input type="hidden" name="_csrf" value="" />
+						<input type="hidden" name="userName" value="" />
+						<input type="submit" (click)="requestToJoin(getTeam().id)" class="btn btn-lg btn-success text-left" value="Request to Join"> 
+					</form>
+					<form *ngIf="loginService.isLogged() && isMember()" method="post" onsubmit="return confirm('Do you really want to leave the team?');">
+						<input type="hidden" name="_csrf" value="" />
+						<input type="hidden" name="id" value="" />
+						<input type="hidden" name="userName" value="" />
+						<input type="submit" (click)="leaveTeam(getTeam().id)" class="btn btn-danger btn-lg" value="Leave Team">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="tab-content">
+			<div class="tab-pane fade in active" *ngIf="active=== 'abstract'">
+				<div class="club-top-info">
+					<div class="organisation-header-wrapper">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-5">
+									<div class="club-logo  wpb_animate_when_almost_visible wpb_zoomInLeft zoomInLeft wpb_start_animation animated">
+										<img [src]="teamImage()" alt="team logo" height="340px" width="320px">                
+									</div>
 								</div>
-							</ng-container>
+								<div class="col-md-6">
+									<div class="org-club-info">
+										<div class="item"><span>{{team.description}}</span></div>
+									</div>
+								</div>
+							</div>	
+						</div>	
+					</div>
+				</div>
+				<!--CLUB MAIN STAT BEGIN-->
+				<section class="club-main-stat">			
+					<div class="row" >
+						<div class="col-md-12">
+							<h6>Statistics </h6>
+							<canvas  id="myChart" height="80"></canvas>
+						</div>
+						<div class="col-md-12">
+							<h6>Tournaments</h6>
+							<div></div>
+							<div class="list-group" *ngFor="let tournament of team.tournaments">
+								<a [routerLink]="['/tournaments/' + tournament.id]" class="list-group-item">
+									<span><img src="assets/images/soccer/champ-logo.png" height="40px" width="50px">{{ tournament.name }}</span>
+								</a>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<h6>Games</h6>
+							<ul *ngFor="let game of getTeam().games">
+								<li class="list-group-item"><img src="assets/images/sample_images/game_default.jpg" height="40px" width="50px">{{ game.name }}</li>
+								<div class="text-right">
+									<button class="btn small" data-toggle="modal"  (click)="addGame(team.id ,'counter Strike')" data-target="#myModal">+Add Game</button>
+								</div>								 					 
+							</ul>
+						</div>
+					</div>
+				</section>
+				<!--CLUB MAIN STAT END-->
+			</div>
+			<div class="tab-pane fade in active" *ngIf="active === 'members'">
+				<!--CLUB MEMBERS TOP BEGIN-->
+				<div class="club-staff-top">
+					<div class="container" >
+						<div class="staff-box" >
+							<div class="row" >
+								<ng-container *ngFor="let user of getTeam().users">
+									<div class="col-md-4  col-sm-6 col-xs-12" >
+										<a [routerLink]="['/user/', user.name]" class="item">
+											<span class="info">
+												<span class="name">{{ user.name }}</span>
+											</span>
+											<img class="img-responsive" [src]="userImage(user)" alt="player">
+										</a>
+									</div>
+								</ng-container>
+							</div>
 						</div>
 					</div>
 				</div>
-			 </div>
-        </div>
-        <div class="tab-pane fade in active" id="admin" role="tabpanel" *ngIf="active==='admin'" >
-			<div class="container" style="background-color: white;">
-				<div class="row">
-					<div class="col-md-12">
-						<h6>Requests</h6>
-						<ul class="list-group">
-							<ng-container *ngFor="let request of getTeam().requests">
-								<li class="list-group-item" >
-									<div class="row" >
-										<div class="col-md-6"> <a>{{ request }}</a>
-											<div class="col-md-4 text-right">
-												<form method="post">
+			</div>
+			<div class="tab-pane fade in active" id="admin" role="tabpanel" *ngIf="active==='admin'" >
+				<div class="container" style="background-color: white;">
+					<div class="row">
+						<div class="col-md-12">
+							<h6>Requests</h6>
+							<ul class="list-group">
+								<ng-container *ngFor="let request of getTeam().requests">
+									<li class="list-group-item" >
+										<div class="row" >
+											<div class="col-md-6"> <a>{{ request }}</a>
+												<div class="col-md-4 text-right">
+													<form method="post">
+														<input type="hidden" name="_csrf" value="" />
+														<input type="hidden" value=request />
+														<input type="hidden" value="true" />
+														<input type="submit" class="btn small" value="accept" (click)="acceptRejectMember(request, team.id, true)"> 
+													</form>
+												</div>
+											</div>
+											<div class="col-md-2 text-right">
+												<form method="post" >
 													<input type="hidden" name="_csrf" value="" />
-													<input type="hidden" value=request />
-													<input type="hidden" value="true" />
-													<input type="submit" class="btn small" value="accept" (click)="acceptRejectMember(request, team.id, true)"> 
+													<input type="hidden" name="userId"  value=request.id />
+													<input type="hidden" value="false" />
+													<input type="submit" class="btn small" value="reject" (click)="acceptRejectMember(request.id, team.id, false)" > 
 												</form>
 											</div>
 										</div>
-										<div class="col-md-2 text-right">
-											<form method="post" >
-												<input type="hidden" name="_csrf" value="" />
-												<input type="hidden" name="userId"  value=request.id />
-												<input type="hidden" value="false" />
-												<input type="submit" class="btn small" value="reject" (click)="acceptRejectMember(request.id, team.id, false)" > 
-											</form>
+									</li>
+								</ng-container>
+							</ul>
+							<div class="list-group-item"> No requests </div>
+							<hr>
+							<h6>Members</h6>
+							<ul class="list-group">
+								<ng-container *ngFor="let user of getTeam().users">
+									<li class="list-group-item" >
+										<div class="row">
+											<div class="col-md-6"> <a [routerLink]="['/users/' + user.name]">{{user.name}}</a> </div>
+											<div class="col-md-4 text-right">
+												<form method="post">
+													<input type="hidden" name="_csrf" value="" />
+													<input type="hidden"  name="teamId" value="getTeam().id" />
+													<input type="hidden" name="userId" value="user.id" />
+													<input type="submit" class="btn small btn-info" (click)="addAdminToTeam(user.id, team.id)" value="Add admin">
+												</form>
+											</div>
+											<div class="col-md-2 text-right">
+												<form method="put">
+													<input type="hidden" name="_csrf" value="" />
+													<input type="hidden" name="teamId" value="getTeam().id" />
+													<input type="hidden" name="userId" value="user.id" />
+													<input type="submit" class="btn small btn-danger" (click)="kickMemberFromTeam(user.id, team.id)" value="Kick">
+												</form>
+											</div>
 										</div>
-									</div>
-								</li>
-							</ng-container>
-						</ul>
-						<div class="list-group-item"> No requests </div>
-						<hr>
-						<h6>Members</h6>
-						<ul class="list-group">
-							<ng-container *ngFor="let user of getTeam().users">
-								<li class="list-group-item" >
-									<div class="row">
-										<div class="col-md-6"> <a [routerLink]="['/users/' + user.name]">{{user.name}}</a> </div>
-										<div class="col-md-4 text-right">
-											<form method="post">
-												<input type="hidden" name="_csrf" value="" />
-												<input type="hidden"  name="teamId" value="getTeam().id" />
-												<input type="hidden" name="userId" value="user.id" />
-												<input type="submit" class="btn small btn-info" (click)="addAdminToTeam(user.id, team.id)" value="Add admin">
-											</form>
-										</div>
-										<div class="col-md-2 text-right">
-											<form method="put">
-												<input type="hidden" name="_csrf" value="" />
-												<input type="hidden" name="teamId" value="getTeam().id" />
-												<input type="hidden" name="userId" value="user.id" />
-												<input type="submit" class="btn small btn-danger" (click)="kickMemberFromTeam(user.id, team.id)" value="Kick">
-											</form>
-										</div>
-									</div>
-								</li>
-							</ng-container>
-						</ul>
-						<div class="list-group-item"> No Members </div>
-						<hr>
-						<h6>Change team's avatar</h6>
-						<form action="/teams/id/changeImage" method="POST" enctype="multipart/form-data">
-							<input type='file' name='imageField' accept=".jpg, .jpeg" />
-							<input type="hidden" name="_csrf" value="" />
-							<div class="text-right">
-								<input class="btn small" type="submit" value="Change">
-							</div>
-						</form>
-						<p></p>
+									</li>
+								</ng-container>
+							</ul>
+							<div class="list-group-item"> No Members </div>
+							<hr>
+							<h6>Change team's avatar</h6>
+							<form method="POST" enctype="multipart/form-data">
+								<input #file type='file' name='imageField' accept=".jpg, .jpeg" />
+								<input type="hidden" name="_csrf" value="" />
+								<div class="text-right">
+									<input class="btn small" type="submit" (click)="uploadTeamImage(team)" value="Change">
+								</div>
+							</form>
+							<p></p>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</section>
 	</div>
- </section>
+	<!--CLUB WRAP END-->
 </div>
-<!--CLUB WRAP END-->

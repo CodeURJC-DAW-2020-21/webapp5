@@ -8,5 +8,10 @@ export interface User {
     image : boolean;
     team : Team; 
     roles : string[];
+    riot : string;
+    blizzard : string;
+    psn : string;
+    xbox : string;
+    steam : string;
 }
 	

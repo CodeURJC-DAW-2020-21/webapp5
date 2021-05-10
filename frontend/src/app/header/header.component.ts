@@ -25,4 +25,8 @@ export class HeaderComponent {
         this.loginService.logOut();
         this.router.navigate(['index']);
     }
+
+    userImage(){
+        return this.loginService.currentUser().image? 'api/user/' + this.loginService.currentUser().name + '/image' :  '/assets/images/sample_images/user_default.jpg';
+    }
 }

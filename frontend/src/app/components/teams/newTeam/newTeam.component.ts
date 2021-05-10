@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
 import { Router } from "@angular/router";
 
 import { TeamService } from "src/app/services/teams.service";
 import { Team } from "../../../models/team.model";
+import { LoginService } from "src/app/services/login.sevice";
 
 
 @Component({
@@ -17,7 +17,7 @@ export class NewTeamComponent {
     error: boolean;
     errorText: string;
 
-    constructor(private httpClient: HttpClient, private router: Router, private teamService: TeamService){
+    constructor(private loginService: LoginService, private router: Router, private teamService: TeamService){
         this.team={
             name: '',
             description: '',

@@ -37,13 +37,14 @@ public class User {
 	private String email;
 	
 	@Column(nullable = false)
+	@JsonView(Basic.class)
 	private String encodedPassword;
 	
 	@Lob
 	@JsonIgnore
 	private Blob imageFile;
 	
-	@JsonIgnore
+	@JsonView(Basic.class)
 	private boolean image;
 	
 	@ManyToOne
