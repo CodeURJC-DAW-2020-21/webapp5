@@ -63,57 +63,73 @@ export class TeamComponent {
 
 	  requestToJoin(teamId: number){
 		this.teamService.requestToJoin(teamId).subscribe(
-			(team: Team)  => this.router.navigate(['/teams/' + teamId]),
+			(team: Team)  => {
+        this.router.navigate(['/teams/' + teamId]),
+        location.reload()
+      },
 			error => {
-                console.error(error);             
-            });
-      location.reload();
+        console.error(error);             
+      });
 	  }
 
 	  addGame(teamId: number, gameName:string){
 		this.teamService.addGame(teamId, gameName).subscribe(
-			(team: Team)  => this.router.navigate(['/teams/' + teamId]),
+			(team: Team)  => {
+        this.router.navigate(['/teams/' + teamId]),
+        location.reload()
+      },
 			error => {
                 console.error(error);             
-            });
-      location.reload();
+      });
 	  }
 
 	  leaveTeam(teamId: number){
 		this.teamService.leaveTeam(teamId).subscribe(
-			(team: Team)  => this.router.navigate(['/teams/' + teamId]),
+			(team: Team)  => {
+        this.router.navigate(['/teams/' + teamId]),
+        location.reload()
+      },
 			error => {
                 console.error(error);             
-            });
-            location.reload();
+      });
 	  }
 
 	  acceptRejectMember(userId: number, teamId:string|number, accept: boolean){
 		this.teamService.acceptRejectMember(userId , teamId, true).subscribe(
-            (team:Team) => this.router.navigate(['/teams/' + teamId]),
-            error => {
-                console.error(error);             
-            });
-            location.reload();
+      (team:Team) => {
+        this.router.navigate(['/teams/' + teamId]),
+        location.reload()
+      },
+      error => {
+          console.error(error);             
+      });
 	  }
 
 	  addAdminToTeam(userId: string|number, teamId: number | string){
 		this.teamService.addAdminToTeam(userId, teamId).subscribe(
-            (team:Team) => this.router.navigate(['/teams/' + teamId]),
-            error => {
-                console.error(error);             
-            });
-            location.reload();
+      (team:Team) => {
+        this.router.navigate(['/teams/' + teamId]),
+        location.reload()
+      },
+      error => {
+          console.error(error);             
+      });
 	  }
 
 	  kickMemberFromTeam(userId: number, teamId: number | string){
 		this.teamService.kickMemberFromTeam(userId, teamId).subscribe(
-            (team:Team) => this.router.navigate(['/teams/' + teamId]),
-            error => {
-                console.error(error);             
-            });
-            location.reload();
+      (team:Team) => {
+        this.router.navigate(['/teams/' + teamId]),
+        location.reload()
+      }, 
+      error => {
+          console.error(error);             
+      });
 	  }
+
+    getUserRequest(request: number | string){
+      
+    }
 
     teamImage(){
       return this.team.image? 'api/teams/' + this.team.id + '/image' :  '/assets/images/sample_images/team_default.jpg';
@@ -135,6 +151,6 @@ export class TeamComponent {
     }
 
     userImage(user: User){
-      return user.image? 'api/user/' + user.name + '/image' :  '/assets/images/sample_images/user_default.jpg';
+      return user.image? 'api/users/' + user.name + '/image' :  '/assets/images/sample_images/user_default.jpg';
     }
 }

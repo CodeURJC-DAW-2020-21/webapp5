@@ -27,6 +27,6 @@ export class HeaderComponent {
     }
 
     userImage(){
-        return this.loginService.currentUser().image? 'api/user/' + this.loginService.currentUser().name + '/image' :  '/assets/images/sample_images/user_default.jpg';
+        return this.loginService.currentUser().image? 'api/users/' + this.loginService.currentUser().name + '/image' :  '/assets/images/sample_images/user_default.jpg';
     }
 }

@@ -125,18 +125,11 @@ public class UserRestController {
     @GetMapping("/{name}/image")
     @JsonView(UserDetails.class)
 	public ResponseEntity<Object> downloadUserImage(@PathVariable String name, HttpServletRequest request) throws MalformedURLException {
-		
-		Principal principal = request.getUserPrincipal();
-		String userLoggedName = principal.getName();
-		Optional<User> userLogged = userService.findByName(userLoggedName);
+
 		Optional<User> user = userService.findByName(name);
 		
 		if (user.isPresent()) {
-			if (userLogged.get().getId() == user.get().getId()) {
-				return this.imgService.createResponseFromImage(POSTS_FOLDER, user.get().getId());
-			} else {
-				return ResponseEntity.notFound().build();
-			}
+			return this.imgService.createResponseFromImage(POSTS_FOLDER, user.get().getId());
 		} else {
 			return ResponseEntity.notFound().build();
 		}

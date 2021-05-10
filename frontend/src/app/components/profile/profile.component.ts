@@ -31,7 +31,7 @@ export class ProfileComponent {
       }
 
       userImage(){
-        return this.user.image? 'api/user/' + this.user.name + '/image' :  '/assets/images/sample_images/user_default.jpg';
+        return this.user.image? 'api/users/' + this.user.name + '/image' :  '/assets/images/sample_images/user_default.jpg';
       }
 
       hasTeams(){
