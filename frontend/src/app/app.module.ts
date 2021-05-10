@@ -18,6 +18,7 @@ import { NewTeamComponent } from './components/teams/newTeam/newTeam.component';
 import { TeamComponent } from './components/teams/team/team.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { ChartComponent} from './components/teams/team/chart/chart.component';
 import { NewTournamentComponent } from "./components/tournaments/newTournament/newTournament.component"
 import { TournamentComponent } from './components/tournaments/tournament/tournament.component';
 import { TNav } from './components/tournaments/tournament/nav/nav.component';
@@ -37,6 +38,7 @@ import { TNav } from './components/tournaments/tournament/nav/nav.component';
     TeamComponent,
     NewTeamComponent,
     ProfileComponent,
+	ChartComponent,
     SettingsComponent,
     NewTournamentComponent,
     TournamentComponent,

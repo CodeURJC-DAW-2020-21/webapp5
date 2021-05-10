@@ -1,35 +1,50 @@
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<!--BREADCRUMBS BEGIN-->
+<section class="image-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info">
+                    <div class="wrap">
+                        <h1>Team</h1>
+                    </div>
+                </div>
+            </div>	
+        </div>
+    </div>
+</section>
+<!--BREADCRUMBS END-->
 
  <!--CLUB WRAP BEGIN-->
  <div ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
- <section class="club-wrap" style="background:white">
+ <section class="club-wrap">
     <div class="container">
         <div class="row row-eq-height">
             <div class="col-md-9 col-sm-9 col-xs-9">
-                <h4>{{getTeam().name}}</h4>
+                <h4>{{team.name}}</h4>
                 <ul class="tab-filters">
-                	<li ngbNavItem=abstract><a href ngbNavLink>ABSTRACT</a></li>
-				  	<li ngbNavItem=members><a href ngbNavLink>MEMBERS</a></li>
-				  	<li ngbNavItem=admin><a href ngbNavLink>ADMIN</a></li>   
+                	<li class="active" ngbNavItem=abstract><a ngbNavLink>ABSTRACT</a></li>
+				  	<li ngbNavItem=members><a ngbNavLink>MEMBERS</a></li>
+				  	<li ngbNavItem=admin *ngIf="loginService.isAdmin()"><a ngbNavLink>ADMIN</a></li>  
 				</ul>            
             </div>
             <div class="col-md-3 col-sm-3 col-xs-3">
-                <form action="/teams/id/newRequest" method="post">
+                <form method="post">
 	                <input type="hidden" name="_csrf" value="" />
 	                <input type="hidden" name="userName" value="" />
-	                <input type="submit" class="btn btn-lg btn-success text-left" value="Request to Join"> 
+	                <input type="submit" (click)="requestToJoin(getTeam().id)" class="btn btn-lg btn-success text-left" value="Request to Join"> 
                 </form>
-                <form action="/teams/id/leaveTeam" method="post" submit="return confirm('Do you really want to leave the team?');">
+                <form method="post" onsubmit="return confirm('Do you really want to leave the team?');">
 	                <input type="hidden" name="_csrf" value="" />
 	                <input type="hidden" name="id" value="" />
 	                <input type="hidden" name="userName" value="" />
-	                <input type="submit" class="btn btn-danger btn-lg" value="Leave Team">
+	                <input type="submit" (click)="leaveTeam(getTeam().id)" class="btn btn-danger btn-lg" value="Leave Team">
                 </form>
             </div>
         </div>
     </div>
     <div class="tab-content">
-        <div class="tab-pane fade in active" role="tabpanel" *ngIf="active=== 'abstract'">
+        <div class="tab-pane fade in active" *ngIf="active=== 'abstract'">
             <div class="club-top-info">
                 <div class="organisation-header-wrapper">
                     <div class="container">
@@ -41,7 +56,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="org-club-info">
-                                    <div class="item"><span>{{getTeam().description}}</span></div>
+                                    <div class="item"><span>{{team.description}}</span></div>
                                 </div>
                             </div>
                         </div>	
@@ -53,11 +68,12 @@
 			  	<div class="row" >
 				  	<div class="col-md-12">
 					  	<h6>Statistics </h6>
-							<canvas  id="myChart"></canvas>
+						<canvas  id="myChart" height="80"></canvas>
 					</div>
 				  	<div class="col-md-12">
 					  	<h6>Tournaments</h6>
-					  	<div class="list-group" *ngFor="let tournament of getTeam().tournaments">
+					  	<div></div>
+					  	<div class="list-group" *ngFor="let tournament of team.tournaments">
 					  		<a [routerLink]="['/tournaments/' + tournament.id]" class="list-group-item">
 					  			<span><img src="assets/images/soccer/champ-logo.png" height="40px" width="50px">{{ tournament.name }}</span>
 					  		</a>
@@ -65,31 +81,33 @@
 				  	</div>
 				  	<div class="col-md-12">
 					  	<h6>Games</h6>
-					  	<ul>
-						  	<li class="list-group-item" *ngFor="let game of getTeam().games"><img height="40px" width="50px">{{ game.name }}</li>
-							  	<div class="text-right">
-								  	<button class="btn small" data-toggle="modal" data-target="#myModal">+Add Game</button>
-							  	</div>						  
+					  	<ul *ngFor="let game of getTeam().games">
+						  	<li class="list-group-item"><img height="40px" width="50px">{{ game.name }}</li>
+						  	<div class="text-right">
+							  	<button class="btn small" data-toggle="modal"  (click)="addGame(team.id ,'counter Strike')" data-target="#myModal">+Add Game</button>
+						  	</div>								 					 
 					  	</ul>
 				  	</div>
 			  	</div>
             </section>
             <!--CLUB MAIN STAT END-->
 		</div>
-        <div class="tab-pane fade in active"  role="tabpanel" *ngIf="active === 'members'">
+        <div class="tab-pane fade in active" *ngIf="active === 'members'">
             <!--CLUB MEMBERS TOP BEGIN-->
             <div class="club-staff-top">
 				<div class="container" >
-					<div class="staff-box">
-						<div class="row" *ngFor="let user of getTeam().users">
-							<div class="col-md-4  col-sm-6 col-xs-12" >
-								<a [routerLink]="['/users/' + user.name]" class="item">
-									<span class="info">
-										<span class="name">{{ user.name }}</span>
-									</span>
-										<img class="img-responsive" src="/user/{{user.name}}/image" alt="player">
-								</a>
-							</div>
+					<div class="staff-box" >
+						<div class="row" >
+							<ng-container *ngFor="let user of getTeam().users">
+								<div class="col-md-4  col-sm-6 col-xs-12" >
+									<a [routerLink]="['/users/' + user.name]" class="item">
+										<span class="info">
+											<span class="name">{{ user.name }}</span>
+										</span>
+										<img class="img-responsive"  alt="player">
+									</a>
+								</div>
+							</ng-container>
 						</div>
 					</div>
 				</div>
@@ -101,64 +119,68 @@
 					<div class="col-md-12">
 						<h6>Requests</h6>
 						<ul class="list-group">
-							<li class="list-group-item" *ngFor="let request of getTeam().requests">
-								<div class="row" >
-									<div class="col-md-6"> <a>{{ request }}</a>
-										<div class="col-md-4 text-right">
-											<form method="put">
+							<ng-container *ngFor="let request of getTeam().requests">
+								<li class="list-group-item" >
+									<div class="row" >
+										<div class="col-md-6"> <a>{{ request }}</a>
+											<div class="col-md-4 text-right">
+												<form method="post">
+													<input type="hidden" name="_csrf" value="" />
+													<input type="hidden" value=request />
+													<input type="hidden" value="true" />
+													<input type="submit" class="btn small" value="accept" (click)="acceptRejectMember(request, team.id, true)"> 
+												</form>
+											</div>
+										</div>
+										<div class="col-md-2 text-right">
+											<form method="post" >
 												<input type="hidden" name="_csrf" value="" />
-												<input type="hidden" #userId name="userId"  value=request.id />
-												<input type="hidden" #accept name="accept"  value="true" />
-												<input type="submit" class="btn small" (click)="acceptRejectMember(userId, getTeam().id, accept)"> 
+												<input type="hidden" name="userId"  value=request.id />
+												<input type="hidden" value="false" />
+												<input type="submit" class="btn small" value="reject" (click)="acceptRejectMember(request.id, team.id, false)" > 
 											</form>
 										</div>
 									</div>
-									<div class="col-md-2 text-right">
-										<form method="put" >
-											<input type="hidden" name="_csrf" value="" />
-											<input type="hidden" #userId name="userId"  value=request.id />
-											<input type="hidden" #accept name="accept"  value="false" />
-											<input type="submit" class="btn small" (click)="acceptRejectMember(userId, getTeam().id, accept)" > 
-										</form>
-									</div>
-								</div>
-							</li>
+								</li>
+							</ng-container>
 						</ul>
 						<div class="list-group-item"> No requests </div>
 						<hr>
 						<h6>Members</h6>
 						<ul class="list-group">
-							<li class="list-group-item" >
-								<div class="row" *ngFor="let user of getTeam().users">
-									<div class="col-md-6"> <a [routerLink]="['/users/' + user.name]">{{user.name}}</a> </div>
-									<div class="col-md-4 text-right">
-										<form method="post">
-											<input type="hidden" name="_csrf" value="" />
-											<input type="hidden" #teamId name="teamId" value="getTeam().id" />
-											<input type="hidden" #userId name="userId" value="user.id" />
-											<input type="submit" class="btn small btn-info" (click)="addAdminToTeam(userId, teamId)" value="Add admin">
-										</form>
+							<ng-container *ngFor="let user of getTeam().users">
+								<li class="list-group-item" >
+									<div class="row">
+										<div class="col-md-6"> <a [routerLink]="['/users/' + user.name]">{{user.name}}</a> </div>
+										<div class="col-md-4 text-right">
+											<form method="post">
+												<input type="hidden" name="_csrf" value="" />
+												<input type="hidden"  name="teamId" value="getTeam().id" />
+												<input type="hidden" name="userId" value="user.id" />
+												<input type="submit" class="btn small btn-info" (click)="addAdminToTeam(user.id, team.id)" value="Add admin">
+											</form>
+										</div>
+										<div class="col-md-2 text-right">
+											<form method="put">
+												<input type="hidden" name="_csrf" value="" />
+												<input type="hidden" name="teamId" value="getTeam().id" />
+												<input type="hidden" name="userId" value="user.id" />
+												<input type="submit" class="btn small btn-danger" (click)="kickMemberFromTeam(user.id, team.id)" value="Kick">
+											</form>
+										</div>
 									</div>
-									<div class="col-md-2 text-right">
-										<form method="put">
-											<input type="hidden" name="_csrf" value="" />
-											<input type="hidden" #teamId name="teamId" value="getTeam().id" />
-											<input type="hidden" #userId name="userId" value="user.id" />
-											<input type="submit" class="btn small btn-danger" (click)="kickMemberFromTeam(userId, teamId)" value="Kick">
-										</form>
-									</div>
-								</div>
-							</li>
+								</li>
+							</ng-container>
 						</ul>
 						<div class="list-group-item"> No Members </div>
 						<hr>
 						<h6>Change team's avatar</h6>
 						<form action="/teams/id/changeImage" method="POST" enctype="multipart/form-data">
-							<!-- <input type='file' name='imageField' accept=".jpg, .jpeg" />
+							<input type='file' name='imageField' accept=".jpg, .jpeg" />
 							<input type="hidden" name="_csrf" value="" />
 							<div class="text-right">
 								<input class="btn small" type="submit" value="Change">
-							</div> -->
+							</div>
 						</form>
 						<p></p>
 					</div>
@@ -169,52 +191,3 @@
  </section>
 </div>
 <!--CLUB WRAP END-->
-
-<script>
-var ctx = myChart.getContext('2d');
-var nMatches = parseInt("{{getChart().nVictories}}") + parseInt("{{getChart.nLoses}}");
-var matches = [];
-for (let i = 1; i <= nMatches; i++) {
-	matches[i-1] = i;
-}
-var victory = "{{getChart().recordV}}".split(',').map(Number);
-var loss = "{{team?.recordL}}".split(',').map(Number);
-var victories = [];
-var loses = [];
-for (let i = 0; i < nMatches; i++) {
-	victories[i] = victory[i]/matches[i]*100;
-	loses[i] = loss[i]/matches[i]*100;
-}
-var myLineChart = new Chart(ctx, {
-    type: 'line',
-
-    data: {
-
-    	labels: matches,
-    	datasets: [{
-    		label: '% of victories',
-    		data: victories,
-    		backgroundColor:'rgba(255, 255, 255, 0)',
-            borderColor:'rgba(255, 15, 15, 1)',
-            borderWidth: 5
-    	},{
-    		label: '% of loses',
-    		data: loses,
-    		backgroundColor:'rgba(255, 255, 255, 0)',
-            borderColor:'rgba(30, 35, 235, 1)',
-            pointBorderColor:'rgba(30, 35, 235, 1)',
-            borderWidth: 5
-    	}]
-    },
-	 options: {
-	        scales: {
-	            yAxes: [{
-	                ticks: {
-	                    beginAtZero: true
-	                }
-	            }]
-	        }
-	    }
-});
-</script>
-

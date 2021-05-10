@@ -27,15 +27,40 @@ export class TeamService{
         ) as Observable<Team>;
     }
 
+	getLeague(): Observable<Team[]> {
+		return this.httpClient.get(BASE_URL+ 'league').pipe(
+          catchError(error => throwError('Server error'))
+        ) as Observable<Team[]>;
+	}
+	
 	getGraph(id: number | string): Observable<Team> {
+		console.log(this.httpClient.get(BASE_URL + id + '/chart'));
         return this.httpClient.get(BASE_URL + id + '/chart').pipe(
           map(response => response),
           catchError(error => throwError('Server error'))
         ) as Observable<Team>;
     }
 	
-	acceptRejectMember(userId: number | string, teamId: number | string , accept: boolean){
-		return this.httpClient.post(BASE_URL + teamId + '/requests/' + '?accept=' + accept, {id: userId}).pipe(
+	requestToJoin(teamId: number){
+		return this.httpClient.post(BASE_URL + teamId + '/requests/',{}).pipe(
+			catchError(error => throwError('Server error'))
+		);
+	}
+	
+	leaveTeam(teamId: number){
+		return this.httpClient.put(BASE_URL + teamId + '/members/',{}).pipe(
+			catchError(error => throwError('Server error'))
+		);
+	}
+	
+	addGame(teamId: number, gameName: string){
+		return this.httpClient.post(BASE_URL + teamId + '/games/', {name: gameName}).pipe(
+			catchError(error => throwError('Server error'))
+		);
+	}
+	
+	acceptRejectMember(userId: number, teamId: number | string , accept: boolean){
+		return this.httpClient.put(BASE_URL + teamId + '/requests/' + '?accept=' + accept, {id:userId}).pipe(
             catchError(error => throwError('Server error'))
         );
 	}

@@ -51,6 +51,7 @@ public class User {
 	private Team team; 
 	
 	@ElementCollection(fetch = FetchType.EAGER)
+	@JsonView(Basic.class)
     private List<String> roles;
 	
 	//Game Accounts

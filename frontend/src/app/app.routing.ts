@@ -10,6 +10,7 @@ import { ProfileComponent } from "./components/profile/profile.component";
 import { SettingsComponent } from "./components/settings/settings.component";
 import { NewTournamentComponent } from "./components/tournaments/newTournament/newTournament.component";
 import { TournamentComponent } from "./components/tournaments/tournament/tournament.component";
+import { LeagueComponent } from "./components/league/league.component";
 
 const appRoutes = [
     { path: '', component: IndexComponent},
@@ -23,7 +24,8 @@ const appRoutes = [
     { path: 'user/:name', component: ProfileComponent},
     { path: 'user/:name/settings', component: SettingsComponent},
     { path: 'newTournament', component: NewTournamentComponent},
-    { path: 'tournaments/:id', component: TournamentComponent}
+    { path: 'tournaments/:id', component: TournamentComponent},
+	{ path: 'league', component: LeagueComponent}
 ]
 
 export const routing = RouterModule.forRoot(appRoutes);
