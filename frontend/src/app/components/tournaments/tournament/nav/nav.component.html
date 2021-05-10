@@ -19,7 +19,7 @@
                         <div class="col-md-3" *ngFor="let participant of tournament.participants; let i=index">
                             <a [routerLink]="['/teams/' + participant.id]" class="item">
                                 <span class="logo">
-                                    <img [src]="participant.image" width="80" height="80" alt="team-logo">
+                                    <img [src]="teamImage(participant)" width="80" height="80" alt="team-logo">
                                 </span>
                                 <span class="name">{{participant.name}}</span>
                             </a>
@@ -44,7 +44,7 @@
                                             <span class="teams-wrap">
                                                 <span class="team" [routerLink]="['/teams/' + match.team1.id]">
                                                     <span>
-                                                        <img [src]="match.team1.image" alt="team logo" height="340px" width="320px">
+                                                        <img [src]="teamImage(match.team1)" alt="team logo" height="340px" width="320px">
                                                     </span>
                                                     <span>{{match.team1.name}}</span>
                                                 </span>
@@ -73,7 +73,7 @@
                                                 <span class="team1" [routerLink]="['/teams/' + match.team2.id]">
                                                     <span>{{match.team2.name}}</span>
                                                     <span>
-                                                        <img [src]="match.team2.image" alt="team logo" height="340px" width="320px">
+                                                        <img [src]="teamImage(match.score2)" alt="team logo" height="340px" width="320px">
                                                     </span>
                                                 </span>
                                                 <div class="col-md-offset-5 col-md-5"></div>
@@ -93,7 +93,7 @@
                                     <span class="teams-wrap" *ngIf="round.oddTeam !== null">
                                         <span class="team" [routerLink]="['/teams/' + round.oddTeam.id]">
                                             <span>
-                                                <img [src]="round.oddTeam.image" alt="team logo" height="340px" width="320px">
+                                                <img [src]="teamImage(round.oddTeam)" alt="team logo" height="340px" width="320px">
                                             </span>
                                             <span><strong>{{round.oddTeam.name}} goes to the next round</strong></span>
                                         </span>
@@ -116,7 +116,7 @@
                         	<h3 style="text-align:center;"><strong>THE WINNER IS</strong></h3> 
                             <a [routerLink]="['/teams/' + tournament.winner.id]" class="item">
                                 <span class="logo">
-                                    <img [src]="tournament.winner.image" width="80" height="80" alt="team-logo">
+                                    <img [src]="teamImage(tournament.winner)" width="80" height="80" alt="team-logo">
                                 </span>
                                 <span class="name">{{tournament.winner.name}} </span>
                             </a>

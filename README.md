@@ -309,3 +309,54 @@ Development environnmet set-up:
 |Enrique Garrido Gónzalez | kikegg | [TournamentRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/tournament/TournamentRestController.java) | [Image Service](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/ImageService.java) | [Security Configuration](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/security/RestSecurityConfig.java) | [UserRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/user/UserRestController.java) | [Victorious.postman_collection](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/Victorious.postman_collection.json) |
 |Daniel Alexander Juan Moreno | dajm92 | [Dockerfile](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/docker/Dockerfile) | [Docker-compose](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/docker/docker-compose.yml) | [Docker building script](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/docker/create_image.ps1) | []() | []() |
 |Jacobo Miguel Blanzaco Barreiro  | jacobobbm | [TournamentRestController](https://github.com/CodeURJC-DAW-2020-21/webapp5/blob/fase3/victorious_web/src/main/java/com/victorious/tournament/TournamentRestController.java) | []() | []() | []() | []() |
+
+## PHASE 4
+
+**Class Diagram**
+
+![Class Diagram](Screenshots/component-tree.jpg)
+
+**SPA templates Diagram**
+
+![SPA Templates](Screenshots/spa-class-diagram.jpg)
+
+**Instructions to set the develop environment**
+
+* Java JDK 11 or newer.
+* MySQL 8.0 or newer.
+* A Browser (Firefox, Google Chrome, Safari, Microsoft Edge...).
+* Install nodejs that includes npm for your OS via [this link](https://nodejs.org/es/download/)
+    * Install AngularCLI with this command: npm install -g @angular/cli
+* Docker:
+    * Windows: Docker Desktop 2.0+ on Windows 10 Pro/Enterprise. Windows 10 Home (2004+) requires Docker Desktop 2.2+ and the WSL2 back-end (Docker Toolbox is not supported)
+    * macOS: Docker Desktop 2.0+
+    * Linux: Docker CE/EE 18.06+ and Docker Compose 1.21+
+* IDE (visual studio code or srping tool suite recommended)
+* Maven extension (lifecycle) for that IDE
+
+## Participation
+
+ **Member's Work**
+
+* **Daniel Lahera Esteban**: 
+* **Enrique Garrido Gónzalez**: 
+* **Daniel Alexander Juan Moreno**: 
+* **Jacobo Miguel Blanzaco Barreiro**: 
+
+
+**Member's Important Commits**
+| Name | Github user| Commit 1| Commit 2| Commit 3| Commit 4| Commit 5|
+|--------|------------|-------|---------|---------|---------|---------|
+|Daniel Lahera Esteban| DaniL97 | []() | []() | []() | []() | []() |
+|Enrique Garrido Gónzalez | kikegg | []() | []() | []() | []() | []() |
+|Daniel Alexander Juan Moreno | dajm92 | []() | []() | []() | []() | []() |
+|Jacobo Miguel Blanzaco Barreiro  | jacobobbm | []() | []() | []() | []() | []() |
+
+
+**Member's Most Focused Files**
+| Name | Github user| File 1| File 2| File 3| File 4| File 5|
+|--------|------------|-------|---------|---------|---------|---------|
+|Daniel Lahera Esteban| DaniL97 | []() | []() | []() | []() | []() |
+|Enrique Garrido Gónzalez | kikegg | []() | []() | []() | []() | []() |
+|Daniel Alexander Juan Moreno | dajm92 | []() | []() | []() | []() | []() |
+|Jacobo Miguel Blanzaco Barreiro  | jacobobbm | []() | []() | []() | []() | []() |

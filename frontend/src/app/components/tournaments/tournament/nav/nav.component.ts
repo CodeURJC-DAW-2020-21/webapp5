@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 
 import { ActivatedRoute, Router } from "@angular/router";
 import { Match } from 'src/app/models/match.model';
+import { Team } from 'src/app/models/team.model';
 import { Tournament } from "src/app/models/tournament.model";
 import { LoginService } from "src/app/services/login.sevice";
 import { TournamentService } from "src/app/services/tournaments.service";
@@ -52,5 +53,9 @@ export class TNav {
       
     );
     location.reload();
+  }
+
+  teamImage(team: Team){
+    return team.image? 'api/teams/' + team.id + '/image' :  '/assets/images/sample_images/team_default.jpg';
   }
 }
