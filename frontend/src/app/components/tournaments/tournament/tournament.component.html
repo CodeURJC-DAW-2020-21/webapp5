@@ -1,0 +1,82 @@
+<div *ngIf="tournament">
+    <!--BREADCRUMBS BEGIN-->
+    <section class="image-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="info">
+                        <div class="wrap">
+                            <h1>Tournament</h1>
+                        </div>
+                    </div>
+                </div>	
+            </div>
+        </div>
+    </section>
+    <!--BREADCRUMBS END-->
+
+    <!--CLUB WRAP BEGIN-->
+
+    <section class="club-wrap club-champ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h4>{{tournament.name}} </h4>
+                    <div class="champ-date"><i class="fa fa-calendar" aria-hidden="true"></i>{{tournament.iniDate}}</div>
+                </div>
+
+
+
+                <div class="col-md-3">
+                    <a class="btn small club-top-btn" (click)="join(tournament)" *ngIf="loginService.isLogged() && !tournament.started">Join</a>
+                </div>
+
+
+
+            </div>
+        </div>
+            
+        <div class="championship-header-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="club-logo">
+                            <img src="assets/images/soccer/champ-logo.png" class="img-responsive" alt="champ image">                
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="club-info">
+                            <div class="item"><span>Tournament Capacity:</span> {{tournament.currentPlayers}}/{{tournament.maxPlayers}}</div>
+                            <div class="item"><span>Tournament Game:</span> {{tournament.game.name}}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="club-info">
+                            <div class="item"><span>Tournament description:</span></div>
+                            <p>{{tournament.description}}</p>
+                        </div>	
+                    </div>
+                </div>	
+            </div>	
+        </div>
+    </section>
+
+    <!--CLUB WRAP END-->
+
+    <!--CHAMPIONSHIP WRAP BEGIN-->
+
+    <div class="championship-wrap">
+        <!--CHAMPIONSHIP NAVIGATION BEGIN -->
+        <div class="champ-navigation">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="champ-nav-list">
+                            <tNav></tNav>
+                        </ul>		
+                    </div>
+                </div>
+            </div>				
+        </div>
+    </div>
+</div>

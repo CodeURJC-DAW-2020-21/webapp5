@@ -1,1 +1,1 @@
-docker build -t dawwebapp52021/victorious ../victorious_web
+docker build -t dawwebapp52021/victorious ./

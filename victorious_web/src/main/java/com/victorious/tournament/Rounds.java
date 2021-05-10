@@ -42,6 +42,7 @@ public class Rounds {
     @JsonView(RoundMatchUps.class)
     private List<MatchUp> matches;
     
+    @JsonView(Basic.class)
     private int numRound;
 
     public Rounds(){ }

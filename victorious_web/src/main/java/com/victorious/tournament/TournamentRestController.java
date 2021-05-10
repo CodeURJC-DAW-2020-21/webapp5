@@ -29,6 +29,7 @@ import com.victorious.game.Game;
 import com.victorious.game.GameService;
 import com.victorious.team.Team;
 import com.victorious.team.TeamService;
+import com.victorious.tournament.Rounds.RoundTeams;
 import com.victorious.user.User;
 import com.victorious.user.UserService;
 
@@ -40,7 +41,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 public class TournamentRestController {
 		
 		interface TournamentDetails extends Tournament.Basic, Tournament.TournamentTeams, Tournament.TournamentRounds, 
-		Team.Basic, Game.Basic, Rounds.Basic {}
+		 RoundDetails, MatchDetails, RoundTeams {}
 		interface RoundDetails extends Rounds.Basic, Rounds.RoundMatchUps, Team.Basic, MatchUp.Basic, Game.Basic {}
 		interface MatchDetails extends MatchUp.Basic, MatchUp.MatchUpTeams, Team.Basic, Game.Basic {}
 	
@@ -230,7 +231,7 @@ public class TournamentRestController {
 		}
 	    
 	    @PostMapping("/{tournamentId}/rounds")
-	    @JsonView(RoundDetails.class)
+	    @JsonView(TournamentDetails.class)
 	    public ResponseEntity<Rounds> createRounds(@PathVariable  Long tournamentId, HttpServletRequest request){
 	    	Principal principal = request.getUserPrincipal();
 			String userLoggedName = principal.getName();

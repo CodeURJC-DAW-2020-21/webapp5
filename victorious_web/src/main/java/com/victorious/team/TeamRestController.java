@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -43,6 +45,7 @@ public class TeamRestController {
 	
 	interface TeamDetails extends User.Basic, Team.Basic, Game.Basic, Team.TeamTournament, Team.TeamUsers, Tournament.Basic{}
 	interface TeamChart extends Team.TeamChart{}
+	interface TeamLeague extends Team.Basic, Team.TeamChart{}
 	
 	private static final String POSTS_FOLDER = "posts";
 	
@@ -60,13 +63,14 @@ public class TeamRestController {
 	
 	@PostMapping(value="/")
 	@JsonView(TeamDetails.class)
-	public ResponseEntity<Team> createTeam (@RequestBody Team team, HttpServletRequest request){
+	public ResponseEntity<Team> createTeam (@RequestBody Team team, HttpServletRequest request) throws IOException{
 		
 		String loggedUserName = request.getUserPrincipal().getName();
 		User loggedUser = userService.findByName(loggedUserName).get();
 		Team newTeam = new Team(team.getName(), team.getDescription());
 		newTeam.setCreator(loggedUser);
 		newTeam.addAdmin(loggedUser);
+		setTeamImage(newTeam, "/sample_images/team_default.jpg");
 		URI location = fromCurrentRequest().path("/{id}")
 				.buildAndExpand(newTeam.getId()).toUri();
 		
@@ -136,7 +140,7 @@ public class TeamRestController {
     }
 	
 	@GetMapping("/league")
-	@JsonView(TeamDetails.class)
+	@JsonView(TeamLeague.class)
 	public ResponseEntity<List<Team>> getLeague(){
 		
 		List<Team> league = teamService.findAll(Sort.by(Sort.Direction.DESC, "nVictories"));
@@ -210,7 +214,7 @@ public class TeamRestController {
 		
 		String loggedUserName = request.getUserPrincipal().getName();
 		User loggedUser = userService.findByName(loggedUserName).get();
-		User oUser = userService.findByName(user.getName()).get();
+		User oUser = userService.findById(user.getId()).get();
 		Team team = teamService.findById(id).get();
 		boolean isAdmin = team.isAdmin(loggedUser) || loggedUser.getRoles().contains("ADMIN");
 		if (!team.isAdmin(oUser) && oUser.getTeam().equals(team) && isAdmin) {
@@ -230,7 +234,7 @@ public class TeamRestController {
 		String loggedUserName = request.getUserPrincipal().getName();
 		User loggedUser = userService.findByName(loggedUserName).get();
 		Team team = teamService.findById(id).get();
-		User oUser = userService.findByName(user.getName()).get();
+		User oUser = userService.findById(user.getId()).get();
 		Long userId = oUser.getId();
 		boolean isAdmin = team.isAdmin(loggedUser) || loggedUser.getRoles().contains("ADMIN");
 
@@ -320,5 +324,11 @@ public class TeamRestController {
 		} else {
 			return ResponseEntity.notFound().build();
 		}
+	}
+    
+	public void setTeamImage(Team team, String classpathResource) throws IOException {
+		team.setImage(true);
+		Resource image = (Resource) new ClassPathResource(classpathResource);
+		team.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
 	}
 }

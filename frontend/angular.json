@@ -1,0 +1,191 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "frontend": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/frontend",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css",
+              "src/assets/css/library/bootstrap.css",
+              "src/assets/dev-assets/preloader-default.css",
+              "src/assets/css/access.css",
+              "src/assets/css/error.css",
+              "src/assets/css/googleButton.css",
+              "src/assets/css-min/soccer.min.css"
+            ],
+            "scripts": [
+              "src/assets/js/library/jquery-ui.js",
+              "src/assets/js/library/bootstrap.js",
+              "src/assets/js/library/jquery.sticky.js",
+              "src/assets/js/library/jquery.jcarousel.js",
+              "src/assets/js/library/jcarousel.connected-carousels.js",
+              "src/assets/js/library/owl.carousel.js",
+              "src/assets/js/library/progressbar.js",
+              "src/assets/js/library/jquery.bracket.min.js",
+              "src/assets/js/library/chartist.js",
+              "src/assets/js/library/Chart.js",
+              "src/assets/js/library/fancySelect.js",
+              "src/assets/js/library/isotope.pkgd.js",
+              "src/assets/js/library/imagesloaded.pkgd.js",
+              "src/assets/js/jquery.team-coundown.js",
+              "src/assets/js/matches-slider.js",
+              "src/assets/js/header.js",
+              "src/assets/js/matches_broadcast_listing.js",
+              "src/assets/js/news-line.js",
+              "src/assets/js/match_galery.js",
+              "src/assets/js/main-club-gallery.js",
+              "src/assets/js/product-slider.js",
+              "src/assets/js/circle-bar.js",
+              "src/assets/js/standings.js",
+              "src/assets/js/shop-price-filter.js",
+              "src/assets/js/timeseries.js",
+              "src/assets/js/radar.js",
+              "src/assets/js/slider.js",
+              "src/assets/js/preloader.js",
+              "src/assets/js/diagram.js",
+              "src/assets/js/bi-polar-diagram.js",
+              "src/assets/js/label-placement-diagram.js",
+              "src/assets/js/donut-chart.js",
+              "src/assets/js/animate-donut.js",
+              "src/assets/js/advanced-smil.js",
+              "src/assets/js/svg-path.js",
+              "src/assets/js/pick-circle.js",
+              "src/assets/js/horizontal-bar.js",
+              "src/assets/js/gauge-chart.js",
+              "src/assets/js/stacked-bar.js",
+              "src/assets/js/library/chartist-plugin-legend.js",
+              "src/assets/js/library/chartist-plugin-threshold.js",
+              "src/assets/js/library/chartist-plugin-pointlabels.js",
+              "src/assets/js/treshold.js",
+              "src/assets/js/visible.js",
+              "src/assets/js/anchor.js",
+              "src/assets/js/landing_carousel.js",
+              "src/assets/js/landing_sport_standings.js",
+              "src/assets/js/twitterslider.js",
+              "src/assets/js/champions.js",
+              "src/assets/js/landing_mainnews_slider.js",
+              "src/assets/js/carousel.js",
+              "src/assets/js/video_slider.js",
+              "src/assets/js/footer_slides.js",
+              "src/assets/js/player_test.js",
+              "src/assets/js/main.js",
+              "src/assets/dev-assets/demo-switcher.js",
+              "src/assets/js/library/jquery.js",
+              "src/assets/js-backend/loadMoreTeams.js",
+              "src/assets/js-backend/loadMoreTournaments.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "frontend:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "frontend:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "frontend:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "frontend:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "frontend:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "frontend"
+}

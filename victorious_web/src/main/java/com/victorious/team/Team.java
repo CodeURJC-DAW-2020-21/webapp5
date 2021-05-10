@@ -73,7 +73,7 @@ public class Team {
 	@JsonIgnore
 	private Blob imageFile;
 	
-	@JsonIgnore
+	@JsonView(Basic.class)
 	private boolean image;
 	
 	@Column
