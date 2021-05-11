@@ -18,8 +18,8 @@
                                 <div class="col-md-12" *ngIf="tournament.participants.length!= 0">
                                     <h5>Participants</h5>
                                 </div>
-                                <div id="teamList">
-                                    <div class="col-md-3 col-sm-4 col-xs-6" *ngFor="let participants of tournament.participants">
+                                <div class="col-md-12" id="teamList">
+                                    <div class="col-md-3 " *ngFor="let participants of tournament.participants">
                                         <a [routerLink]="['/teams/' + participants.id]">
                                             <img src="assets/images/common/esport-participants-background.jpg" class="background-team" alt="background">
                                             <img [src]="teamImage(participants)" alt="team-logo">
