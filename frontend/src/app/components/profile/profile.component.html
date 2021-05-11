@@ -27,7 +27,7 @@
             </div>
             <div class="col-md-12">
                 <h6>Teams</h6>
-                <div class="list-group" *ngIf="hasTeams()"><a [routerLink]="['/team/' + user?.team.id]" class="list-group-item"><span><img [src]="teamImage()" alt="team logo" height="50px"> {{user?.team.name}}</span></a></div>
+                <div class="list-group" *ngIf="hasTeams()"><a [routerLink]="['/teams/' + user?.team.id]" class="list-group-item"><span><img [src]="teamImage()" alt="team logo" height="50px"> {{user?.team.name}}</span></a></div>
                 <div class="list-group" *ngIf="!hasTeams()"><a class="list-group-item"><span>NO TEAM</span></a></div>
             </div>
             <div class="col-md-12">
