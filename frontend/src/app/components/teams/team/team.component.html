@@ -122,15 +122,14 @@
 								<ng-container *ngFor="let request of getTeam().requests">
 									<li class="list-group-item" >
 										<div class="row" >
-											<div class="col-md-6"> <a>{{ request }}</a>
-												<div class="col-md-4 text-right">
-													<form method="post">
-														<input type="hidden" name="_csrf" value="" />
-														<input type="hidden" value=request />
-														<input type="hidden" value="true" />
-														<input type="submit" class="btn small" value="accept" (click)="acceptRejectMember(request, team.id, true)"> 
-													</form>
-												</div>
+											<div class="col-md-6"> <a>{{request}}</a></div>
+											<div class="col-md-4 text-right">
+												<form method="post">
+													<input type="hidden" name="_csrf" value="" />
+													<input type="hidden" value=request />
+													<input type="hidden" value="true" />
+													<input type="submit" class="btn small" value="accept" (click)="acceptRejectMember(request, team.id, true)"> 
+												</form>
 											</div>
 											<div class="col-md-2 text-right">
 												<form method="post" >
