@@ -73,7 +73,7 @@
                                                 <span class="team1" [routerLink]="['/teams/' + match.team2.id]">
                                                     <span>{{match.team2.name}}</span>
                                                     <span>
-                                                        <img [src]="teamImage(match.score2)" alt="team logo" height="340px" width="320px">
+                                                        <img [src]="teamImage(match.team2)" alt="team logo" height="340px" width="320px">
                                                     </span>
                                                 </span>
                                                 <div class="col-md-offset-5 col-md-5"></div>
@@ -89,15 +89,15 @@
                                             </span>
                                         </form>
                                         <br>
-                                    </a>
-                                    <span class="teams-wrap" *ngIf="round.oddTeam !== null">
-                                        <span class="team" [routerLink]="['/teams/' + round.oddTeam.id]">
-                                            <span>
-                                                <img [src]="teamImage(round.oddTeam)" alt="team logo" height="340px" width="320px">
+                                        <span class="teams-wrap" *ngIf="round.oddTeam !== null">
+                                            <span class="team" [routerLink]="['/teams/' + round.oddTeam.id]">
+                                                <span>
+                                                    <img [src]="teamImage(round.oddTeam)" alt="team logo" height="340px" width="320px">
+                                                </span>
+                                                <span><strong>{{round.oddTeam.name}} goes to the next round</strong></span>
                                             </span>
-                                            <span><strong>{{round.oddTeam.name}} goes to the next round</strong></span>
                                         </span>
-                                    </span>                                  
+                                    </a>                                  
                                 <!-- ROUNDS-->
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                                 <div class="info">
                                     <!--form para empezar el torneo-->
                                     <form action="" method="post">                                      
-                                        <input type="submit" (click)="nextRound(tournament)" class="btn btn-large btn-block btn-success" class="name" value="START">
+                                        <input type="submit" (click)="nextRound(tournament)" class="btn btn-large btn-block btn-success" value="START">
                                         <div class="clear"></div>
                                         <input type="hidden" name="_csrf" value="" />                                       
                                     </form>                              
@@ -155,7 +155,7 @@
                                 </div>
                                 <div class="info">
                                     <form action="" method="post">                                      
-                                        <input type="submit" (click)="nextRound(tournament)"  class="btn btn-large btn-block btn-success" class="name" value="NEXT ROUND">
+                                        <input type="submit" (click)="nextRound(tournament)"  class="btn btn-large btn-block btn-success" value="NEXT ROUND">
                                         <div class="clear"></div>
                                         <input type="hidden" name="_csrf" value="" />
                                     </form> 

@@ -29,8 +29,8 @@ export class TournamentComponent{
 
     join(tournament: Tournament){
       this.tournamentService.joinTournament(tournament).subscribe(
-
+        _ => location.reload(),
+        error => console.error(error)
       );
-      location.reload();
     }
 }

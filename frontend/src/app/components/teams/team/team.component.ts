@@ -24,18 +24,9 @@ export class TeamComponent {
     }
 
     ngOnInit(): void {
-      console.log(this.loginService.currentUser());
       this.teamService.getTeam(this.id).subscribe(
           data => {
-            this.team = data;
-            this.teamService.getGraph(this.id).subscribe(
-              data2 => {
-                this.team.nVictories = data2.nVictories;
-                this.team.nLoses = data2.nLoses;
-                this.team.recordV = data2.recordV;
-                this.team.recordL = data2.recordL;
-              }
-            )
+            this.team = data
           },
           error => console.error(error)
         );
@@ -44,10 +35,6 @@ export class TeamComponent {
     getTeam() {
       return this.team;
     }
-
-	  getChart(){
-		return this.team;
-	  }
 
     isMember(){
       if(this.loginService.currentUser().team === null){
@@ -63,60 +50,76 @@ export class TeamComponent {
 
 	  requestToJoin(teamId: number){
 		this.teamService.requestToJoin(teamId).subscribe(
-			(team: Team)  => this.router.navigate(['/teams/' + teamId]),
+			(team: Team)  => {
+        this.router.navigate(['/teams/' + teamId]),
+        location.reload()
+      },
 			error => {
-                console.error(error);             
-            });
-      location.reload();
+        console.error(error);             
+      });
 	  }
 
 	  addGame(teamId: number, gameName:string){
 		this.teamService.addGame(teamId, gameName).subscribe(
-			(team: Team)  => this.router.navigate(['/teams/' + teamId]),
+			(team: Team)  => {
+        this.router.navigate(['/teams/' + teamId]),
+        location.reload()
+      },
 			error => {
                 console.error(error);             
-            });
-      location.reload();
+      });
 	  }
 
 	  leaveTeam(teamId: number){
 		this.teamService.leaveTeam(teamId).subscribe(
-			(team: Team)  => this.router.navigate(['/teams/' + teamId]),
+			(team: Team)  => {
+        this.router.navigate(['/teams/' + teamId]),
+        location.reload()
+      },
 			error => {
                 console.error(error);             
-            });
-            location.reload();
+      });
 	  }
 
 	  acceptRejectMember(userId: number, teamId:string|number, accept: boolean){
-		this.teamService.acceptRejectMember(userId , teamId, true).subscribe(
-            (team:Team) => this.router.navigate(['/teams/' + teamId]),
-            error => {
-                console.error(error);             
-            });
-            location.reload();
+		this.teamService.acceptRejectMember(userId , teamId, accept).subscribe(
+      (team:Team) => {
+        this.router.navigate(['/teams/' + teamId]),
+        location.reload()
+      },
+      error => {
+          console.error(error);             
+      });
 	  }
 
 	  addAdminToTeam(userId: string|number, teamId: number | string){
 		this.teamService.addAdminToTeam(userId, teamId).subscribe(
-            (team:Team) => this.router.navigate(['/teams/' + teamId]),
-            error => {
-                console.error(error);             
-            });
-            location.reload();
+      (team:Team) => {
+        this.router.navigate(['/teams/' + teamId]),
+        location.reload()
+      },
+      error => {
+          console.error(error);             
+      });
 	  }
 
 	  kickMemberFromTeam(userId: number, teamId: number | string){
 		this.teamService.kickMemberFromTeam(userId, teamId).subscribe(
-            (team:Team) => this.router.navigate(['/teams/' + teamId]),
-            error => {
-                console.error(error);             
-            });
-            location.reload();
+      (team:Team) => {
+        this.router.navigate(['/teams/' + teamId]),
+        location.reload()
+      }, 
+      error => {
+          console.error(error);             
+      });
 	  }
 
+    getUserRequest(request: number | string){
+      
+    }
+
     teamImage(){
-      return this.team.image? 'api/teams/' + this.team.id + '/image' :  '/assets/images/sample_images/team_default.jpg';
+      return this.team.image? 'api/teams/' + this.team.id + '/image' :  'assets/images/sample_images/team_default.jpg';
     }
 
     uploadTeamImage(team: Team): void{
@@ -135,6 +138,6 @@ export class TeamComponent {
     }
 
     userImage(user: User){
-      return user.image? 'api/user/' + user.name + '/image' :  '/assets/images/sample_images/user_default.jpg';
+      return user.image? '/api/users/' + user.name + '/image' :  'assets/images/sample_images/user_default.jpg';
     }
 }

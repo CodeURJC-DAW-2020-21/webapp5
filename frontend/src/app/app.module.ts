@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -23,6 +23,8 @@ import { TournamentComponent } from './components/tournaments/tournament/tournam
 import { TNav } from './components/tournaments/tournament/nav/nav.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { LeagueComponent } from './components/league/league.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { TeamChartComponent } from './components/teams/team/chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -44,13 +46,16 @@ import { LeagueComponent } from './components/league/league.component';
     NewTournamentComponent,
     TournamentComponent,
     TNav,
-    LeagueComponent
+    LeagueComponent,
+    TeamChartComponent
   ],
   imports: [
     BrowserModule,
     routing,
     NgbModule,
     FormsModule,
+    ReactiveFormsModule,
+    NgApexchartsModule,
     HttpClientModule
   ],
   providers: [],

@@ -34,6 +34,7 @@
               "src/assets/css-min/soccer.min.css"
             ],
             "scripts": [
+              "node_modules/apexcharts/dist/apexcharts.min.js",
               "src/assets/js/library/jquery-ui.js",
               "src/assets/js/library/bootstrap.js",
               "src/assets/js/library/jquery.sticky.js",
