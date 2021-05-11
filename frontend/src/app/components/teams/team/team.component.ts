@@ -82,7 +82,7 @@ export class TeamComponent {
 	  }
 
 	  acceptRejectMember(userId: number, teamId:string|number, accept: boolean){
-		this.teamService.acceptRejectMember(userId , teamId, true).subscribe(
+		this.teamService.acceptRejectMember(userId , teamId, accept).subscribe(
       (team:Team) => {
         this.router.navigate(['/teams/' + teamId]),
         location.reload()
