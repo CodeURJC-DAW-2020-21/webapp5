@@ -78,9 +78,9 @@ import { TournamentService } from "src/app/services/tournaments.service";
 
       join(tournament: Tournament){
         this.tournamentService.joinTournament(tournament).subscribe(
-          
+          _ => location.reload(),
+          error => console.error(error)
         );
-        location.reload();
       }
       
       teamImage(team: Team){

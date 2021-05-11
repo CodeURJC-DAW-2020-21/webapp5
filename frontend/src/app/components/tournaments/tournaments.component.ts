@@ -19,11 +19,4 @@ export class TournamentsComponent{
       }
 
       goToLogin(){this.router.navigate(['/login']);}
-
-      join(tournament: Tournament){
-        this.tournamentService.joinTournament(tournament).subscribe(
-          _ => location.reload(),
-          error => console.error(error)
-        );
-      }
 }
